@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -8,19 +7,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f;
 
     private Rigidbody2D rb;
-    private PlayerInput playerInput;
-    private InputAction moveAction;
     private Vector2 moveInput;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerInput = GetComponent<PlayerInput>();
-
-        if (playerInput != null)
-        {
-            moveAction = playerInput.actions["Move"];
-        }
     }
 
     private void Update()
@@ -35,9 +26,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void ReadInput()
     {
-        if (moveAction != null)
+        if (InputManager.instance.GetPlayerMovement() != null)
         {
-            moveInput = moveAction.ReadValue<Vector2>();
+            moveInput = InputManager.instance.GetPlayerMovement();
         }
         else
         {
