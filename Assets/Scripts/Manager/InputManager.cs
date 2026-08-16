@@ -40,6 +40,11 @@ public class InputManager : MonoBehaviour
         return playerControls.Player.Look.ReadValue<Vector2>();
     }
 
+    public bool GetPlayerAttack()
+    {
+        return playerControls.Player.Attack.triggered;
+    }
+
     public bool PlayerInteract()
     {
         return playerControls.Player.Interact.triggered;

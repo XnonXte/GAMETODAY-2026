@@ -5,13 +5,14 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 7f;
-
     private Rigidbody2D rb;
     private Vector2 moveInput;
+    private Animator playerAnimator;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -44,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         rb.linearVelocity = moveInput * moveSpeed;
+
+        playerAnimator.SetBool("isWalking", rb.linearVelocity.magnitude > 0.01f);
     }
 
     public void SetMoveSpeed(float speed)
