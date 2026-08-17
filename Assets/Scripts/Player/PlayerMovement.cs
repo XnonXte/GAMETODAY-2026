@@ -47,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = moveInput * moveSpeed;
 
         playerAnimator.SetBool("isWalking", rb.linearVelocity.magnitude > 0.01f);
+
+        if (moveInput.x > .1f) transform.localScale = new Vector3(1, 1, 1);
+        else if (moveInput.x < -.1f) transform.localScale = new Vector3(-1, 1, 1);
     }
 
     public void SetMoveSpeed(float speed)

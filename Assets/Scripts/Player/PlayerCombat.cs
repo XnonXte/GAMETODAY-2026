@@ -38,15 +38,16 @@ public class PlayerCombat : MonoBehaviour
 
             foreach (var enemy in hit)
             {
-                if (!enemy.isTrigger) return;
-
-                IDamageable enemyInterface = enemy.GetComponent<IDamageable>();
-
-                if (enemyInterface != null)
+                if (enemy.isTrigger)
                 {
-                    enemyInterface.OnDamage(playerDamage);
-                    Debug.Log("[PlayerCombat] Enemy Hit!");
-                    StartCoroutine(AttackDebounce());
+                    IDamageable enemyInterface = enemy.GetComponent<IDamageable>();
+
+                    if (enemyInterface != null)
+                    {
+                        enemyInterface.OnDamage(playerDamage);
+                        Debug.Log("[PlayerCombat] Enemy Hit!");
+                        StartCoroutine(AttackDebounce());
+                    }
                 }
             }
         }
