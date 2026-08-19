@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-using System.Collections;
 
 public class BaseEnemy : MonoBehaviour, IDamageable
 {
@@ -9,17 +8,9 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     private NavMeshAgent agent;
     private float currentHealth;
 
-    //refactor diakhir
-    [SerializeField] private Material defaultMaterial;
-    [SerializeField] private Material flashMaterial;
-    [SerializeField] private float flashDuration = .5f;
-    private Material currentMaterial;
-    private SpriteRenderer spriteRenderer;
-
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
     
     private void Start()
@@ -28,14 +19,11 @@ public class BaseEnemy : MonoBehaviour, IDamageable
         agent.updateUpAxis = false;
 
         currentHealth = maxHealth;
-
-        spriteRenderer.material = defaultMaterial;
     }
 
     public void OnDamage(float amount)
     {
         ChangeHealth(amount);
-        StartCoroutine(FlashHit(flashDuration));
     }
 
     public void ChangeHealth(float amount)
@@ -54,13 +42,5 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     {
         Debug.Log("Enemy Died");
         Destroy(gameObject, .1f);
-    }
-
-    //refactor diakhir aja
-    private IEnumerator FlashHit(float duration)
-    {
-        spriteRenderer.material = flashMaterial;
-        yield return new WaitForSeconds(duration);
-        spriteRenderer.material = defaultMaterial;
     }
 }

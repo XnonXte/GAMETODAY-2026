@@ -1,6 +1,7 @@
 using UnityEngine;
-using UnityEngine.AI;
 
-public class MeleeEnemy : BaseEnemy
+[CreateAssetMenu(menuName = "Enemies/Melee Enemy")]
+public class MeleeEnemy : SOBaseEnemy
 {
+    [SerializeField] private GameObject enemySword;
 }
