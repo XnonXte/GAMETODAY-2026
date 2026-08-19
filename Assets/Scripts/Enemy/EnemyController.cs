@@ -1,24 +1,29 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BaseEnemy : MonoBehaviour, IDamageable
+public class EnemyController : MonoBehaviour, IDamageable
 {
-    [SerializeField] private float maxHealth;
-    [SerializeField] private float damage;
+    private SpriteRenderer spriteRenderer;
     private NavMeshAgent agent;
     private float currentHealth;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
     
     private void Start()
     {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+    }
 
-        currentHealth = maxHealth;
+    public void InitEnemyData(SOBaseEnemy enemyData)
+    {
+        currentHealth = enemyData.maxHealth;
+        float enemyDamage = enemyData.attackDamage;
+        spriteRenderer.sprite = enemyData.enemySprite;
     }
 
     public void OnDamage(float amount)
