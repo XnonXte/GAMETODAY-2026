@@ -18,7 +18,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        InitEnemyData(enemyData);
+
+        if (enemyData != null) InitEnemyData(enemyData);
     }
 
     public void InitEnemyData(SOBaseEnemy enemyData)
@@ -48,6 +49,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     private void OnDeath()
     {
         Debug.Log("Enemy Died");
+        EventHandler.WhenEnemyDefeated();
         Destroy(gameObject, .1f);
     }
 }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a69eee596e06e394d9c6339d76f35219, type: 3}
   m_Name: Skele Archer 1
   m_EditorClassIdentifier: Assembly-CSharp::RangeEnemy
-  maxHealth: 0
-  moveSpeed: 0
-  attackDamage: 0
-  enemySprite: {fileID: 0}
+  <maxHealth>k__BackingField: 1
+  <moveSpeed>k__BackingField: 3
+  <attackDamage>k__BackingField: 0
+  <enemySprite>k__BackingField: {fileID: -5975853503181461587, guid: dff980ba186fb5743b06c01f03917c85, type: 3}
   enemyBow: {fileID: 0}

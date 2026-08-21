@@ -7,6 +7,16 @@ public class SpawnerController : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private Transform[] spawnPosition;
 
+    private void OnEnable()
+    {
+        EventHandler.OnBattleStart += SpawnEnemy;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.OnBattleStart -= SpawnEnemy;
+    }
+
 
     [ContextMenu("Test Spawn Enemy")]
     public void SpawnEnemy()
@@ -20,5 +30,10 @@ public class SpawnerController : MonoBehaviour
             
             enemyController.InitEnemyData(enemiesData[i]);
         }
+    }
+
+    public int GetEnemyCount()
+    {
+        return enemiesData.Count;
     }
 }

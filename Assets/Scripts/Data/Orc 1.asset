@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba660da9ff33ddf4a8920d6a56059328, type: 3}
   m_Name: Orc 1
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
-  maxHealth: 0
-  moveSpeed: 0
-  attackDamage: 0
-  enemySprite: {fileID: 0}
+  <maxHealth>k__BackingField: 1
+  <moveSpeed>k__BackingField: 3
+  <attackDamage>k__BackingField: 0
+  <enemySprite>k__BackingField: {fileID: 21300000, guid: 8307a6bff2e18d544891eef3caa09485, type: 3}
   enemySword: {fileID: 0}
