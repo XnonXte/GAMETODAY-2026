@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour, IDamageable
 {
+    [SerializeField] private SOBaseEnemy enemyData;
     private SpriteRenderer spriteRenderer;
     private NavMeshAgent agent;
     private float currentHealth;
@@ -17,6 +18,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        InitEnemyData(enemyData);
     }
 
     public void InitEnemyData(SOBaseEnemy enemyData)

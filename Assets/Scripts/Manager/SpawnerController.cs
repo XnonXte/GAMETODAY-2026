@@ -1,28 +1,24 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class SpawnerManager : MonoBehaviour
+public class SpawnerController : MonoBehaviour
 {
     [SerializeField] private List<SOBaseEnemy> enemiesData = new();
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private Transform testPosition;
+    [SerializeField] private Transform[] spawnPosition;
 
-    public static SpawnerManager instance;
-
-    private void Awake()
-    {
-        if (instance == null) instance = this;
-    }
 
     [ContextMenu("Test Spawn Enemy")]
     public void SpawnEnemy()
     {
         for (int i = 0; i < enemiesData.Count; i++)
         {
-            GameObject instantiatedEnemy = Instantiate(enemyPrefab, testPosition, true);
+            int randomIndex = Random.Range(0, spawnPosition.Length);
+
+            GameObject instantiatedEnemy = Instantiate(enemyPrefab, spawnPosition[randomIndex], true);
             EnemyController enemyController = instantiatedEnemy.GetComponent<EnemyController>();
-            enemyController.InitEnemyData(enemiesData[0]);
-            enemiesData.RemoveAt(0);
+            
+            enemyController.InitEnemyData(enemiesData[i]);
         }
     }
 }
