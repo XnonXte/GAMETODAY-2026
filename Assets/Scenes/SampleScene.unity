@@ -1614,6 +1614,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5020662563724301621, guid: 805be07d7eb1705438a518e29118c524, type: 3}
+      propertyPath: dashForce
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020662563724301621, guid: 805be07d7eb1705438a518e29118c524, type: 3}
+      propertyPath: dashDuration
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
