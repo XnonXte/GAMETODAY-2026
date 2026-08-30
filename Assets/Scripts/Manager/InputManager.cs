@@ -47,6 +47,6 @@ public class InputManager : MonoBehaviour
 
     public bool PlayerInteract()
     {
-        return playerControls.Player.Interact.triggered;
+        return playerControls.Player.Interact.WasPressedThisFrame();
     }
 }

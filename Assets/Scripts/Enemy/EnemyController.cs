@@ -1,0 +1,55 @@
+using UnityEngine;
+using UnityEngine.AI;
+
+public class EnemyController : MonoBehaviour, IDamageable
+{
+    [SerializeField] private SOBaseEnemy enemyData;
+    private SpriteRenderer spriteRenderer;
+    private NavMeshAgent agent;
+    private float currentHealth;
+
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
+    
+    private void Start()
+    {
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+
+        if (enemyData != null) InitEnemyData(enemyData);
+    }
+
+    public void InitEnemyData(SOBaseEnemy enemyData)
+    {
+        currentHealth = enemyData.maxHealth;
+        float enemyDamage = enemyData.attackDamage;
+        spriteRenderer.sprite = enemyData.enemySprite;
+    }
+
+    public void OnDamage(float amount)
+    {
+        ChangeHealth(amount);
+    }
+
+    public void ChangeHealth(float amount)
+    {
+        currentHealth -= amount;
+
+        Debug.Log($"[BaseEnemy] Enemy Got Hit! {currentHealth}");
+
+        if (currentHealth <= 0)
+        {
+            OnDeath();
+        }
+    }
+
+    private void OnDeath()
+    {
+        Debug.Log("Enemy Died");
+        EventHandler.WhenEnemyDefeated();
+        Destroy(gameObject, .1f);
+    }
+}
