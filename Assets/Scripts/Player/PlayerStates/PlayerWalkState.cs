@@ -4,11 +4,12 @@ public class PlayerWalkState : PlayerState
 
     public override void Enter()
     {
-
+        player.playerAnimator.SetBool("isWalking", true);
     }
 
     public override void Exit()
     {
+        player.playerAnimator.SetBool("isWalking", false);
         player.StopMovement();
     }
 

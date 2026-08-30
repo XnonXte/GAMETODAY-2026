@@ -10,15 +10,18 @@ public class PlayerAttackState : PlayerState
     public override void Enter()
     {
         player.StopMovement();
-
         attackTimer = attackDuration;
 
         player.playerCombat.Attack();
+
+        player.playerAnimator.SetBool("isAttacking", true);
     }
 
     public override void Exit()
     {
         player.StopMovement();
+
+        player.playerAnimator.SetBool("isAttacking", false);
     }
 
     public override void Update()

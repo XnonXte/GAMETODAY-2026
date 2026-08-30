@@ -4,12 +4,13 @@ public class PlayerIdleState : PlayerState
 
     public override void Enter()
     {
+        player.playerAnimator.SetBool("isIdle", true);
         player.StopMovement();
     }
 
     public override void Exit()
     {
-        
+        player.playerAnimator.SetBool("isIdle", false);
     }
 
     public override void Update()

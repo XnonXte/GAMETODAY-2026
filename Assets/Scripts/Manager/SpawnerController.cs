@@ -25,7 +25,7 @@ public class SpawnerController : MonoBehaviour
         {
             int randomIndex = Random.Range(0, spawnPosition.Length);
 
-            GameObject instantiatedEnemy = Instantiate(enemyPrefab, spawnPosition[randomIndex], true);
+            GameObject instantiatedEnemy = Instantiate(enemyPrefab, spawnPosition[randomIndex]);
             EnemyController enemyController = instantiatedEnemy.GetComponent<EnemyController>();
             
             enemyController.InitEnemyData(enemiesData[i]);

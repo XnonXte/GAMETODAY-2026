@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f;
     private Rigidbody2D rb;
     private Vector2 moveInput;
-    private Animator playerAnimator;
+    public Animator playerAnimator { get; set; }
     public PlayerCombat playerCombat { get; private set; }
 
     #region PlayerStateMachine Variables
@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     {
         ReadInput();
         stateMachine.currentPlayerState.Update();
+        if (InputManager.instance.PlayerInteract()) GameSceneManager.instance.RestartScene();
     }
 
     private void FixedUpdate()
@@ -70,8 +71,6 @@ public class Player : MonoBehaviour
     {
         rb.linearVelocity = moveInput * moveSpeed;
 
-        playerAnimator.SetBool("isWalking", true);
-
         if (moveInput.x > .1f) transform.localScale = new Vector3(1, 1, 1);
         else if (moveInput.x < -.1f) transform.localScale = new Vector3(-1, 1, 1);
     }
@@ -79,7 +78,6 @@ public class Player : MonoBehaviour
     public void StopMovement()
     {
         rb.linearVelocity = Vector2.zero;
-        playerAnimator.SetBool("isWalking", false);
     }
 
     public void SetMoveSpeed(float speed)
