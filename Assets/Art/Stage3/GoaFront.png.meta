@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 8307a6bff2e18d544891eef3caa09485
+guid: 2d2a4f869a52c9b4da9fb82ffe8ab22b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3067543098262222968
-    second: PaperMarioStand_0
+      213: 841724861109185763
+    second: GoaFront_0
+  - first:
+      213: 1641072403305337124
+    second: GoaFront_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -49,9 +52,9 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.5, y: 0.03}
-  spritePixelsToUnits: 600
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,23 +116,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PaperMarioStand_0
+      name: GoaFront_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1174
-        height: 1914
+        width: 606
+        height: 1059
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 88701eefdc5ed65d0800000000000000
-      internalID: -3067543098262222968
+      spriteID: 3ec27013d486eab00800000000000000
+      internalID: 841724861109185763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoaFront_1
+      rect:
+        serializedVersion: 2
+        x: 5158
+        y: 0
+        width: 602
+        height: 1058
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42116b1f7a246c610800000000000000
+      internalID: 1641072403305337124
       vertices: []
       indices: 
       edges: []
@@ -139,7 +164,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -148,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PaperMarioStand_0: -3067543098262222968
+      GoaFront_0: 841724861109185763
+      GoaFront_1: 1641072403305337124
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
