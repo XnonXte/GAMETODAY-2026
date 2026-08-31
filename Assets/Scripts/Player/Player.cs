@@ -39,7 +39,14 @@ public class Player : MonoBehaviour
     {
         ReadInput();
         stateMachine.currentPlayerState.Update();
-        if (InputManager.instance.PlayerInteract()) GameSceneManager.instance.RestartScene();
+
+        if (InputManager.instance != null && InputManager.instance.PlayerInteract())
+        {
+            if (GameSceneManager.instance != null)
+            {
+                GameSceneManager.instance.RestartScene();
+            }
+        }
     }
 
     private void FixedUpdate()
