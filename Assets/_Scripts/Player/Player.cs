@@ -25,21 +25,21 @@ public class Player : MonoBehaviour
 
     #region PlayerStateMachine Variables
 
-    public PlayerStateMachine stateMachine { get; private set; }
-    public PlayerIdleState idleState { get; private set; }
-    public PlayerWalkState walkState { get; private set; }
-    public PlayerAttackState attackState { get; private set; }
-    public PlayerDashState dashState { get; private set; }
+    public PlayerStateMachine StateMachine { get; private set; }
+    public PlayerIdleState IdleState { get; private set; }
+    public PlayerWalkState WalkState { get; private set; }
+    public PlayerAttackState AttackState { get; private set; }
+    public PlayerDashState DashState { get; private set; }
 
     #endregion
 
     private void Awake()
     {
-        stateMachine = new();
-        idleState = new(this, stateMachine);
-        walkState = new(this, stateMachine);
-        attackState = new(this, stateMachine);
-        dashState = new(this, stateMachine);
+        StateMachine = new();
+        IdleState = new(this, StateMachine);
+        WalkState = new(this, StateMachine);
+        AttackState = new(this, StateMachine);
+        DashState = new(this, StateMachine);
 
         rb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponentInChildren<Animator>();
@@ -48,19 +48,19 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        stateMachine.Initialize(idleState);
+        StateMachine.Initialize(IdleState);
     }
 
     private void Update()
     {
         ReadInput();
-        stateMachine.CurrentPlayerState.Update();
+        StateMachine.CurrentPlayerState.Update();
 
-        if (InputManager.instance != null && InputManager.instance.PlayerInteract())
+        if (InputManager.Instance != null && InputManager.Instance.PlayerInteract())
         {
-            if (GameSceneManager.instance != null)
+            if (GameSceneManager.Instance != null)
             {
-                GameSceneManager.instance.RestartScene();
+                GameSceneManager.Instance.RestartScene();
             }
         }
 
@@ -72,12 +72,12 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        stateMachine.CurrentPlayerState.FixedUpdate();
+        StateMachine.CurrentPlayerState.FixedUpdate();
     }
 
     private void ReadInput()
     {
-        moveInput = InputManager.instance.GetPlayerMovement();
+        moveInput = InputManager.Instance.GetPlayerMovement();
 
         if (moveInput.magnitude > 1f)
         {
@@ -130,38 +130,5 @@ public class Player : MonoBehaviour
     public void StopDash()
     {
         rb.linearVelocity = Vector2.zero;
-    }
-
-
-    public void playerAttackAnimationHit()
-    {
-        if (stateMachine.CurrentPlayerState is PlayerAttackState attackState)
-        {
-            attackState.AnimationAttackHit();
-        }
-    }
-
-    public void playerAttackOpenComboWindow()
-    {
-        if (stateMachine.CurrentPlayerState is PlayerAttackState attackState)
-        {
-            attackState.OpenComboWindow();
-        }
-    }
-
-    public void playerAttackFinished()
-    {
-        if (stateMachine.CurrentPlayerState is PlayerAttackState attackState)
-        {
-            attackState.AttackFinished();
-        }
-    }
-
-    public void playerAttackComboFinished()
-    {
-        if (stateMachine.CurrentPlayerState is PlayerAttackState attackState)
-        {
-            attackState.ComboFinished();
-        }
     }
 }

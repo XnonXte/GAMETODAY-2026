@@ -25,27 +25,8 @@ public class PlayerCombat : MonoBehaviour
 
                 if (enemyInterface != null)
                 {
-                    enemyInterface.OnDamage(playerDamage);
+                    enemyInterface.TakeDamage(playerDamage, Vector2.zero);
                     Debug.Log("[PlayerCombat] Enemy Hit!");
-                }
-            }
-        }
-    }
-
-    public void HeavyAttack()
-    {
-        Collider2D[] hit = Physics2D.OverlapBoxAll(attackOrigin.position, attackSize, 0f, enemyMask);
-
-        foreach (var enemy in hit)
-        {
-            if (enemy.isTrigger)
-            {
-                IDamageable enemyInterface = enemy.GetComponent<IDamageable>();
-
-                if (enemyInterface != null)
-                {
-                    enemyInterface.OnDamage(playerDamage);
-                    Debug.Log("[PlayerCombat] Enemy Got Heavy Attacked!");
                 }
             }
         }

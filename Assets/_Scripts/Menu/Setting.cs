@@ -18,7 +18,7 @@ public class Setting : MonoBehaviour
 
     public void StartGame()
     {
-        GameSceneManager.instance.ChangeScene(GameScene.Stage1);
+        GameSceneManager.Instance.ChangeScene(GameScene.Stage1);
     }
 
     public void OpenSettings()
@@ -40,7 +40,7 @@ public class Setting : MonoBehaviour
     public void ReturnToMainMenu()
     {
         Time.timeScale = 1f;
-        GameSceneManager.instance.ChangeScene(GameScene.MainMenu);
+        GameSceneManager.Instance.ChangeScene(GameScene.MainMenu);
     }
 
     public void QuitGame()

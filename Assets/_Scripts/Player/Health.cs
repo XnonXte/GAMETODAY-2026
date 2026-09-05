@@ -1,39 +1,29 @@
 using UnityEngine;
-using UnityEngine.Events;
+using System;
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, IDamageable
 {
-    [SerializeField] private float maxHp;
+    public event Action OnDamaged;
+    public event Action OnDeath;
+
+    [SerializeField] private float maxHp = 100;
     private float currentHp;
 
-    public UnityEvent<float> Healed;
-    public UnityEvent<float> Damaged;
-    public UnityEvent Died;
-
-    public float CurrentHP
-    {
-        get => currentHp;
-
-        private set
-        {
-            var isDamage = value < 0;
-            currentHp = Mathf.Clamp(value, 0, maxHp);
-
-            if(isDamage) Damaged?.Invoke(currentHp);
-            else Healed?.Invoke(currentHp);
-
-            if (currentHp <= 0) Died?.Invoke();
-        }
-    }
-
-    private void Awake()
+    private void Start()
     {
         currentHp = maxHp;
     }
 
-    public void Damage(float amount) => CurrentHP -= amount;
-    public void Heal(float amount) => CurrentHP += amount;
-    public void HealFull() => CurrentHP = maxHp;
-    public void Kill() => CurrentHP = 0;
-    public void Adjust(int value) => CurrentHP = value;
+    public void TakeDamage(float amount, Vector2 direction)
+    {
+        ChangeHealth(amount);
+    }
+
+    public void ChangeHealth(float amount)
+    {
+        currentHp += amount;
+        if (currentHp > maxHp) { currentHp = maxHp; }
+        else if (currentHp <= 0) { OnDeath?.Invoke(); }
+        else if (amount < 0) { OnDamaged?.Invoke(); }
+    }
 }

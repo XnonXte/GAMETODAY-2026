@@ -15,21 +15,21 @@ public class PlayerWalkState : PlayerState
 
     public override void Update()
     {
-        if (InputManager.instance.GetPlayerDash() && player.CanDash())
+        if (InputManager.Instance.GetPlayerDash() && player.CanDash())
         {
-            playerStateMachine.ChangeState(player.dashState);
+            playerStateMachine.ChangeState(player.DashState);
             return;
         }
 
-        if (InputManager.instance.GetPlayerAttack())
+        if (InputManager.Instance.GetPlayerAttack())
         {
-            playerStateMachine.ChangeState(player.attackState);
+            playerStateMachine.ChangeState(player.AttackState);
             return;
         }
 
-        if (InputManager.instance.GetPlayerMovement().sqrMagnitude <= .01f)
+        if (InputManager.Instance.GetPlayerMovement().sqrMagnitude <= .01f)
         {
-            playerStateMachine.ChangeState(player.idleState);
+            playerStateMachine.ChangeState(player.IdleState);
             return;
         }
     }

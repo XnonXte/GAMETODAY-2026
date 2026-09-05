@@ -20,13 +20,13 @@ public class PlayerDashState : PlayerState
         {
             player.StopDash();
 
-            if (InputManager.instance.GetPlayerMovement().sqrMagnitude > 0.01f)
+            if (InputManager.Instance.GetPlayerMovement().sqrMagnitude > 0.01f)
             {
-                playerStateMachine.ChangeState(player.walkState);
+                playerStateMachine.ChangeState(player.WalkState);
             }
             else
             {
-                playerStateMachine.ChangeState(player.idleState);
+                playerStateMachine.ChangeState(player.IdleState);
             }
         }
     }

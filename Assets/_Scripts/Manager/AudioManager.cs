@@ -10,7 +10,7 @@ public enum SoundType
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance { get; private set; }
+    public static AudioManager Instance { get; private set; }
 
     [SerializeField] private SoundID soundBGM1;
     [SerializeField] private SoundID soundBGM2;
@@ -21,13 +21,13 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        instance = this;
+        Instance = this;
         DontDestroyOnLoad(gameObject);
 
         soundMappingDictionary = new Dictionary<SoundType, SoundID>
@@ -39,9 +39,9 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        if (GameSceneManager.instance != null)
+        if (GameSceneManager.Instance != null)
         {
-            UpdateBGM(GameSceneManager.instance.CurrentScene);
+            UpdateBGM(GameSceneManager.Instance.CurrentScene);
         }
     }
 

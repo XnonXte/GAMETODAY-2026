@@ -1,4 +1,6 @@
+using UnityEngine;
+
 public interface IDamageable 
 {
-    public void OnDamage(float amount);
+    public void TakeDamage(float amount, Vector2 direction);
 }

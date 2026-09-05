@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputManager instance;
+    public static InputManager Instance;
     private InputSystem_Actions playerControls;
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else if (instance != this)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }

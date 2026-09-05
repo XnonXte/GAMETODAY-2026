@@ -50,9 +50,9 @@ public class PlayerInteract : MonoBehaviour
 
     private bool GetInteractInput()
     {
-        if (InputManager.instance != null)
+        if (InputManager.Instance != null)
         {
-            return InputManager.instance.PlayerInteract();
+            return InputManager.Instance.PlayerInteract();
         }
         else
         {
