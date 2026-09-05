@@ -31,9 +31,9 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  lightKnockbackStrength: 3
-  lightStunDuration: 0.6
-  heavyKnockbackStrength: 7
-  heavyStunDuration: 0.7
+  lightKnockbackStrength: 1
+  lightStunDuration: 0.4
+  heavyKnockbackStrength: 6
+  heavyStunDuration: 0.8
   attackHitboxSize: {x: 2, y: 1}
   attackHitboxOffset: {x: 1, y: 1.25}

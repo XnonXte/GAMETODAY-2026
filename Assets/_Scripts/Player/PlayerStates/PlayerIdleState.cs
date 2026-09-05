@@ -10,6 +10,8 @@ public class PlayerIdleState : PlayerState
     {
         base.Enter(); // Automatically sets "isIdling" to true
         player.StopMovement();
+
+        player.Anim.Play("TestIdle", -1, 0f);
     }
 
     public override void Update()

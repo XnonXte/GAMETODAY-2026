@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public Animator Anim { get; private set; }
     public PlayerCombat Combat { get; private set; }
     public Health HealthComponent { get; private set; }
+    private AnimationEventDetection eventDetection;
     #endregion
 
     #region [PlayerStateMachine]
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour
         Anim = GetComponentInChildren<Animator>();
         Combat = GetComponent<PlayerCombat>();
         HealthComponent = GetComponent<Health>();
+        eventDetection = GetComponentInChildren<AnimationEventDetection>();
 
         StateMachine = new PlayerStateMachine();
         IdleState = new PlayerIdleState(this, StateMachine);
@@ -52,20 +54,20 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        if (HealthComponent != null)
-        {
-            HealthComponent.OnDamaged += HandleDamageTaken;
-            HealthComponent.OnDeath += HandleDeath;
-        }
+        HealthComponent.OnDamaged += HandleDamageTaken;
+        HealthComponent.OnDeath += HandleDeath;
+
+        eventDetection.OnAnimationAttackTriggered += HandleAttackEvent;
+        eventDetection.OnAnimationFinishedTriggered += HandleAnimationFinished;
     }
 
     private void OnDisable()
     {
-        if (HealthComponent != null)
-        {
-            HealthComponent.OnDamaged -= HandleDamageTaken;
-            HealthComponent.OnDeath -= HandleDeath;
-        }
+        HealthComponent.OnDamaged -= HandleDamageTaken;
+        HealthComponent.OnDeath -= HandleDeath;
+
+        eventDetection.OnAnimationAttackTriggered -= HandleAttackEvent;
+        eventDetection.OnAnimationFinishedTriggered -= HandleAnimationFinished;
     }
 
     private void Start()
@@ -138,6 +140,22 @@ public class Player : MonoBehaviour
     #endregion
 
     #region [Damaging]
+    private void HandleAttackEvent()
+    {
+        if (StateMachine.CurrentPlayerState == AttackState)
+        {
+            AttackState.TriggerAttackHitbox();
+        }
+    }
+
+    private void HandleAnimationFinished()
+    {
+        if (StateMachine.CurrentPlayerState == AttackState)
+        {
+            AttackState.AnimationFinishTrigger();
+        }
+    }
+
     private void HandleDamageTaken(Vector2 hitDirection, AttackType attackType)
     {
         // Define strengths based on the incoming attack type
