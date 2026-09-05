@@ -73,6 +73,7 @@ public class GameSceneManager : MonoBehaviour
         transitionPanel.anchoredPosition = new Vector2(slideDistance, 0f); 
         yield return transitionPanel.DOAnchorPosX(0f, transitionDuration).SetEase(Ease.OutCubic).SetUpdate(true).WaitForCompletion();
         yield return SceneManager.LoadSceneAsync(sceneName); // Start the panel in the center, covering the new scene.
+        AudioManager.Instance.UpdateBGM(sceneName);
         transitionPanel.anchoredPosition = Vector2.zero; // Slide LEFT to reveal the new scene.
         yield return transitionPanel .DOAnchorPosX(-slideDistance, transitionDuration).SetEase(Ease.OutCubic).SetUpdate(true).WaitForCompletion();
 

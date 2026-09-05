@@ -7,14 +7,14 @@ public class PlayerStateMachine
     public void Initialize(PlayerState startingState)
     {
         CurrentPlayerState = startingState;
-        CurrentPlayerState.Enter();
+        CurrentPlayerState?.Enter();
     }
 
     public void ChangeState(PlayerState newState)
     {
-        CurrentPlayerState.Exit();
+        CurrentPlayerState?.Exit();
         CurrentPlayerState = newState;
-        CurrentPlayerState.Enter();
+        CurrentPlayerState?.Enter();
         Debug.Log($"Current State: {CurrentPlayerState}");
     }
 }

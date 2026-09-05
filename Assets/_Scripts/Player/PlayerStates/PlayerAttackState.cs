@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerAttackState : PlayerState
 {
+    protected override string AnimBoolName => "isAttacking";
+
     private float attackTimer;
     private float attackDuration = 0.4f;
 
@@ -9,20 +11,15 @@ public class PlayerAttackState : PlayerState
 
     public override void Enter()
     {
-        player.StopMovement();
+        base.Enter(); // Automatically sets "isAttacking" to true
 
+        player.StopMovement();
         attackTimer = attackDuration;
 
-        player.playerCombat.Attack();
-
-        player.playerAnimator.SetBool("isAttacking", true);
-    }
-
-    public override void Exit()
-    {
-        player.StopMovement();
-
-        player.playerAnimator.SetBool("isAttacking", false);
+        if (player.Combat != null)
+        {
+            player.Combat.Attack();
+        }
     }
 
     public override void Update()
@@ -42,5 +39,11 @@ public class PlayerAttackState : PlayerState
                 playerStateMachine.ChangeState(player.IdleState);
             }
         }
+    }
+
+    public override void Exit()
+    {
+        base.Exit(); // Automatically sets "isAttacking" to false
+        player.StopMovement();
     }
 }

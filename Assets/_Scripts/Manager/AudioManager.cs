@@ -73,6 +73,7 @@ public class AudioManager : MonoBehaviour
 
         StopAllBGM();
         BroAudio.Play(targetBGM);
+        Debug.Log(targetBGM);
         currentBGM = targetBGM;
     }
 

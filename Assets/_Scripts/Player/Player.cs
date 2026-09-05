@@ -1,49 +1,71 @@
 using System;
-using System.Data.Common;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-    #region Player Attribute
+    #region [Attributes]
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 7f;
-    private Rigidbody2D rb;
     private Vector2 moveInput;
-    public Animator playerAnimator { get; set; }
-    public PlayerCombat playerCombat { get; private set; }
 
     [Header("Dash Settings")]
     [SerializeField] private float dashForce = 18f;
     [SerializeField] private float dashDuration = 0.15f;
     [SerializeField] private float dashCooldown = 0.8f;
 
-    //private attribute
     private float currentDashCooldown;
     private Vector2 lastMoveDirection = Vector2.right;
     #endregion
 
-    #region PlayerStateMachine Variables
+    #region [Components]
+    public Rigidbody2D Rigidbody { get; private set; }
+    public Animator Anim { get; private set; }
+    public PlayerCombat Combat { get; private set; }
+    public Health HealthComponent { get; private set; }
+    #endregion
 
+    #region [PlayerStateMachine]
     public PlayerStateMachine StateMachine { get; private set; }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerWalkState WalkState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }
     public PlayerDashState DashState { get; private set; }
-
+    public PlayerDamagedState DamagedState { get; private set; }
     #endregion
 
+    #region [Unity Lifecycle]
     private void Awake()
     {
-        StateMachine = new();
-        IdleState = new(this, StateMachine);
-        WalkState = new(this, StateMachine);
-        AttackState = new(this, StateMachine);
-        DashState = new(this, StateMachine);
+        Rigidbody = GetComponent<Rigidbody2D>();
+        Anim = GetComponentInChildren<Animator>();
+        Combat = GetComponent<PlayerCombat>();
+        HealthComponent = GetComponent<Health>();
 
-        rb = GetComponent<Rigidbody2D>();
-        playerAnimator = GetComponentInChildren<Animator>();
-        playerCombat = GetComponent<PlayerCombat>();
+        StateMachine = new PlayerStateMachine();
+        IdleState = new PlayerIdleState(this, StateMachine);
+        WalkState = new PlayerWalkState(this, StateMachine);
+        AttackState = new PlayerAttackState(this, StateMachine);
+        DashState = new PlayerDashState(this, StateMachine);
+        DamagedState = new PlayerDamagedState(this, StateMachine);
+    }
+
+    private void OnEnable()
+    {
+        if (HealthComponent != null)
+        {
+            HealthComponent.OnDamaged += HandleDamageTaken;
+            HealthComponent.OnDeath += HandleDeath;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (HealthComponent != null)
+        {
+            HealthComponent.OnDamaged -= HandleDamageTaken;
+            HealthComponent.OnDeath -= HandleDeath;
+        }
     }
 
     private void Start()
@@ -53,8 +75,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (!enabled) return;
+
         ReadInput();
-        StateMachine.CurrentPlayerState.Update();
+        StateMachine.CurrentPlayerState?.Update();
 
         if (InputManager.Instance != null && InputManager.Instance.PlayerInteract())
         {
@@ -70,24 +94,20 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        StateMachine.CurrentPlayerState.FixedUpdate();
-    }
+    private void FixedUpdate() => StateMachine.CurrentPlayerState?.FixedUpdate();
+    #endregion
 
+    #region [Movement & Logic]
     private void ReadInput()
     {
         moveInput = InputManager.Instance.GetPlayerMovement();
 
-        if (moveInput.magnitude > 1f)
-        {
-            moveInput.Normalize();
-        }
+        if (moveInput.magnitude > 1f) moveInput.Normalize();
     }
 
     public void MovePlayer()
     {
-        rb.linearVelocity = moveInput * moveSpeed;
+        Rigidbody.linearVelocity = moveInput * moveSpeed;
 
         if (moveInput.sqrMagnitude > .01f) lastMoveDirection = moveInput.normalized;
 
@@ -97,38 +117,53 @@ public class Player : MonoBehaviour
 
     public void StopMovement()
     {
-        rb.linearVelocity = Vector2.zero;
+        Rigidbody.linearVelocity = Vector2.zero;
     }
 
-    public void SetMoveSpeed(float speed)
-    {
-        moveSpeed = Mathf.Max(0f, speed);
-    }
-
-    public Vector2 GetCurrentVelocity()
-    {
-        return rb.linearVelocity;
-    }
-
-    public float GetDashDuration()
-    {
-        return dashDuration;
-    }
-
-    public bool CanDash()
-    {
-        return currentDashCooldown <= 0f;
-    }
+    public void SetMoveSpeed(float speed) => moveSpeed = Mathf.Max(0f, speed);
+    public Vector2 GetCurrentVelocity() => Rigidbody.linearVelocity;
+    public float GetDashDuration() => dashDuration;
+    public bool CanDash() => currentDashCooldown <= 0f;
 
     public void StartDash()
     {
         currentDashCooldown = dashCooldown;
-
-        rb.linearVelocity = lastMoveDirection * dashForce;
+        Rigidbody.linearVelocity = lastMoveDirection * dashForce;
     }
 
     public void StopDash()
     {
-        rb.linearVelocity = Vector2.zero;
+        Rigidbody.linearVelocity = Vector2.zero;
     }
+    #endregion
+
+    #region [Damaging]
+    private void HandleDamageTaken(Vector2 hitDirection, AttackType attackType)
+    {
+        // Define strengths based on the incoming attack type
+        float strength = (attackType == AttackType.Heavy) ? 10f : 5f;
+        float stunTime = (attackType == AttackType.Heavy) ? 0.6f : 0.4f;
+
+        float directionX = hitDirection.x != 0 ? Mathf.Sign(hitDirection.x) : (transform.localScale.x * -1f);
+        Vector2 finalForce = new Vector2(directionX * strength, 0f);
+
+        DamagedState.SetKnockbackForce(finalForce, stunTime);
+        StateMachine.ChangeState(DamagedState);
+    }
+
+    private void HandleDeath()
+    {
+        StateMachine.ChangeState(null);
+        enabled = false;
+
+        StopMovement();
+
+        if (Rigidbody != null) Rigidbody.simulated = false;
+
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null) col.enabled = false;
+
+        if (Anim != null) Anim.Play("TestDeathAnimation", -1, 0f);
+    }
+    #endregion
 }

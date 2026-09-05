@@ -26,7 +26,7 @@ MonoBehaviour:
     Weight: 0
   <AudioAsset>k__BackingField: {fileID: 11400000, guid: 0fce77dda61d9a04b8ad18ae39288003, type: 2}
   <AudioType>k__BackingField: 8
-  <MasterVolume>k__BackingField: 0.8
+  <MasterVolume>k__BackingField: 1
   <Loop>k__BackingField: 0
   <SeamlessLoop>k__BackingField: 0
   <TransitionTime>k__BackingField: 0
