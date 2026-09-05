@@ -4,60 +4,48 @@ public class EnemyAttackState : EnemyState
 {
     protected override string AnimBoolName => "isAttacking";
     private string attackAnimationName = "TestEnemyAttack";
-    private bool hasDealtDamage; 
+    private bool isWindingUp;
 
     public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine) { }
 
     public override void Enter()
     {
         base.Enter();
-        stateTimer = config.attackDuration;
-        hasDealtDamage = false; 
         enemy.Agent.isStopped = true;
 
-        anim.Play(attackAnimationName, -1, 0f);
-        // Example: enemy.Animator.SetTrigger("Attack");
+        isWindingUp = true;
+        stateTimer = config.attackDelay;
     }
 
     public override void Update()
     {
         base.Update();
 
-        if (!hasDealtDamage && stateTimer <= config.attackDuration / 2f)
+        if (isWindingUp && stateTimer <= 0)
         {
-            PerformAttackCheck();
-            hasDealtDamage = true;
-        }
-
-        if (stateTimer <= 0)
-        {
-            if (Random.value <= config.comboChance)
+            if (Random.value <= config.attackCommitChance)
             {
-                enemyStateMachine.ChangeState(enemy.AttackState);
+                isWindingUp = false;
+                anim.Play(attackAnimationName, -1, 0f);
             }
             else
             {
                 CombatManager.Instance.ReleaseSlot(enemy);
-                enemyStateMachine.ChangeState(enemy.PatrolState);
+                enemyStateMachine.ChangeState(enemy.EvadeState);
             }
         }
     }
 
-    private void PerformAttackCheck()
+    public override void AnimationFinishTrigger()
     {
-        Vector2 hitboxCenter = (Vector2)enemy.transform.position + new Vector2(config.attackHitboxOffset.x * enemy.FacingDirection, config.attackHitboxOffset.y);
-
-        Collider2D[] hitTargets = Physics2D.OverlapBoxAll(hitboxCenter, config.attackHitboxSize, 0f, config.targetLayerMask);
-
-        foreach (Collider2D target in hitTargets)
+        if (Random.value <= config.comboChance)
         {
-            // Example of how you would apply damage to your player:
-            // if (target.TryGetComponent(out PlayerHealth playerHealth))
-            // {
-            //     playerHealth.TakeDamage(config.attackDamage);
-            // }
-
-            Debug.Log($"Enemy punched {target.name}!");
+            enemyStateMachine.ChangeState(enemy.AttackState);
+        }
+        else
+        {
+            CombatManager.Instance.ReleaseSlot(enemy);
+            enemyStateMachine.ChangeState(enemy.PatrolState);
         }
     }
 

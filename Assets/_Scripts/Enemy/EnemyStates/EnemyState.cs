@@ -35,4 +35,5 @@ public abstract class EnemyState
         if (stateTimer > 0) stateTimer -= Time.deltaTime;
     }
     public virtual void FixedUpdate() { }
+    public virtual void AnimationFinishTrigger() { }
 }

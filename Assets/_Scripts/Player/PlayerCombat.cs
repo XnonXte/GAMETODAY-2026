@@ -1,5 +1,11 @@
 using UnityEngine;
 
+public enum AttackType
+{
+    Light,
+    Heavy
+}
+
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] private Transform attackOrigin;
@@ -15,6 +21,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void Attack()
     {
+        AudioManager.Instance.PlayAudio(AudioManager.Instance.SFX_Melee);
         Collider2D[] hit = Physics2D.OverlapBoxAll(attackOrigin.position, attackSize, 0f, enemyMask);
 
         foreach (var enemy in hit)
@@ -25,7 +32,7 @@ public class PlayerCombat : MonoBehaviour
 
                 if (enemyInterface != null)
                 {
-                    enemyInterface.TakeDamage(playerDamage, Vector2.zero);
+                    enemyInterface.TakeDamage(playerDamage, Vector2.zero, AttackType.Light);
                     Debug.Log("[PlayerCombat] Enemy Hit!");
                 }
             }

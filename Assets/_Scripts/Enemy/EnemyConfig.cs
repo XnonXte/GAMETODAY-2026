@@ -23,12 +23,20 @@ public class EnemyConfig : ScriptableObject
     public float attackRange = 1f;
     public float attackDuration = 1f;
     public float knockbackDuration = 0.5f;
+    public float attackDelay = 0.4f;
+    public float meleeCooldown = 1f;
+    public float enemyMeleeDamage = 10;
     public LayerMask targetLayerMask;
 
-    [Header("Hitbox (Beat 'em up style)")]
+    [Header("Knockback")]
+    public float lightKnockbackStrength = 2f;
+    public float lightStunDuration = 0.3f;
+    public float heavyKnockbackStrength = 7f;
+    public float heavyStunDuration = 0.7f;
+
+    [Header("Attack Hitbox")]
     // Wide X (reach), narrow Y (lane strictness)
     public Vector2 attackHitboxSize = new Vector2(1.5f, 0.4f);
     // Places the box in front of the enemy's face
     public Vector2 attackHitboxOffset = new Vector2(1f, 1.5f);
-    public int attackDamage = 10;
 }

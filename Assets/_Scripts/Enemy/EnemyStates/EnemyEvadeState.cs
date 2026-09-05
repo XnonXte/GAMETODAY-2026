@@ -3,34 +3,37 @@ using UnityEngine;
 public class EnemyEvadeState : EnemyState
 {
     protected override string AnimBoolName => "isWalking";
+
+    private float evadeDistance = 4f;
+    private float maxEvadeTime = 1.5f; 
+
     public EnemyEvadeState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine) { }
 
     public override void Enter()
     {
         base.Enter();
         enemy.Agent.speed = config.evadeSpeed;
+        stateTimer = maxEvadeTime;
+
+        Vector3 directionAway = (enemy.transform.position - enemy.Target.position).normalized;
+
+        Vector3 safeDestination = enemy.transform.position + (directionAway * evadeDistance);
+        enemy.Agent.SetDestination(safeDestination);
     }
 
     public override void Update()
     {
         base.Update();
 
-        float distanceToPlayer = Vector2.Distance(enemy.transform.position, enemy.Target.position);
-
-        // 1. Check if we have backed up enough to be safe again
-        if (distanceToPlayer >= config.minSafeDistance + 1f) // Added 1f buffer so they don't stutter between states
+        if (stateTimer <= 0)
         {
             enemyStateMachine.ChangeState(enemy.PatrolState);
             return;
         }
 
-        // 2. Move away from the player
-        // Calculate the direction FROM the player TO the enemy
-        Vector3 directionAway = (enemy.transform.position - enemy.Target.position).normalized;
-
-        // Pick a destination safely out of reach
-        Vector3 safeDestination = enemy.Target.position + (directionAway * (config.minSafeDistance + 2f));
-
-        enemy.Agent.SetDestination(safeDestination);
+        if (!enemy.Agent.pathPending && enemy.Agent.remainingDistance <= enemy.Agent.stoppingDistance)
+        {
+            enemyStateMachine.ChangeState(enemy.PatrolState);
+        }
     }
 }

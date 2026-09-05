@@ -2423,12 +2423,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5959375cc9376b74a94b5efc7726e87d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  soundBGM1:
+  BGM_Menu:
     _entity: {fileID: 11400000, guid: f37a3774af53cef48b7568051b20951d, type: 2}
     ID: 0
     <DebugObject>k__BackingField: {fileID: 1076202648}
-  soundBGM2:
+  BGM_Gameplay:
     _entity: {fileID: 11400000, guid: 5a5203432342c744ca64e0a47f4d77ca, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 1076202648}
+  SFX_Coin:
+    _entity: {fileID: 11400000, guid: 1b43ccaec99017e419c85a8ec6a53703, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 1076202648}
+  SFX_Purchase:
+    _entity: {fileID: 11400000, guid: 6a245baad2689b1449aa072631bf0fc1, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 1076202648}
+  SFX_Hammer:
+    _entity: {fileID: 11400000, guid: 8fed28dea45a50147a9d8e2f02d3d262, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 1076202648}
+  SFX_Heal:
+    _entity: {fileID: 11400000, guid: b619c4821dd25e64782eee5364941900, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 1076202648}
+  SFX_PowerUp:
+    _entity: {fileID: 11400000, guid: 0a5f333d14752a243a8464a1abf87906, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 1076202648}
+  SFX_Speed:
+    _entity: {fileID: 11400000, guid: 10015a3839aae614985f1670500e63ee, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 1076202648}
+  SFX_Melee:
+    _entity: {fileID: 11400000, guid: 63df9c5d75226c744a9f7d255891e841, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 1076202648}
+  SFX_Hit:
+    _entity: {fileID: 11400000, guid: baf2cc09b02e6d74d8b25ce6a34b0b6e, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 1076202648}
+  UI_Click:
+    _entity: {fileID: 11400000, guid: 59f14d60649cb1d45a3d783fc95f8c00, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 1076202648}
+  UI_Hover:
+    _entity: {fileID: 11400000, guid: caa1bc474d681e64d9c09267e8833ca9, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 1076202648}
+  UI_Start:
+    _entity: {fileID: 11400000, guid: 42371abd0c4787b449bc10bb217df918, type: 2}
     ID: 0
     <DebugObject>k__BackingField: {fileID: 1076202648}
 --- !u!4 &1076202650
@@ -2565,6 +2609,8 @@ GameObject:
   - component: {fileID: 1309415162}
   - component: {fileID: 1309415166}
   - component: {fileID: 1309415161}
+  - component: {fileID: 1309415167}
+  - component: {fileID: 1309415168}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -2619,7 +2665,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.011408806, y: 1.8310947}
+  m_Offset: {x: 0.011408806, y: 1.7519273}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2629,7 +2675,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.026785, y: 1.6502953}
+  m_Size: {x: 2.026785, y: 1.0045907}
   m_EdgeRadius: 0
 --- !u!70 &1309415163
 CapsuleCollider2D:
@@ -2691,9 +2737,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!4 &1309415165
 Transform:
@@ -2733,6 +2779,31 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1309415167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309415160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0601d0ce78ecfe34998175f3c078f66d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyCombat
+--- !u!114 &1309415168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309415160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6954462db11d2b240b657d83dcd99ff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHp: 100
 --- !u!1 &1342064735
 GameObject:
   m_ObjectHideFlags: 0
@@ -3103,6 +3174,7 @@ GameObject:
   - component: {fileID: 1930133233}
   - component: {fileID: 1930133234}
   - component: {fileID: 1930133235}
+  - component: {fileID: 1930133236}
   m_Layer: 8
   m_Name: EnemySprite
   m_TagString: Untagged
@@ -3175,7 +3247,7 @@ SpriteRenderer:
   m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 815424164945274260, guid: a1ccb0d470ff4e349aae3223062b0015, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.3066038, b: 0.3066038, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3207,6 +3279,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1930133236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930133232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db429003e3631548882f0a3a4cdfede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &2001070081
 GameObject:
   m_ObjectHideFlags: 0
@@ -4226,11 +4310,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
   attackOrigin: {fileID: 800457959024070590}
-  attackSize: {x: 2, y: 0.5}
+  attackSize: {x: 2, y: 1}
   enemyMask:
     serializedVersion: 2
-    m_Bits: 64
-  playerDamage: 10
+    m_Bits: 320
+  playerDamage: 20
 --- !u!1 &7681651573767272793
 GameObject:
   m_ObjectHideFlags: 0
@@ -4242,6 +4326,7 @@ GameObject:
   - component: {fileID: 2398896148261656214}
   - component: {fileID: 3622810407201990595}
   - component: {fileID: 5449771279563584035}
+  - component: {fileID: 7681651573767272796}
   - component: {fileID: 202434800238026552}
   - component: {fileID: 6418978364848261766}
   - component: {fileID: 7681651573767272794}
@@ -4266,8 +4351,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatManager
   slotOffsets:
-  - {x: -1.5, y: 0}
-  - {x: 1.5, y: 0}
+  - {x: -2, y: 0}
+  - {x: 2, y: 0}
 --- !u!114 &7681651573767272795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4281,6 +4366,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHp: 100
+--- !u!61 &7681651573767272796
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7681651573767272793}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 1.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &9040380808477254982
 GameObject:
   m_ObjectHideFlags: 0

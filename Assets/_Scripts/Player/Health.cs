@@ -3,7 +3,7 @@ using System;
 
 public class Health : MonoBehaviour, IDamageable
 {
-    public event Action OnDamaged;
+    public event Action<Vector2, AttackType> OnDamaged;
     public event Action OnDeath;
 
     [SerializeField] private float maxHp = 100;
@@ -14,16 +14,21 @@ public class Health : MonoBehaviour, IDamageable
         currentHp = maxHp;
     }
 
-    public void TakeDamage(float amount, Vector2 direction)
+    public void TakeDamage(float amount, Vector2 direction, AttackType attackType)
     {
-        ChangeHealth(amount);
+        ChangeHealth(amount * -1, direction, attackType);
     }
 
-    public void ChangeHealth(float amount)
+    public void ChangeHealth(float amount, Vector2 direction, AttackType attackType)
     {
         currentHp += amount;
         if (currentHp > maxHp) { currentHp = maxHp; }
         else if (currentHp <= 0) { OnDeath?.Invoke(); }
-        else if (amount < 0) { OnDamaged?.Invoke(); }
+        else if (amount < 0) 
+        {
+            AudioManager.Instance.PlayAudio(AudioManager.Instance.SFX_Hit);
+            OnDamaged?.Invoke(direction, attackType); 
+        }
+        Debug.Log($"{gameObject.name} Current HP = {currentHp}");
     }
 }

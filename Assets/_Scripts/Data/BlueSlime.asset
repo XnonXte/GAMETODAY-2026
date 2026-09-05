@@ -13,21 +13,27 @@ MonoBehaviour:
   m_Name: BlueSlime
   m_EditorClassIdentifier: Assembly-CSharp::EnemyConfig
   patrolSpeed: 2
-  chaseSpeed: 5
-  evadeSpeed: 4
+  chaseSpeed: 4
+  evadeSpeed: 3
   chaseChance: 0.6
   evadeChance: 0.4
   attackCommitChance: 0.6
-  comboChance: 0.5
+  comboChance: 0
   decisionInterval: 3
   smallWanderRadius: 3
-  minSafeDistance: 4
+  minSafeDistance: 3
   attackRange: 2
   attackDuration: 1
   knockbackDuration: 0.5
+  attackDelay: 2
+  meleeCooldown: 3
+  enemyMeleeDamage: 10
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  lightKnockbackStrength: 3
+  lightStunDuration: 0.6
+  heavyKnockbackStrength: 7
+  heavyStunDuration: 0.7
   attackHitboxSize: {x: 2, y: 1}
-  attackHitboxOffset: {x: 1.5, y: 1.5}
-  attackDamage: 10
+  attackHitboxOffset: {x: 1, y: 1.25}

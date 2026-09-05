@@ -16,13 +16,6 @@ public class EnemyPatrolState : EnemyState
     {
         base.Update();
 
-        float distanceToPlayer = Vector2.Distance(enemy.transform.position, enemy.Target.position);
-        if (distanceToPlayer < config.minSafeDistance)
-        {
-            enemyStateMachine.ChangeState(enemy.EvadeState);
-            return;
-        }
-
         if (stateTimer <= 0)
         {
             if (Random.value <= config.chaseChance)
@@ -34,6 +27,12 @@ public class EnemyPatrolState : EnemyState
                 }
             }
 
+            if (Random.value <= config.evadeChance)
+            {
+                enemyStateMachine.ChangeState(enemy.EvadeState);
+                return;
+            }
+
             SetSmallWanderPoint();
         }
     }
@@ -41,7 +40,6 @@ public class EnemyPatrolState : EnemyState
     private void SetSmallWanderPoint()
     {
         stateTimer = config.decisionInterval;
-
         Vector2 randomOffset = Random.insideUnitCircle * config.smallWanderRadius;
         enemy.Agent.SetDestination(enemy.transform.position + (Vector3)randomOffset);
     }

@@ -1,18 +1,23 @@
 using UnityEngine;
 
-public class EnemyKnockbackState : EnemyState
+public class EnemyDamagedState : EnemyState
 {
-    protected override string AnimBoolName => "isWalking";
+    protected override string AnimBoolName => "isDamaged";
     private Vector2 knockbackForce;
+    private float customStunDuration;
 
-    public EnemyKnockbackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine) { }
+    public EnemyDamagedState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine) { }
 
-    public void SetKnockbackForce(Vector2 force) => knockbackForce = force;
+    public void SetKnockbackForce(Vector2 force, float stunDuration = -1f)
+    {
+        knockbackForce = force;
+        customStunDuration = (stunDuration > 0f) ? stunDuration : config.knockbackDuration;
+    }
 
     public override void Enter()
     {
         base.Enter();
-        stateTimer = config.knockbackDuration;
+        stateTimer = customStunDuration;
 
         CombatManager.Instance.ReleaseSlot(enemy);
         enemy.Agent.enabled = false;

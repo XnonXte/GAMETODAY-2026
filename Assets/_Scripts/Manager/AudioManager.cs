@@ -1,23 +1,40 @@
 using UnityEngine;
 using Ami.BroAudio;
-using System.Collections.Generic;
-
-public enum SoundType
-{
-    BGM_Menu,
-    BGM_Gameplay,
-}
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
+    #region [Music/BGM]
+    [Header("Music/BGM")]
+    public SoundID BGM_Menu;
+    public SoundID BGM_Gameplay;
+    #endregion
 
-    [SerializeField] private SoundID soundBGM1;
-    [SerializeField] private SoundID soundBGM2;
+    #region [Consumeable SFX]
+    [Header("Consumeable SFX")]
+    public SoundID SFX_Coin;
+    public SoundID SFX_Purchase;
+    public SoundID SFX_Hammer;
+    public SoundID SFX_Heal;
+    public SoundID SFX_PowerUp;
+    public SoundID SFX_Speed;
+    #endregion
 
-    private SoundType? currentBGM;
+    #region [Entity SFX]
+    [Header("Entity SFX")]
+    public SoundID SFX_Melee;
+    public SoundID SFX_Hit;
+    #endregion
 
-    private Dictionary<SoundType, SoundID> soundMappingDictionary;
+    #region [UI SFX]
+    [Header("UI")]
+    public SoundID UI_Click;
+    public SoundID UI_Hover;
+    public SoundID UI_Start;
+    #endregion
+
+    private SoundID currentBGM;
+    private bool hasCurrentBGM;
 
     private void Awake()
     {
@@ -29,12 +46,6 @@ public class AudioManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-        soundMappingDictionary = new Dictionary<SoundType, SoundID>
-        {
-            { SoundType.BGM_Menu, soundBGM1 },
-            { SoundType.BGM_Gameplay, soundBGM2 },
-        };
     }
 
     private void Start()
@@ -47,48 +58,30 @@ public class AudioManager : MonoBehaviour
 
     public void UpdateBGM(string sceneName)
     {
-        SoundType targetBGM;
+        SoundID targetBGM;
 
         if (sceneName == GameScene.MainMenu.ToString())
         {
-            targetBGM = SoundType.BGM_Menu;
+            targetBGM = BGM_Menu;
         }
         else
         {
-            targetBGM = SoundType.BGM_Gameplay;
+            targetBGM = BGM_Gameplay;
         }
 
-        if (currentBGM.HasValue && currentBGM.Value == targetBGM) return;
+        if (hasCurrentBGM && currentBGM.Equals(targetBGM)) return;
 
         StopAllBGM();
-        PlayAudio(targetBGM);
-
+        BroAudio.Play(targetBGM);
         currentBGM = targetBGM;
     }
 
     private void StopAllBGM()
     {
-        StopAudio(SoundType.BGM_Menu);
-        StopAudio(SoundType.BGM_Gameplay);
+        StopAudio(BGM_Menu);
+        StopAudio(BGM_Gameplay);
     }
 
-    public void PlayAudio(SoundType sound)
-    {
-        if (soundMappingDictionary.TryGetValue(sound, out SoundID id))
-        {
-            BroAudio.Play(id);
-        }
-        else
-        {
-            Debug.LogWarning($"SoundType '{sound}' gk ada.");
-        }
-    }
-
-    public void StopAudio(SoundType sound)
-    {
-        if (soundMappingDictionary.TryGetValue(sound, out SoundID id))
-        {
-            BroAudio.Stop(id);
-        }
-    }
+    public void PlayAudio(SoundID sound) =>  BroAudio.Play(sound);
+    public void StopAudio(SoundID sound) => BroAudio.Stop(sound);
 }

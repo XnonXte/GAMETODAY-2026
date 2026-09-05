@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyChaseState : EnemyState
 {
-    protected override string AnimBoolName => "isWalking";
+    protected override string AnimBoolName => "isRunning";
     public EnemyChaseState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine) { }
 
     public override void Enter()
@@ -20,22 +20,15 @@ public class EnemyChaseState : EnemyState
             enemy.Agent.SetDestination(slotPos);
 
             float distanceToSlot = Vector2.Distance(enemy.transform.position, slotPos);
-            if (distanceToSlot <= config.attackRange)
+
+            if (distanceToSlot <= config.attackRange && enemy.Combat.CanMeleeAtack())
             {
-                if (Random.value <= config.attackCommitChance)
-                {
-                    enemyStateMachine.ChangeState(enemy.AttackState);
-                }
-                else
-                {
-                    CombatManager.Instance.ReleaseSlot(enemy);
-                    enemyStateMachine.ChangeState(enemy.PatrolState);
-                }
+                enemyStateMachine.ChangeState(enemy.AttackState);
             }
         }
         else
         {
-            enemyStateMachine.ChangeState(enemy.PatrolState);
+            enemyStateMachine.ChangeState(enemy.EvadeState);
         }
     }
 }

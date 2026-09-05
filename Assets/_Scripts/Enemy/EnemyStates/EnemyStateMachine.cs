@@ -6,14 +6,14 @@ public class EnemyStateMachine
     public void Initialize(EnemyState startingState)
     {
         CurrentEnemyState = startingState;
-        CurrentEnemyState.Enter();
+        CurrentEnemyState?.Enter();
     }
 
     public void ChangeState(EnemyState newState)
     {
-        CurrentEnemyState.Exit();
+        CurrentEnemyState?.Exit();
         CurrentEnemyState = newState;
-        CurrentEnemyState.Enter();
+        CurrentEnemyState?.Enter();
         Debug.Log($"Current State: {CurrentEnemyState}");
     }
 }
