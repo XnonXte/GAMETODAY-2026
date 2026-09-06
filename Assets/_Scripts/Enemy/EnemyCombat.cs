@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyCombat : MonoBehaviour
 {
-    private EnemyConfig config;
+    private EnemyDataSO enemyData;
     private Enemy enemy;
     private AnimationEventDetection eventDetection;
     private float lastAttackTime;
@@ -25,25 +25,25 @@ public class EnemyCombat : MonoBehaviour
     private void Start()
     {
         enemy = GetComponent<Enemy>();
-        config = enemy.Config;
+        enemyData = enemy.EnemyData;
     }
 
-    public bool CanMeleeAtack() => Time.time >= lastAttackTime + config.meleeCooldown;
+    public bool CanMeleeAtack() => Time.time >= lastAttackTime + enemyData.meleeCooldown;
 
     public void PerformMeleeAtack()
     {
         lastAttackTime = Time.time;
 
-        Vector2 hitboxCenter = (Vector2)enemy.transform.position + new Vector2(config.attackHitboxOffset.x * enemy.FacingDirection, config.attackHitboxOffset.y);
+        Vector2 hitboxCenter = (Vector2)enemy.transform.position + new Vector2(enemyData.attackHitboxOffset.x * enemy.FacingDirection, enemyData.attackHitboxOffset.y);
 
-        Collider2D[] hitTargets = Physics2D.OverlapBoxAll(hitboxCenter, config.attackHitboxSize, 0f, config.targetLayerMask);
+        Collider2D[] hitTargets = Physics2D.OverlapBoxAll(hitboxCenter, enemyData.attackHitboxSize, 0f, enemyData.targetLayerMask);
 
         foreach (Collider2D target in hitTargets)
         {
             IDamageable damageable = target.GetComponent<IDamageable>();
             if (damageable != null)
             {
-                damageable.TakeDamage(config.enemyMeleeDamage, Vector2.zero, AttackType.Light);
+                damageable.TakeDamage(enemyData.enemyMeleeDamage, Vector2.zero, AttackType.Light);
             }
 
             Debug.Log($"Enemy punched {target.name}!");

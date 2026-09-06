@@ -12,7 +12,7 @@ public class EnemyDamagedState : EnemyState
     public void SetKnockbackForce(Vector2 force, float stunDuration = -1f)
     {
         knockbackForce = force;
-        customStunDuration = (stunDuration > 0f) ? stunDuration : config.knockbackDuration;
+        customStunDuration = (stunDuration > 0f) ? stunDuration : enemyData.knockbackDuration;
     }
 
     public override void Enter()
