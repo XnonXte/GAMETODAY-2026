@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.40768632, g: 0.8207547, b: 0.3987629, a: 0.2}
+  m_Color: {r: 0.40768632, g: 0.8207547, b: 0.3987629, a: 0.050980393}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -222,7 +222,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.40784314, g: 0.81960785, b: 0.4, a: 0.2}
+  m_Color: {r: 0.40784314, g: 0.81960785, b: 0.4, a: 0.050980393}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -627,8 +627,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -0.477, y: 0.51}
-      - {x: -0.477, y: -0.55}
-      - {x: 0.477, y: -0.55}
+      - {x: -0.477, y: -0.53}
+      - {x: 0.477, y: -0.53}
       - {x: 0.477, y: 0.51}
   m_UseDelaunayMesh: 1
 --- !u!1 &9154091148148009448

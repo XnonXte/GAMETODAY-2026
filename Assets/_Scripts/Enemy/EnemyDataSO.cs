@@ -20,7 +20,6 @@ public class EnemyDataSO : ScriptableObject
     public LayerMask targetLayerMask;
 
     [Header("Knockback Settings")]
-    public float knockbackDuration = 0.5f;
     public float lightKnockbackStrength = 2f;
     public float lightStunDuration = 0.3f;
     public float heavyKnockbackStrength = 7f;

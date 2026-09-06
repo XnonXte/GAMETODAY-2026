@@ -5,20 +5,20 @@ public class EnemyDamagedState : EnemyState
     protected override string AnimBoolName => "isDamaged";
     private string damageClipName = "TestEnemyDamaged";
     private Vector2 knockbackForce;
-    private float customStunDuration;
+    private float stunDuration;
 
     public EnemyDamagedState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine) { }
 
-    public void SetKnockbackForce(Vector2 force, float stunDuration = -1f)
+    public void SetKnockbackForce(Vector2 force, float stunTime)
     {
         knockbackForce = force;
-        customStunDuration = (stunDuration > 0f) ? stunDuration : enemyData.knockbackDuration;
+        stunDuration = stunTime;
     }
 
     public override void Enter()
     {
         base.Enter();
-        stateTimer = customStunDuration;
+        stateTimer = stunDuration;
 
         CombatManager.Instance.ReleaseSlot(enemy);
         enemy.Agent.enabled = false;
