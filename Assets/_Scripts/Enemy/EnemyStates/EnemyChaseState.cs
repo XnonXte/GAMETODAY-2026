@@ -8,7 +8,7 @@ public class EnemyChaseState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemy.Agent.speed = config.chaseSpeed;
+        enemy.Agent.speed = enemyBehaviour.chaseSpeed;
     }
 
     public override void Update()
@@ -21,7 +21,7 @@ public class EnemyChaseState : EnemyState
 
             float distanceToSlot = Vector2.Distance(enemy.transform.position, slotPos);
 
-            if (distanceToSlot <= config.attackRange && enemy.Combat.CanMeleeAtack())
+            if (distanceToSlot <= enemyData.attackRange && enemy.Combat.CanMeleeAtack())
             {
                 enemyStateMachine.ChangeState(enemy.AttackState);
             }

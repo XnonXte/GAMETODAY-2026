@@ -12,7 +12,7 @@ public class EnemyEvadeState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemy.Agent.speed = config.evadeSpeed;
+        enemy.Agent.speed = enemyBehaviour.evadeSpeed;
         stateTimer = maxEvadeTime;
 
         Vector3 directionAway = (enemy.transform.position - enemy.Target.position).normalized;

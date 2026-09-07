@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour
 {
     #region [Attributes]
     public int FacingDirection { get; private set; } = 1; //1 = kanan, -1 = kiri
-    [field:SerializeField] public EnemyConfig Config { get; private set; }
+    [field: SerializeField] public EnemyDataSO EnemyData { get; private set; }
     #endregion
 
     #region [Components]
@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     public EnemyCombat Combat { get; private set; }
     public Health HealthComponent { get; private set; }
     private AnimationEventDetection eventDetection;
+    private SpriteRenderer spriteRenderer;
     #endregion
 
     #region [EnemyStateMachine]
@@ -37,6 +38,7 @@ public class Enemy : MonoBehaviour
 
         Anim = GetComponentInChildren<Animator>();
         eventDetection = GetComponentInChildren<AnimationEventDetection>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         Agent.updateRotation = false;
         Agent.updateUpAxis = false;
@@ -49,6 +51,19 @@ public class Enemy : MonoBehaviour
         ChaseState = new EnemyChaseState(this, StateMachine);
         AttackState = new EnemyAttackState(this, StateMachine);
         DamagedState = new EnemyDamagedState(this, StateMachine);
+
+        ApplyEnemyData();
+    }
+
+    private void ApplyEnemyData()
+    {
+        if (EnemyData == null) return;
+
+        gameObject.name = EnemyData.enemyName;
+        if (spriteRenderer != null && EnemyData.defaultSprite != null)
+        {
+            spriteRenderer.sprite = EnemyData.defaultSprite;
+        }
     }
 
     private void OnEnable()
@@ -67,7 +82,8 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        StateMachine.Initialize(PatrolState);
+        ForceFacingDirection();
+        StateMachine.Initialize(ChaseState);
     }
 
     private void Update() 
@@ -81,6 +97,26 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region [Animation/Visual]
+    private void ForceFacingDirection()
+    {
+        float directionX = Target.position.x - transform.position.x;
+
+        if (directionX < 0) 
+        {
+            FacingDirection = -1;
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x) * -1;
+            transform.localScale = scale;
+        }
+        else 
+        {
+            FacingDirection = 1;
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x);
+            transform.localScale = scale;
+        }
+    }
+
     private void UpdateFacingDirection()
     {
         float directionX = 0f;
@@ -123,7 +159,7 @@ public class Enemy : MonoBehaviour
     }
     #endregion
 
-    #region Damaging
+    #region [Damaging]
     private void HandleDamageTaken(Vector2 hitDirection, AttackType attackType)
     {
         float strength;
@@ -131,13 +167,13 @@ public class Enemy : MonoBehaviour
 
         if (attackType == AttackType.Heavy)
         {
-            strength = Config.heavyKnockbackStrength;
-            stunTime = Config.heavyStunDuration;
+            strength = EnemyData.heavyKnockbackStrength;
+            stunTime = EnemyData.heavyStunDuration;
         }
         else
         {
-            strength = Config.lightKnockbackStrength;
-            stunTime = Config.lightStunDuration;
+            strength = EnemyData.lightKnockbackStrength;
+            stunTime = EnemyData.lightStunDuration;
         }
 
         float directionX = hitDirection.x != 0 ? Mathf.Sign(hitDirection.x) : Mathf.Sign(transform.position.x - Target.position.x);
@@ -194,20 +230,20 @@ public class Enemy : MonoBehaviour
         UnityEditor.Handles.Label(labelPosition, stateName, style);
 
         //attack hitbox gizmos
-        if (Config == null) return;
+        if (EnemyData == null) return;
 
         // Determine which way the enemy is currently facing (default to 1 if not playing)
         int currentFacingDirection = Application.isPlaying ? FacingDirection : 1;
 
         // Calculate the same hitbox center as the attack state
         Vector2 hitboxCenter = (Vector2)transform.position + new Vector2(
-            Config.attackHitboxOffset.x * currentFacingDirection,
-            Config.attackHitboxOffset.y
+            EnemyData.attackHitboxOffset.x * currentFacingDirection,
+            EnemyData.attackHitboxOffset.y
         );
 
         // Draw the rectangle in the Scene view
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(hitboxCenter, Config.attackHitboxSize);
+        Gizmos.DrawWireCube(hitboxCenter, EnemyData.attackHitboxSize);
     }
 #endif
     #endregion

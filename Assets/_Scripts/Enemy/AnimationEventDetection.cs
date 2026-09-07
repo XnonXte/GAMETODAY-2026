@@ -18,6 +18,6 @@ public class AnimationEventDetection : MonoBehaviour
 
     public void TriggerDeathEvent()
     {
-        Destroy(transform.root.gameObject);
+        Destroy(transform.parent.gameObject);
     }
 }

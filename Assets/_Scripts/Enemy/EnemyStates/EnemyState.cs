@@ -1,13 +1,16 @@
 using UnityEngine;
+using static UnityEngine.InputSystem.OnScreen.OnScreenStick;
 
 public abstract class EnemyState 
 {
     protected EnemyStateMachine enemyStateMachine;
     protected Enemy enemy;
-
     protected Rigidbody2D rigidbody;
-    protected EnemyConfig config;
     protected Animator anim;
+
+    protected EnemyDataSO enemyData;
+    protected EnemyBehaviourSO enemyBehaviour;
+
     protected virtual string AnimBoolName => null;
     protected float stateTimer;
 
@@ -17,8 +20,10 @@ public abstract class EnemyState
         this.enemyStateMachine = enemyStateMachine;
         
         rigidbody = enemy.Rigidbody;
-        config = enemy.Config;
         anim = enemy.Anim;
+
+        enemyData = enemy.EnemyData;
+        enemyBehaviour = enemy.EnemyData.enemyBehaviour;
     }
 
     public virtual void Enter() 

@@ -9,6 +9,8 @@ public class PlayerWalkState : PlayerState
     public override void Enter()
     {
         base.Enter(); // Automatically sets "isWalking" to true
+
+        player.Anim.Play("TestWalkAnimation", -1, 0f);
     }
 
     public override void Update()

@@ -14,7 +14,7 @@ public class EnemyAttackState : EnemyState
         enemy.Agent.isStopped = true;
 
         isWindingUp = true;
-        stateTimer = config.attackDelay;
+        stateTimer = enemyData.attackDelay;
     }
 
     public override void Update()
@@ -23,7 +23,7 @@ public class EnemyAttackState : EnemyState
 
         if (isWindingUp && stateTimer <= 0)
         {
-            if (Random.value <= config.attackCommitChance)
+            if (Random.value <= enemyBehaviour.attackCommitChance)
             {
                 isWindingUp = false;
                 anim.Play(attackAnimationName, -1, 0f);
@@ -38,7 +38,7 @@ public class EnemyAttackState : EnemyState
 
     public override void AnimationFinishTrigger()
     {
-        if (Random.value <= config.comboChance)
+        if (Random.value <= enemyBehaviour.comboChance)
         {
             enemyStateMachine.ChangeState(enemy.AttackState);
         }

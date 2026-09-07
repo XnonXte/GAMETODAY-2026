@@ -8,7 +8,7 @@ public class EnemyPatrolState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemy.Agent.speed = config.patrolSpeed;
+        enemy.Agent.speed = enemyBehaviour.patrolSpeed;
         SetSmallWanderPoint();
     }
 
@@ -18,7 +18,7 @@ public class EnemyPatrolState : EnemyState
 
         if (stateTimer <= 0)
         {
-            if (Random.value <= config.chaseChance)
+            if (Random.value <= enemyBehaviour.chaseChance)
             {
                 if (CombatManager.Instance.RequestSlot(enemy, out Vector3 slotPos))
                 {
@@ -27,7 +27,7 @@ public class EnemyPatrolState : EnemyState
                 }
             }
 
-            if (Random.value <= config.evadeChance)
+            if (Random.value <= enemyBehaviour.evadeChance)
             {
                 enemyStateMachine.ChangeState(enemy.EvadeState);
                 return;
@@ -39,8 +39,8 @@ public class EnemyPatrolState : EnemyState
 
     private void SetSmallWanderPoint()
     {
-        stateTimer = config.decisionInterval;
-        Vector2 randomOffset = Random.insideUnitCircle * config.smallWanderRadius;
+        stateTimer = enemyBehaviour.decisionInterval;
+        Vector2 randomOffset = Random.insideUnitCircle * enemyBehaviour.smallWanderRadius;
         enemy.Agent.SetDestination(enemy.transform.position + (Vector3)randomOffset);
     }
 }
