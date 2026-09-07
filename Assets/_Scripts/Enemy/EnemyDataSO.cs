@@ -8,6 +8,11 @@ public class EnemyDataSO : ScriptableObject
     public Sprite defaultSprite;
     public float maxHealth = 100f;
 
+    [Header("Loot Drop")]
+    public GameObject coinPrefab;
+    public int minCoinsDropped = 1;
+    public int maxCoinsDropped = 3;
+
     [Header("AI Behavior")]
     public EnemyBehaviourSO enemyBehaviour;
 

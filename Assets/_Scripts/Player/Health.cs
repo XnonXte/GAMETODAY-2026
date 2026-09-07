@@ -5,13 +5,14 @@ public class Health : MonoBehaviour, IDamageable
 {
     public event Action<Vector2, AttackType> OnDamaged;
     public event Action OnDeath;
-
     [SerializeField] private float maxHp = 100;
     private float currentHp;
 
     private void Start()
     {
         currentHp = maxHp;
+
+        if (GetComponent<Player>() != null) EventHandler.WhenPlayerHealthChanged(currentHp, maxHp); 
     }
 
     public void TakeDamage(float amount, Vector2 direction, AttackType attackType)
@@ -29,6 +30,8 @@ public class Health : MonoBehaviour, IDamageable
             AudioManager.Instance.PlayAudio(AudioManager.Instance.SFX_Hit);
             OnDamaged?.Invoke(direction, attackType); 
         }
+
+        if (GetComponent<Player>() != null) EventHandler.WhenPlayerHealthChanged(currentHp, maxHp);
         Debug.Log($"{gameObject.name} Current HP = {currentHp}");
     }
 }

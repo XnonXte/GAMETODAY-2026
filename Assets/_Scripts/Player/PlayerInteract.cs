@@ -44,7 +44,7 @@ public class PlayerInteract : MonoBehaviour
         if (currentInteractable != null && interactPressed)
         {
             Debug.Log("[PlayerInteract] E pressed → calling Interact()");
-            currentInteractable.Interact();
+            currentInteractable.Interact(null);
         }
     }
 

@@ -5,7 +5,7 @@ using Unity.Cinemachine;
 [System.Serializable]
 public struct EnemySpawnInfo
 {
-    public GameObject enemyPrefab;
+    public EnemyDataSO enemyData;
     public Transform spawnPoint;
 }
 
@@ -24,6 +24,7 @@ public class ArenaManager : MonoBehaviour
 
     [Header("Wave Settings")]
     [SerializeField] private List<Wave> waves;
+    [SerializeField] private GameObject enemyPrefab;
 
     private int currentWaveIndex = 0;
     private int activeEnemyCount = 0;
@@ -74,7 +75,8 @@ public class ArenaManager : MonoBehaviour
 
         foreach (var spawnInfo in currentWave.enemiesToSpawn)
         {
-            GameObject spawnedEnemy = Instantiate(spawnInfo.enemyPrefab, spawnInfo.spawnPoint.position, Quaternion.identity);
+            GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnInfo.spawnPoint.position, Quaternion.identity);
+            spawnedEnemy.GetComponent<Enemy>()?.Initialize(spawnInfo.enemyData);
 
             Health enemyHealth = spawnedEnemy.GetComponent<Health>();
             if (enemyHealth != null)

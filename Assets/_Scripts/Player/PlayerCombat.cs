@@ -15,6 +15,7 @@ public class PlayerCombat : MonoBehaviour
     [Header("Damage Settings")]
     [SerializeField] private float lightAttackDamage = 10f;
     [SerializeField] private float heavyAttackDamage = 25f;
+    public float DamageMultiplier = 1.0f;
 
 
     private void OnDrawGizmos()
@@ -42,7 +43,7 @@ public class PlayerCombat : MonoBehaviour
                 {
                     Vector2 hitDirection = new Vector2(facingDirection, 0f);
 
-                    enemyInterface.TakeDamage(damage, hitDirection, attackType);
+                    enemyInterface.TakeDamage(damage * DamageMultiplier, hitDirection, attackType);
                     Debug.Log($"[PlayerCombat] Enemy Hit with {attackType} attack!");
                 }
             }

@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -81,14 +81,6 @@ public class Player : MonoBehaviour
 
         ReadInput();
         StateMachine.CurrentPlayerState?.Update();
-
-        if (InputManager.Instance != null && InputManager.Instance.PlayerInteract())
-        {
-            if (GameSceneManager.Instance != null)
-            {
-                GameSceneManager.Instance.RestartScene();
-            }
-        }
 
         if (currentDashCooldown > 0f)
         {
@@ -184,4 +176,58 @@ public class Player : MonoBehaviour
         if (Anim != null) Anim.Play("TestDeathAnimation", -1, 0f);
     }
     #endregion
+
+    #region [Status Effect]
+    private float originalMoveSpeed;
+    private Coroutine activeSpeedCoroutine;
+    private Coroutine activePowerCoroutine;
+
+    public void ApplyHeal(float amount)
+    {
+        HealthComponent.ChangeHealth(amount, Vector3.zero, AttackType.Light);
+    }
+
+    public void ApplySpeedBoost(float boostAmount, float duration)
+    {
+        if (activeSpeedCoroutine != null)
+        {
+            StopCoroutine(activeSpeedCoroutine);
+            moveSpeed = originalMoveSpeed; 
+        }
+        else
+        {
+            originalMoveSpeed = moveSpeed;
+        }
+
+        activeSpeedCoroutine = StartCoroutine(SpeedBoostRoutine(boostAmount, duration));
+    }
+
+    public void ApplyPowerBoost(float multiplier, float duration)
+    {
+        if (activeSpeedCoroutine != null)
+        {
+            StopCoroutine(activeSpeedCoroutine);
+            Combat.DamageMultiplier = 1f; 
+        }
+
+        activeSpeedCoroutine = StartCoroutine(PowerBoostRoutine(multiplier, duration));
+    }
+
+    private IEnumerator SpeedBoostRoutine(float boostAmount, float duration)
+    {
+        moveSpeed += boostAmount;
+        yield return new WaitForSeconds(duration);
+        moveSpeed = originalMoveSpeed;
+        activeSpeedCoroutine = null; 
+    }
+
+    private IEnumerator PowerBoostRoutine(float multiplier, float duration)
+    {
+        Combat.DamageMultiplier = multiplier;
+        yield return new WaitForSeconds(duration);
+        Combat.DamageMultiplier = 1f;
+        activeSpeedCoroutine = null;
+    }
+    #endregion
+
 }

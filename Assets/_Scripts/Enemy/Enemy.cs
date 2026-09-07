@@ -51,7 +51,11 @@ public class Enemy : MonoBehaviour
         ChaseState = new EnemyChaseState(this, StateMachine);
         AttackState = new EnemyAttackState(this, StateMachine);
         DamagedState = new EnemyDamagedState(this, StateMachine);
+    }
 
+    public void Initialize(EnemyDataSO data)
+    {
+        EnemyData = data;
         ApplyEnemyData();
     }
 
@@ -205,6 +209,16 @@ public class Enemy : MonoBehaviour
         Collider2D col = GetComponent<Collider2D>();
         if (col != null) col.enabled = false;
         if (Anim != null) Anim.Play("TestEnemyDeath", -1, 0f);
+
+        if (EnemyData.coinPrefab != null)
+        {
+            int coinsToDrop = Random.Range(EnemyData.minCoinsDropped, EnemyData.maxCoinsDropped + 1);
+
+            for (int i = 0; i < coinsToDrop; i++)
+            {
+                Instantiate(EnemyData.coinPrefab, transform.position, Quaternion.identity);
+            }
+        }
     }
     #endregion
 
