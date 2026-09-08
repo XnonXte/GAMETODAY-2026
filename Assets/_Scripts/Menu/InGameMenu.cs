@@ -39,12 +39,12 @@ public class InGameMenu : MonoBehaviour
         GameSceneManager.Instance.RestartScene();
     }
 
-    private void UpdatePlayerHealth(float currentHp, float maxHp) 
-    { 
+    private void UpdatePlayerHealth(float currentHp, float maxHp)
+    {
         if (playerHealth == null || maxHp <= 0) return;
 
         float healthPercent = playerHealth.value = currentHp / maxHp;
-        
+
         Debug.Log($"Health UI: {currentHp} / {maxHp} = {healthPercent}");
     }
 
