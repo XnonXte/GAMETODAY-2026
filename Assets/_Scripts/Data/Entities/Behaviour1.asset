@@ -16,9 +16,9 @@ MonoBehaviour:
   chaseSpeed: 5
   evadeSpeed: 3
   chaseChance: 0.8
-  evadeChance: 0.3
-  attackCommitChance: 0.6
-  comboChance: 0
+  evadeChance: 0.4
+  attackCommitChance: 0.8
+  alwaysCommitToAttack: 0
   decisionInterval: 2
   smallWanderRadius: 1.5
-  minSafeDistance: 4
+  minSafeDistance: 3

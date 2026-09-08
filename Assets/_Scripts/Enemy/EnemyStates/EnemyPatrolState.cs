@@ -20,7 +20,8 @@ public class EnemyPatrolState : EnemyState
         {
             if (Random.value <= enemyBehaviour.chaseChance)
             {
-                if (CombatManager.Instance.RequestSlot(enemy, out Vector3 slotPos))
+                // Pass enemy.Target as the second argument here!
+                if (CombatManager.Instance.RequestSlot(enemy, enemy.Target, out Vector3 slotPos))
                 {
                     enemyStateMachine.ChangeState(enemy.ChaseState);
                     return;

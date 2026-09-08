@@ -108,8 +108,20 @@ public class ArenaManager : MonoBehaviour
             mainCameraConfiner.InvalidateBoundingShapeCache();
         }
 
+        OnWaveCompleted();
         SetWallsActive(false);
         GetComponent<Collider2D>().enabled = false;
+    }
+
+    // Example inside your ArenaManager when a wave/zone is successfully cleared:
+    public void OnWaveCompleted()
+    {
+        Debug.Log("Wave cleared! Advancing payload.");
+
+        if (Payload.Instance != null)
+        {
+            Payload.Instance.SetNextDestination();
+        }
     }
 
     private void SetWallsActive(bool isActive)

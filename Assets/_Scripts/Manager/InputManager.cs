@@ -65,4 +65,16 @@ public class InputManager : MonoBehaviour
         if (playerControls == null) return false;
         return playerControls.Player.Dash.WasPressedThisFrame();
     }
+
+    public bool GetPlayerUseConsume()
+    {
+        if (playerControls == null) return false;
+        return playerControls.Player.Consume.WasPressedThisFrame();
+    }
+
+    public bool GetPlayerUseSkill()
+    {
+        if (playerControls == null) return false;
+        return playerControls.Player.Skill.WasPressedThisFrame();
+    }
 }

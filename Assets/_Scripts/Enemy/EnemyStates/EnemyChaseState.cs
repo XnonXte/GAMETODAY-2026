@@ -15,7 +15,11 @@ public class EnemyChaseState : EnemyState
     {
         base.Update();
 
-        if (CombatManager.Instance.RequestSlot(enemy, out Vector3 slotPos))
+        // 1. Fallback if target is somehow missing
+        if (enemy.Target == null) return;
+
+        // 2. Pass enemy.Target so the CombatManager builds slots around the Payload (or Player if aggroed)
+        if (CombatManager.Instance.RequestSlot(enemy, enemy.Target, out Vector3 slotPos))
         {
             enemy.Agent.SetDestination(slotPos);
 
@@ -28,7 +32,8 @@ public class EnemyChaseState : EnemyState
         }
         else
         {
-            enemyStateMachine.ChangeState(enemy.EvadeState);
+            // Fallback if no slots are open: just walk directly toward the target
+            enemy.Agent.SetDestination(enemy.Target.position);
         }
     }
 }

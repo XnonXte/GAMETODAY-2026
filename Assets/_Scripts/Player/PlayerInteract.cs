@@ -62,7 +62,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void DetectInteractable()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, interactionRadius, interactableLayer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position + new Vector3(0, 2, 0), interactionRadius, interactableLayer);
 
         currentInteractable = null;
 
@@ -80,6 +80,6 @@ public class PlayerInteract : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, interactionRadius);
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0, 2, 0), interactionRadius);
     }
 }

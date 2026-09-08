@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +11,10 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region [Components]
+    [Header("Targeting & Aggro Settings")]
+    [SerializeField] private float aggroDuration = 10f; // Time before forgetting the player and returning to payload
+    private Transform playerTransform;
+    private Coroutine aggroResetCoroutine;
     public Rigidbody2D Rigidbody { get; private set; }
     public NavMeshAgent Agent { get; private set; }
     public Transform Target { get; private set; }
@@ -42,8 +48,6 @@ public class Enemy : MonoBehaviour
 
         Agent.updateRotation = false;
         Agent.updateUpAxis = false;
-
-        Target = GameObject.FindGameObjectWithTag("Player").transform;
 
         StateMachine = new EnemyStateMachine();
         PatrolState = new EnemyPatrolState(this, StateMachine);
@@ -86,6 +90,24 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+
+        // Find the player reference
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null) playerTransform = playerObj.transform;
+        // FIND THE PAYLOAD BY TAG (Safer than relying purely on singletons)
+        GameObject payloadObj = GameObject.FindGameObjectWithTag("Payload");
+
+        if (payloadObj != null)
+        {
+            Target = payloadObj.transform;
+            Debug.Log($"{gameObject.name} successfully targeted the Payload.");
+        }
+        else if (playerTransform != null)
+        {
+            Target = playerTransform; // Fallback if no payload exists in the scene
+            Debug.LogWarning($"{gameObject.name} could not find Payload! Defaulting to Player target.");
+        }
+
         ForceFacingDirection();
         StateMachine.Initialize(ChaseState);
     }
@@ -164,6 +186,36 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region [Damaging]
+    public void AgroOnPlayer()
+    {
+        if (playerTransform == null) return;
+
+        Target = playerTransform;
+        Debug.Log($"{gameObject.name} is now aggroed on the Player!");
+
+        // If already aggroed, restart the timer so it extends the aggro duration
+        if (aggroResetCoroutine != null)
+        {
+            StopCoroutine(aggroResetCoroutine);
+        }
+
+        aggroResetCoroutine = StartCoroutine(ResetAggroRoutine());
+    }
+
+    private IEnumerator ResetAggroRoutine()
+    {
+        yield return new WaitForSeconds(aggroDuration);
+
+        // Revert target back to the Payload if it still exists
+        if (Payload.Instance != null)
+        {
+            Target = Payload.Instance.transform;
+            Debug.Log($"{gameObject.name} lost player aggro. Resetting target to Payload.");
+        }
+
+        aggroResetCoroutine = null;
+    }
+
     private void HandleDamageTaken(Vector2 hitDirection, AttackType attackType)
     {
         float strength;

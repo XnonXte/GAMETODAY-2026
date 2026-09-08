@@ -18,23 +18,22 @@ public class PlayerInventory : MonoBehaviour
 
     private void Update()
     {
-        // Note: You should move these inputs to your InputManager later!
-        // Pressing 'Q' for Consumable
-        if (Input.GetKeyDown(KeyCode.Q) && currentConsumable != null)
+        //v
+        if (InputManager.Instance.GetPlayerUseConsume() && currentConsumable != null)
         {
             if (currentConsumable.UseItem(player))
             {
-                currentConsumable = null; // Remove it from inventory if successfully used
+                currentConsumable = null; 
                 UpdateUI();
             }
         }
 
-        // Pressing 'E' for Weapon
-        if (Input.GetKeyDown(KeyCode.E) && currentWeapon != null)
+        //f
+        if (InputManager.Instance.GetPlayerUseSkill() && currentWeapon != null)
         {
             if (currentWeapon.UseItem(player))
             {
-                currentWeapon = null; // Remove it from inventory if successfully used
+                currentWeapon = null; 
                 UpdateUI();
             }
         }

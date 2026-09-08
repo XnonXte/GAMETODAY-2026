@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   <EnemyData>k__BackingField: {fileID: 11400000, guid: f6e77267a935a6f4b860220cc87e2a44, type: 2}
+  aggroDuration: 18
 --- !u!114 &1266653779912126633
 MonoBehaviour:
   m_ObjectHideFlags: 0

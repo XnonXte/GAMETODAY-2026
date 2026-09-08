@@ -9,7 +9,7 @@ public static class GameResource
 
     public static bool TrySpendGold(int amount)
     {
-        if (goldAmount <= amount)
+        if (goldAmount >= amount)
         {
             goldAmount -= amount;
             EventHandler.WhenGoldAmountChanged();

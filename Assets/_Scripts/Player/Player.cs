@@ -184,15 +184,18 @@ public class Player : MonoBehaviour
 
     public void ApplyHeal(float amount)
     {
+        Debug.Log("Apply Heal!");
         HealthComponent.ChangeHealth(amount, Vector3.zero, AttackType.Light);
     }
 
     public void ApplySpeedBoost(float boostAmount, float duration)
     {
+        Debug.Log("Apply Speed Boost!");
+
         if (activeSpeedCoroutine != null)
         {
             StopCoroutine(activeSpeedCoroutine);
-            moveSpeed = originalMoveSpeed; 
+            moveSpeed = originalMoveSpeed;
         }
         else
         {
@@ -204,13 +207,15 @@ public class Player : MonoBehaviour
 
     public void ApplyPowerBoost(float multiplier, float duration)
     {
-        if (activeSpeedCoroutine != null)
+        Debug.Log("Applied Power Boost!");
+
+        if (activePowerCoroutine != null)
         {
-            StopCoroutine(activeSpeedCoroutine);
-            Combat.DamageMultiplier = 1f; 
+            StopCoroutine(activePowerCoroutine);
+            Combat.DamageMultiplier = 1f;
         }
 
-        activeSpeedCoroutine = StartCoroutine(PowerBoostRoutine(multiplier, duration));
+        activePowerCoroutine = StartCoroutine(PowerBoostRoutine(multiplier, duration));
     }
 
     private IEnumerator SpeedBoostRoutine(float boostAmount, float duration)
@@ -218,7 +223,7 @@ public class Player : MonoBehaviour
         moveSpeed += boostAmount;
         yield return new WaitForSeconds(duration);
         moveSpeed = originalMoveSpeed;
-        activeSpeedCoroutine = null; 
+        activeSpeedCoroutine = null;
     }
 
     private IEnumerator PowerBoostRoutine(float multiplier, float duration)
@@ -226,7 +231,8 @@ public class Player : MonoBehaviour
         Combat.DamageMultiplier = multiplier;
         yield return new WaitForSeconds(duration);
         Combat.DamageMultiplier = 1f;
-        activeSpeedCoroutine = null;
+
+        activePowerCoroutine = null;
     }
     #endregion
 

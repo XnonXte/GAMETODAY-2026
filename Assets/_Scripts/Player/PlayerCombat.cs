@@ -45,6 +45,12 @@ public class PlayerCombat : MonoBehaviour
 
                     enemyInterface.TakeDamage(damage * DamageMultiplier, hitDirection, attackType);
                     Debug.Log($"[PlayerCombat] Enemy Hit with {attackType} attack!");
+
+                    Enemy enemyScript = enemy.GetComponent<Enemy>();
+                    if (enemyScript != null)
+                    {
+                        enemyScript.AgroOnPlayer();
+                    }
                 }
             }
         }

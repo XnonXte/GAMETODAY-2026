@@ -16,12 +16,12 @@ MonoBehaviour:
   defaultSprite: {fileID: 8886490851947454144, guid: a207b0d1d5d588b47bbfdfc277c1ba44, type: 3}
   maxHealth: 100
   coinPrefab: {fileID: 3610020127415715434, guid: 98943954b314868468145113d6fba91f, type: 3}
-  minCoinsDropped: 1
-  maxCoinsDropped: 2
+  minCoinsDropped: 5
+  maxCoinsDropped: 6
   enemyBehaviour: {fileID: 11400000, guid: e2943edb58910a84fada0f4ed1939b6c, type: 2}
-  attackRange: 0.5
+  attackRange: 1
   attackDuration: 2
-  attackDelay: 3
+  attackDelay: 1
   meleeCooldown: 1
   enemyMeleeDamage: 10
   targetLayerMask:

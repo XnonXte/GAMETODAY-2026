@@ -1,24 +1,30 @@
 using UnityEngine;
+using TMPro;
 
-[RequireComponent(typeof(SpriteRenderer), typeof(BoxCollider2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class ShopSlot : MonoBehaviour, IInteractable
 {
     private BaseItemSO slotItem;
-    private SpriteRenderer spriteRenderer;
-
-    private void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+    [SerializeField] private SpriteRenderer itemSpriteRenderer;
+    [SerializeField] private TMP_Text priceText;
 
     public void SetupSlot(BaseItemSO itemToSell)
     {
         slotItem = itemToSell;
 
-        if (slotItem != null && slotItem.itemSprite != null)
+        if (slotItem != null)
         {
-            spriteRenderer.sprite = slotItem.itemSprite;
-            spriteRenderer.enabled = true;
+            if (itemSpriteRenderer != null && slotItem.itemSprite != null)
+            {
+                itemSpriteRenderer.sprite = slotItem.itemSprite;
+                itemSpriteRenderer.enabled = true;
+            }
+
+            if (priceText != null)
+            {
+                priceText.text = slotItem.price.ToString();
+                priceText.gameObject.SetActive(true);
+            }
         }
         else
         {
@@ -34,10 +40,14 @@ public class ShopSlot : MonoBehaviour, IInteractable
         {
             Debug.Log($"Purchased {slotItem.itemName} for {slotItem.price} gold!");
 
-            PlayerInventory inventory = player.GetComponent<PlayerInventory>();
-            if (inventory != null)
+            if (player != null)
             {
-                inventory.AddItem(slotItem);
+                PlayerInventory inventory = player.GetComponent<PlayerInventory>();
+                if (inventory != null) inventory.AddItem(slotItem);
+            }
+            else if (PlayerInventory.Instance != null)
+            {
+                PlayerInventory.Instance.AddItem(slotItem);
             }
 
             ClearSlot(); 
@@ -51,7 +61,17 @@ public class ShopSlot : MonoBehaviour, IInteractable
     private void ClearSlot()
     {
         slotItem = null;
-        spriteRenderer.sprite = null;
-        spriteRenderer.enabled = false;
+
+        if (itemSpriteRenderer != null)
+        {
+            itemSpriteRenderer.sprite = null;
+            itemSpriteRenderer.enabled = false;
+        }
+
+        if (priceText != null)
+        {
+            priceText.text = "";
+            priceText.gameObject.SetActive(false);
+        }
     }
 }
