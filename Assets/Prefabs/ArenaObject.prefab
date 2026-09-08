@@ -463,14 +463,15 @@ MonoBehaviour:
   waves:
   - waveName: First Wave
     enemiesToSpawn:
-    - enemyPrefab: {fileID: 1410738487349317864, guid: 3b0955289cfcf294bb0e8f3beaec7ac3, type: 3}
+    - enemyData: {fileID: 0}
       spawnPoint: {fileID: 4934621683739553024}
-    - enemyPrefab: {fileID: 1410738487349317864, guid: 3b0955289cfcf294bb0e8f3beaec7ac3, type: 3}
+    - enemyData: {fileID: 0}
       spawnPoint: {fileID: 3359150723646956919}
-    - enemyPrefab: {fileID: 1410738487349317864, guid: 3b0955289cfcf294bb0e8f3beaec7ac3, type: 3}
+    - enemyData: {fileID: 0}
       spawnPoint: {fileID: 2482538002265797772}
-    - enemyPrefab: {fileID: 1410738487349317864, guid: 3b0955289cfcf294bb0e8f3beaec7ac3, type: 3}
+    - enemyData: {fileID: 0}
       spawnPoint: {fileID: 1946724327807017230}
+  enemyPrefab: {fileID: 1410738487349317864, guid: 3b0955289cfcf294bb0e8f3beaec7ac3, type: 3}
 --- !u!61 &4467068809731492763
 BoxCollider2D:
   m_ObjectHideFlags: 0

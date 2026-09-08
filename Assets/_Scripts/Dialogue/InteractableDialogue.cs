@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InteractableDialogue : IInteractable
+public class InteractableDialogue : MonoBehaviour, IInteractable
 {
     [Header("Dialogue Settings")]
     [SerializeField] private DialogueData dialogueData;
@@ -8,7 +8,7 @@ public class InteractableDialogue : IInteractable
 
     private bool hasInteracted = false;
 
-    public override void Interact()
+    public void Interact(Player _)
     {
         Debug.Log("InteractableDialogue.Interact() called on " + gameObject.name);
 
