@@ -2145,7 +2145,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'PAUSE
+  m_text: 'PAUSED
 
 '
   m_isRightToLeft: 0
