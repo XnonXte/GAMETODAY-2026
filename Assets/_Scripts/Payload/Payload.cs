@@ -1,5 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
 [RequireComponent(typeof(Health), typeof(Rigidbody2D))]
 public class Payload : MonoBehaviour
@@ -7,13 +8,21 @@ public class Payload : MonoBehaviour
     public static Payload Instance { get; private set; }
 
     [Header("Movement & Pathing")]
-    [SerializeField] private List<Transform> pathWaypoints; // Drag all your arena stops here in order!
+    [SerializeField] private List<Transform> pathWaypoints; 
     [SerializeField] private float moveSpeed = 3f;
+
+    [Header("Hit Flash Effects")]
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Material flashMaterial; // Drag a solid white material here in the inspector
+    [SerializeField] private float flashDuration = 0.15f;
 
     private Transform currentDestination;
     private int waypointIndex = 0;
     private Health healthComponent;
     private bool hasReachedDestination = false;
+
+    private Material defaultMaterial;
+    private Coroutine flashCoroutine;
 
     private void Awake()
     {
@@ -25,11 +34,8 @@ public class Payload : MonoBehaviour
 
     private void Start()
     {
-        // Automatically set the first destination on start if we have waypoints
-        if (pathWaypoints != null && pathWaypoints.Count > 0)
-        {
-            SetNextDestination();
-        }
+        if (spriteRenderer != null) defaultMaterial = spriteRenderer.material;
+        if (pathWaypoints != null && pathWaypoints.Count > 0) SetNextDestination();
     }
 
     private void OnEnable()
@@ -76,12 +82,23 @@ public class Payload : MonoBehaviour
 
     private void HandleDamageTaken(Vector2 direction, AttackType attackType)
     {
-        Debug.Log($"[Payload] Warning! The payload took damage from a {attackType} attack!");
+        if (flashCoroutine != null) StopCoroutine(flashCoroutine);
+        flashCoroutine = StartCoroutine(FlashRoutine());
     }
 
     private void HandleDeath()
     {
         Debug.Log("Payload destroyed! Game Over.");
         Destroy(gameObject);
+    }
+
+    private IEnumerator FlashRoutine()
+    {
+        if (spriteRenderer != null && flashMaterial != null)
+        {
+            spriteRenderer.material = flashMaterial;
+            yield return new WaitForSeconds(flashDuration);
+            spriteRenderer.material = defaultMaterial;
+        }
     }
 }

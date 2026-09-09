@@ -165,15 +165,8 @@ public class PauseManager : MonoBehaviour
         PlayClickSFX();
         Time.timeScale = 1f;
         isPaused = false;
-
-        if (GameSceneManager.Instance != null)
-        {
-            GameSceneManager.Instance.ChangeScene(GameScene.MainMenu);
-        }
-        else
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
-        }
+        
+        GameSceneManager.Instance.ChangeScene(GameScene.MainMenu);
     }
 
     /// <summary>
