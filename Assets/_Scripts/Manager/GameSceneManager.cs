@@ -1,9 +1,10 @@
+using DG.Tweening;
+using EasyTransition;
 using System.Collections;
+using Unity.VectorGraphics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using DG.Tweening;
-using Unity.VisualScripting;
-using EasyTransition;
 
 public enum GameScene
 {
@@ -53,6 +54,7 @@ public class GameSceneManager : MonoBehaviour
     {
         //if (isChangingScene) return;
         TransitionManager.Instance().Transition(sceneEnum.ToString(), transitionMode, loadDelay);
+        AudioManager.Instance.UpdateBGM(sceneEnum.ToString());
         //StartCoroutine(ChangeSceneRoutine(sceneEnum.ToString()));
     }
 
@@ -68,9 +70,9 @@ public class GameSceneManager : MonoBehaviour
     //    isChangingScene = true;
     //    Time.timeScale = 1f;
 
-       
+
     //    yield return SceneManager.LoadSceneAsync(sceneName); // Start the panel in the center, covering the new scene.
-    //    AudioManager.Instance.UpdateBGM(sceneName);
+    
     //    transitionPanel.anchoredPosition = Vector2.zero; // Slide LEFT to reveal the new scene.
     //    yield return transitionPanel .DOAnchorPosX(-slideDistance, transitionDuration).SetEase(Ease.OutCubic).SetUpdate(true).WaitForCompletion();
 
