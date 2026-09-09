@@ -12,7 +12,8 @@ public class Health : MonoBehaviour, IDamageable
     {
         currentHp = maxHp;
 
-        if (GetComponent<Player>() != null) EventHandler.WhenPlayerHealthChanged(currentHp, maxHp); 
+        if (GetComponent<Player>() != null) EventHandler.WhenPlayerHealthChanged(currentHp, maxHp);
+        if (GetComponent<Payload>() != null) EventHandler.WhenPayloadHealthChanged(currentHp, maxHp);
     }
 
     public void TakeDamage(float amount, Vector2 direction, AttackType attackType)
@@ -32,6 +33,8 @@ public class Health : MonoBehaviour, IDamageable
         }
 
         if (GetComponent<Player>() != null) EventHandler.WhenPlayerHealthChanged(currentHp, maxHp);
+        if (GetComponent<Payload>() != null) EventHandler.WhenPayloadHealthChanged(currentHp, maxHp);
+
         Debug.Log($"{gameObject.name} Current HP = {currentHp}");
     }
 }

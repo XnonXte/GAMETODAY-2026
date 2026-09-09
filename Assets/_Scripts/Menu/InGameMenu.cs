@@ -15,6 +15,7 @@ public class InGameMenu : MonoBehaviour
         EventHandler.OnGoldAmountChanged += UpdateGoldCounter;
         EventHandler.OnInventoryUpdated += UpdateInventoryUI;
         EventHandler.OnPlayerHealthChanged += UpdatePlayerHealth;
+        EventHandler.OnPayloadHealthChanged += UpdatePayloadHealth;
     }
 
     private void OnDisable()
@@ -22,6 +23,7 @@ public class InGameMenu : MonoBehaviour
         EventHandler.OnGoldAmountChanged -= UpdateGoldCounter;
         EventHandler.OnInventoryUpdated -= UpdateInventoryUI;
         EventHandler.OnPlayerHealthChanged -= UpdatePlayerHealth;
+        EventHandler.OnPayloadHealthChanged -= UpdatePayloadHealth;
     }
 
     private void Start()
@@ -42,10 +44,15 @@ public class InGameMenu : MonoBehaviour
     private void UpdatePlayerHealth(float currentHp, float maxHp)
     {
         if (playerHealth == null || maxHp <= 0) return;
-
         float healthPercent = playerHealth.value = currentHp / maxHp;
 
         Debug.Log($"Health UI: {currentHp} / {maxHp} = {healthPercent}");
+    }
+
+    private void UpdatePayloadHealth(float currentHp, float maxHp)
+    {
+        if (payloadHealth == null || maxHp <= 0) return;
+        payloadHealth.value = currentHp / maxHp;
     }
 
     private void UpdateGoldCounter()

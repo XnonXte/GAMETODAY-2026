@@ -5,7 +5,8 @@ public class CombatManager : MonoBehaviour
 {
     public static CombatManager Instance { get; private set; }
 
-    public Vector2[] slotOffsets = { new Vector2(1.5f, 0), new Vector2(-1.5f, 0), new Vector2(0, 1f), new Vector2(0, -1f) };
+    [SerializeField] private Vector2[] slotOffsets = { new Vector2(1.5f, 0), new Vector2(-1.5f, 0), new Vector2(0, 1f), new Vector2(0, -1f) };
+    [SerializeField] private Vector2[] payloadSlotOffsets = { new Vector2(3f, 0), new Vector2(-3f, 0), new Vector2(0, 2f), new Vector2(0, -2f) };
     private Dictionary<Enemy, int> occupiedSlots = new Dictionary<Enemy, int>();
 
     private void Awake() => Instance = this;
@@ -16,10 +17,12 @@ public class CombatManager : MonoBehaviour
         slotPosition = Vector3.zero;
         if (target == null) return false;
 
+        Vector2[] activeOffsets = target.CompareTag("Payload") ? payloadSlotOffsets : slotOffsets;
+
         if (occupiedSlots.ContainsKey(enemy))
         {
             // 2. Replace transform.position with target.position
-            slotPosition = target.position + (Vector3)slotOffsets[occupiedSlots[enemy]];
+            slotPosition = target.position + (Vector3)activeOffsets[occupiedSlots[enemy]];
             return true;
         }
 
@@ -29,7 +32,7 @@ public class CombatManager : MonoBehaviour
             {
                 occupiedSlots.Add(enemy, i);
                 // 3. Replace transform.position with target.position
-                slotPosition = target.position + (Vector3)slotOffsets[i];
+                slotPosition = target.position + (Vector3)activeOffsets[i];
                 return true;
             }
         }
