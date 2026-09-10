@@ -10,7 +10,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private GameObject interactionIcon;
     [SerializeField] private Vector3 iconOffset = new Vector3(0f, 1.5f, 0f);
-    [SerializeField] private string iconText = "E to inspect";
+    [SerializeField] private string iconText = "to inspect";
 
     private Vector3 interactionIconOriginalScale;
 

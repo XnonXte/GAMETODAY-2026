@@ -5,6 +5,7 @@ public class InteractableDialogue : MonoBehaviour, IInteractable
     [Header("Dialogue Settings")]
     [SerializeField] private DialogueData dialogueData;
     [SerializeField] private bool canInteractMultipleTimes = false;
+    [SerializeField] private string interactionPrompt = "to interact";
 
     private bool hasInteracted = false;
 
@@ -44,6 +45,6 @@ public class InteractableDialogue : MonoBehaviour, IInteractable
 
     public string GetInteractionPrompt()
     {
-        return "E to inspect";
+        return interactionPrompt;
     }
 }
