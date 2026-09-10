@@ -152,7 +152,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void EndDialogue()
+    public void EndDialogue()
     {
         Debug.Log("Ending dialogue");
         isDialogueActive = false;

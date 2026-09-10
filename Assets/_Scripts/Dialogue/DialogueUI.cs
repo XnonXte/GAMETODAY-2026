@@ -6,9 +6,8 @@ public class DialogueUI : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] private GameObject dialoguePanel;
-    [SerializeField] private TextMeshProUGUI speakerNameText;
-    [SerializeField] private TextMeshProUGUI dialogueText;
-    [SerializeField] private Button nextButton;
+    [SerializeField] private TextMeshProUGUI loreText;
+    [SerializeField] private Button closeButton;
 
     private bool isDialogueActive;
 
@@ -19,26 +18,30 @@ public class DialogueUI : MonoBehaviour
             dialoguePanel.SetActive(false);
         }
 
-        if (nextButton != null)
+        if (closeButton != null)
         {
-            nextButton.onClick.AddListener(OnNextButtonClicked);
+            closeButton.onClick.AddListener(OnCloseButtonClicked);
         }
     }
 
     private void OnDestroy()
     {
-        if (nextButton != null)
+        if (closeButton != null)
         {
-            nextButton.onClick.RemoveListener(OnNextButtonClicked);
+            closeButton.onClick.RemoveListener(OnCloseButtonClicked);
         }
     }
 
-    // Dialogue advancement input is handled by PlayerInteract
-
-
-    private void OnNextButtonClicked()
+    private void OnCloseButtonClicked()
     {
-        DialogueManager.instance.AdvanceDialogue();
+        if (DialogueManager.instance != null)
+        {
+            DialogueManager.instance.EndDialogue();
+        }
+        else
+        {
+            HideDialogue();
+        }
     }
 
     public void ShowDialogue(string speakerName, string text)
@@ -48,14 +51,9 @@ public class DialogueUI : MonoBehaviour
             dialoguePanel.SetActive(true);
         }
 
-        if (speakerNameText != null)
+        if (loreText != null)
         {
-            speakerNameText.text = speakerName;
-        }
-
-        if (dialogueText != null)
-        {
-            dialogueText.text = text;
+            loreText.text = text;
         }
 
         isDialogueActive = true;
@@ -76,3 +74,4 @@ public class DialogueUI : MonoBehaviour
         return isDialogueActive;
     }
 }
+

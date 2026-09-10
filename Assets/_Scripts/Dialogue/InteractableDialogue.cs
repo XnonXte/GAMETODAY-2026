@@ -41,4 +41,9 @@ public class InteractableDialogue : MonoBehaviour, IInteractable
     {
         hasInteracted = false;
     }
+
+    public string GetInteractionPrompt()
+    {
+        return "E to inspect";
+    }
 }

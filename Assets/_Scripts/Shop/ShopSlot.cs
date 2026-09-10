@@ -94,4 +94,9 @@ public class ShopSlot : MonoBehaviour, IInteractable
             priceText.gameObject.SetActive(false);
         }
     }
+
+    public string GetInteractionPrompt()
+    {
+        return null;
+    }
 }
