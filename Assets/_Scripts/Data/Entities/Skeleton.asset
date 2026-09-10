@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5ec82504a100a4ab7a8a6b92a7eb62, type: 3}
   m_Name: Skeleton
   m_EditorClassIdentifier: Assembly-CSharp::EnemyConfig
-  enemySprite: {fileID: 21300000, guid: a277fb1d0fb877348a1f676696ac69f2, type: 3}
+  enemySprite: {fileID: 21300000, guid: a45eac8d520d6b649ab112167b3ee973, type: 3}
   weaponAnimatorController: {fileID: 0}
   enemyName: Skeleton
-  defaultSprite: {fileID: 8886490851947454144, guid: a207b0d1d5d588b47bbfdfc277c1ba44, type: 3}
-  maxHealth: 100
+  maxHealth: 70
   enemyMeleeDamage: 10
   coinPrefab: {fileID: 3610020127415715434, guid: 98943954b314868468145113d6fba91f, type: 3}
-  minCoinsDropped: 5
-  maxCoinsDropped: 6
+  minCoinsDropped: 1
+  maxCoinsDropped: 4
   enemyBehaviour: {fileID: 11400000, guid: e2943edb58910a84fada0f4ed1939b6c, type: 2}
   attackRange: 1
   attackDuration: 2

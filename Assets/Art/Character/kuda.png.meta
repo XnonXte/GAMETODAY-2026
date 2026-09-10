@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c7d7022238c0d1f439159de2a112517d
+guid: b0530dc7547e74942b2663b11cf95124
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6674386295937086461
-    second: axe_0
+      213: 204760196752203539
+    second: kuda_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: axe_0
+      name: kuda_0
       rect:
         serializedVersion: 2
-        x: 362
-        y: 277
-        width: 300
-        height: 469
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 4
+        y: 0
+        width: 2031
+        height: 1004
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: df3b01749fe20ac50800000000000000
-      internalID: 6674386295937086461
+      spriteID: 31fdd87605477d200800000000000000
+      internalID: 204760196752203539
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 7ac2bed3ce1d5b34c93fc23286a3f7f8
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      axe_0: 6674386295937086461
+      kuda_0: 204760196752203539
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

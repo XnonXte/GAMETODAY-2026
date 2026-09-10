@@ -24,6 +24,16 @@ public class GameSessionManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        EventHandler.OnGameLose += HandleGameLose;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.OnGameLose -= HandleGameLose;
+    }
+
     // Call this right before you load the next scene!
     public void SaveLevelData(float playerHp, float payloadHp, BaseItemSO consumable, BaseItemSO weapon)
     {
@@ -42,5 +52,11 @@ public class GameSessionManager : MonoBehaviour
         savedPayloadHealth = -1f;
         savedConsumable = null;
         savedWeapon = null;
+    }
+
+    private void HandleGameLose()
+    {
+        ResetSession();
+        GameSceneManager.Instance.ChangeScene(GameScene.MainMenu);
     }
 }

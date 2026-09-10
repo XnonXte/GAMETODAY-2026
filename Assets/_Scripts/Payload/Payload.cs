@@ -99,7 +99,8 @@ public class Payload : MonoBehaviour
     private void HandleDeath()
     {
         Debug.Log("Payload destroyed! Game Over.");
-        Destroy(gameObject);
+        EventHandler.WhenGameLose();
+        Destroy(gameObject, .1f);
     }
 
     private IEnumerator FlashRoutine()

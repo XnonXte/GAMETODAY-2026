@@ -200,6 +200,8 @@ public class Player : MonoBehaviour
         if (col != null) col.enabled = false;
 
         if (Anim != null) Anim.Play("TestDeathAnimation", -1, 0f);
+
+        EventHandler.WhenGameLose();
     }
     #endregion
 

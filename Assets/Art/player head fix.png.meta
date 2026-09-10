@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: c7d7022238c0d1f439159de2a112517d
+guid: dab9299c5cce2f846adee55583429324
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6674386295937086461
-    second: axe_0
+      213: -4266830652287320497
+    second: player head fix_0
+  - first:
+      213: 2868357856333314853
+    second: player head fix_1
+  - first:
+      213: -2049640575123801489
+    second: player head fix_2
+  - first:
+      213: 7871207350524393555
+    second: player head fix_3
+  - first:
+      213: 3442433852589345015
+    second: player head fix_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 384
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +125,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: axe_0
+      name: player head fix_0
       rect:
         serializedVersion: 2
-        x: 362
-        y: 277
-        width: 300
-        height: 469
+        x: 66
+        y: 0
+        width: 37
+        height: 73
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +140,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: df3b01749fe20ac50800000000000000
-      internalID: 6674386295937086461
+      spriteID: f4e7aadd02c29c4c0800000000000000
+      internalID: -4266830652287320497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player head fix_1
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 1
+        width: 423
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52bb27be5447ec720800000000000000
+      internalID: 2868357856333314853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player head fix_2
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 0
+        width: 25
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6ab482a1c63e83e0800000000000000
+      internalID: -2049640575123801489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player head fix_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 6
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3583371c1652c3d60800000000000000
+      internalID: 7871207350524393555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player head fix_4
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 0
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f80e52a95bf5cf20800000000000000
+      internalID: 3442433852589345015
       vertices: []
       indices: 
       edges: []
@@ -148,7 +248,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      axe_0: 6674386295937086461
+      player head fix_0: -4266830652287320497
+      player head fix_1: 2868357856333314853
+      player head fix_2: -2049640575123801489
+      player head fix_3: 7871207350524393555
+      player head fix_4: 3442433852589345015
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
