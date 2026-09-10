@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba536bb136031294c884b459156ba3f3, type: 3}
   m_Name: Speed Potion
   m_EditorClassIdentifier: Assembly-CSharp::SpeedPotion
-  itemSprite: {fileID: 21300000, guid: 2151cab2f7a4c0149ac8c9e318fb5b12, type: 3}
+  itemSprite: {fileID: 21300000, guid: 1e7d33ef5f5d0c14ca5b603872577039, type: 3}
   itemName: Speed Potion
   itemType: 0
   price: 4

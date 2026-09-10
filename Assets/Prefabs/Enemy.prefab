@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2994335930030780300}
   m_Layer: 8
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,7 +184,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   <EnemyData>k__BackingField: {fileID: 11400000, guid: f6e77267a935a6f4b860220cc87e2a44, type: 2}
-  aggroDuration: 18
+  aggroDuration: 12
+  spriteRenderer: {fileID: 9093485642144881114}
+  weaponAnimator: {fileID: 0}
 --- !u!114 &1266653779912126633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,8 +295,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 815424164945274260, guid: a1ccb0d470ff4e349aae3223062b0015, type: 3}
-  m_Color: {r: 1, g: 0.3066038, b: 0.3066038, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 1dd3d7a968476564b8379f39accf8509, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

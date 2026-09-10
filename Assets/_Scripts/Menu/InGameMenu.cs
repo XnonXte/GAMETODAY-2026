@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class InGameMenu : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class InGameMenu : MonoBehaviour
     [SerializeField] private Image weaponSlot;
     [SerializeField] private Image consumeableSlot;
     [SerializeField] private TMP_Text goldCounter;
+    [SerializeField] private CanvasGroup stageName;
 
     private void OnEnable()
     {
@@ -28,17 +30,33 @@ public class InGameMenu : MonoBehaviour
 
     private void Start()
     {
-        goldCounter.text = "0";
+        stageName.alpha = 0;
+        UpdateGoldCounter();
+        ShowStageName();
+
+        if (PlayerInventory.Instance != null)
+        {
+            Sprite consumable = PlayerInventory.Instance.CurrentConsumable != null ? PlayerInventory.Instance.CurrentConsumable.itemSprite : null;
+            Sprite weapon = PlayerInventory.Instance.CurrentWeapon != null ? PlayerInventory.Instance.CurrentWeapon.itemSprite : null;
+            UpdateInventoryUI(consumable, weapon);
+        }
     }
 
     public void ButtonReturnToMainMenu()
     {
+        GameResource.ResetGold();
+        if (GameSessionManager.Instance != null) GameSessionManager.Instance.ResetSession();
         GameSceneManager.Instance.ChangeScene(GameScene.MainMenu);
     }
 
     public void ButtonRestartScene()
     {
         GameSceneManager.Instance.RestartScene();
+    }
+
+    private void ShowStageName()
+    {
+        stageName.DOFade(1f, 3f).SetDelay(1f).OnComplete(() => { stageName.DOFade(0f, 3f).SetDelay(2f); });
     }
 
     private void UpdatePlayerHealth(float currentHp, float maxHp)

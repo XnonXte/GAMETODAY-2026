@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     #region [Components]
     [Header("Targeting & Aggro Settings")]
     [SerializeField] private float aggroDuration = 10f; // Time before forgetting the player and returning to payload
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Animator weaponAnimator;
     private Transform playerTransform;
     private Coroutine aggroResetCoroutine;
     public Rigidbody2D Rigidbody { get; private set; }
@@ -22,7 +24,6 @@ public class Enemy : MonoBehaviour
     public EnemyCombat Combat { get; private set; }
     public Health HealthComponent { get; private set; }
     private AnimationEventDetection eventDetection;
-    private SpriteRenderer spriteRenderer;
     #endregion
 
     #region [EnemyStateMachine]
@@ -44,7 +45,6 @@ public class Enemy : MonoBehaviour
 
         Anim = GetComponentInChildren<Animator>();
         eventDetection = GetComponentInChildren<AnimationEventDetection>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         Agent.updateRotation = false;
         Agent.updateUpAxis = false;
@@ -68,9 +68,9 @@ public class Enemy : MonoBehaviour
         if (EnemyData == null) return;
 
         gameObject.name = EnemyData.enemyName;
-        if (spriteRenderer != null && EnemyData.defaultSprite != null)
+        if (spriteRenderer != null && EnemyData.enemySprite != null)
         {
-            spriteRenderer.sprite = EnemyData.defaultSprite;
+            spriteRenderer.sprite = EnemyData.enemySprite;
         }
     }
 
@@ -90,6 +90,17 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        ApplyEnemyData();
+        if (spriteRenderer != null && EnemyData.enemySprite != null)
+        {
+            spriteRenderer.sprite = EnemyData.enemySprite;
+        }
+
+        // 2. Swap the weapon animation based on the SO
+        if (weaponAnimator != null && EnemyData.weaponAnimatorController != null)
+        {
+            weaponAnimator.runtimeAnimatorController = EnemyData.weaponAnimatorController;
+        }
 
         // Find the player reference
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");

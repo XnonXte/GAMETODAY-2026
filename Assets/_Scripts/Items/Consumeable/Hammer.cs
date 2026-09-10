@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class Hammer : MonoBehaviour
+[CreateAssetMenu(menuName = "Consumeables/Hammer")]
+public class Hammer : BaseItemSO
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Payload Fix Settings")]
+    public float fixAmount = 80f;
+
+    public override bool UseItem(Player player)
     {
-        
+        AudioManager.Instance.PlayAudio(AudioManager.Instance.SFX_Hammer);
+        EventHandler.WhenHammerAbilityUsed(fixAmount);
+        return true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

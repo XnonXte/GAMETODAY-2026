@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using System.Resources;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -79,7 +80,8 @@ public class MainMenuManager : MonoBehaviour
 
         if (GameSceneManager.Instance != null)
         {
-              GameSceneManager.Instance.ChangeScene(GameScene.Stage1);
+              GameResource.ResetGold();
+              GameSceneManager.Instance.ChangeScene(targetScene);
         }
         else
         {

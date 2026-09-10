@@ -5,9 +5,10 @@ public class PlayerAttackState : PlayerState
     private int comboStep = 0;
     private float failSafeTimer;
 
-    //input buffer
+    // Input buffer
+    private bool attackBuffered = false;
     private float inputBufferTimer = 0f;
-    private float bufferWindowDuration = 0.25f;
+    [SerializeField] private float bufferWindowDuration = 0.6f; // Shortened to a standard responsive window
 
     public PlayerAttackState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine) { }
 
@@ -17,6 +18,7 @@ public class PlayerAttackState : PlayerState
         player.StopMovement();
 
         comboStep = 0;
+        attackBuffered = false;
         inputBufferTimer = 0f;
 
         PlayComboAnimation();
@@ -26,14 +28,20 @@ public class PlayerAttackState : PlayerState
     {
         base.Update();
 
+        // Capture input the moment the player presses attack during the combo animation
         if (InputManager.Instance != null && InputManager.Instance.GetPlayerAttack())
         {
+            attackBuffered = true;
             inputBufferTimer = bufferWindowDuration;
         }
 
-        if (inputBufferTimer > 0f)
+        if (attackBuffered)
         {
             inputBufferTimer -= Time.deltaTime;
+            if (inputBufferTimer <= 0f)
+            {
+                attackBuffered = false;
+            }
         }
 
         failSafeTimer -= Time.deltaTime;
@@ -53,10 +61,12 @@ public class PlayerAttackState : PlayerState
 
     public void AnimationFinishTrigger()
     {
-        if (inputBufferTimer > 0f && comboStep < 2)
+        // Check if an attack was explicitly buffered during the animation and we haven't reached the final step
+        if (attackBuffered && comboStep < 2)
         {
             comboStep++;
-            inputBufferTimer = 0f; 
+            attackBuffered = false;
+            inputBufferTimer = 0f;
             PlayComboAnimation();
         }
         else
@@ -69,7 +79,7 @@ public class PlayerAttackState : PlayerState
     {
         string animName = "PlayerAttack" + comboStep;
         player.Anim.Play(animName, -1, 0f);
-        failSafeTimer = 1.0f;
+        failSafeTimer = 1.5f; // Give enough safety room for the animation length
     }
 
     private void ForceExitState()

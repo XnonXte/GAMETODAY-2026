@@ -9,6 +9,7 @@ public class PowerPotion : BaseItemSO
 
     public override bool UseItem(Player player)
     {
+        AudioManager.Instance.PlayAudio(AudioManager.Instance.SFX_PowerUp);
         player.ApplyPowerBoost(damageMultiplier, duration);
         return true;
     }

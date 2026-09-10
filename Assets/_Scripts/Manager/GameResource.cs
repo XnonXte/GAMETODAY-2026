@@ -5,6 +5,7 @@ public static class GameResource
     public static void AddGoldAmount(int amount)
     {
         goldAmount += amount;
+        EventHandler.WhenGoldAmountChanged();
     }
 
     public static bool TrySpendGold(int amount)
@@ -21,5 +22,11 @@ public static class GameResource
     public static int GetGoldAmount() 
     { 
         return goldAmount; 
+    }
+
+    public static void ResetGold()
+    {
+        goldAmount = 0;
+        EventHandler.WhenGoldAmountChanged();
     }
 }

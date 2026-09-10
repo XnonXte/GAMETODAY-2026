@@ -1,8 +1,4 @@
-using DG.Tweening;
 using EasyTransition;
-using System.Collections;
-using Unity.VectorGraphics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

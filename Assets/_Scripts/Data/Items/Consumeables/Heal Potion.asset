@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41ab0f9b23042e49920c48bcf5e6c6d, type: 3}
   m_Name: Heal Potion
   m_EditorClassIdentifier: Assembly-CSharp::HealPotion
-  itemSprite: {fileID: 21300000, guid: 61c0ce76562a74d46b5a9fce4f66dd24, type: 3}
+  itemSprite: {fileID: 21300000, guid: 4b9cdc03947c79240a58c3f7bef886b3, type: 3}
   itemName: Heal Potion
   itemType: 0
   price: 2

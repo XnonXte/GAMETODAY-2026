@@ -9,6 +9,7 @@ public class SpeedPotion : BaseItemSO
 
     public override bool UseItem(Player player)
     {
+        AudioManager.Instance.PlayAudio(AudioManager.Instance.SFX_Speed);
         player.ApplySpeedBoost(speedBoost, duration);
         return true;
     }

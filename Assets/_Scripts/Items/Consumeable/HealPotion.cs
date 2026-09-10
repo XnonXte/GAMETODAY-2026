@@ -8,6 +8,7 @@ public class HealPotion : BaseItemSO
 
     public override bool UseItem(Player player)
     {
+        AudioManager.Instance.PlayAudio(AudioManager.Instance.SFX_Heal);
         player.ApplyHeal(healAmount);
         return true;
     }

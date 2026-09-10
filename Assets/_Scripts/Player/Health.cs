@@ -7,10 +7,14 @@ public class Health : MonoBehaviour, IDamageable
     public event Action OnDeath;
     [SerializeField] private float maxHp = 100;
     private float currentHp;
-
+    public float CurrentHp => currentHp;
+    private bool hasLoadedSavedHealth = false;
     private void Start()
     {
-        currentHp = maxHp;
+        if (!hasLoadedSavedHealth)
+        {
+            currentHp = maxHp;
+        }
 
         if (GetComponent<Player>() != null) EventHandler.WhenPlayerHealthChanged(currentHp, maxHp);
         if (GetComponent<Payload>() != null) EventHandler.WhenPayloadHealthChanged(currentHp, maxHp);
@@ -36,5 +40,15 @@ public class Health : MonoBehaviour, IDamageable
         if (GetComponent<Payload>() != null) EventHandler.WhenPayloadHealthChanged(currentHp, maxHp);
 
         Debug.Log($"{gameObject.name} Current HP = {currentHp}");
+    }
+
+    public void LoadSavedHealth(float savedAmount)
+    {
+        currentHp = savedAmount;
+        hasLoadedSavedHealth = true;
+
+        // Update the UI immediately so it doesn't briefly show 100% health
+        if (GetComponent<Player>() != null) EventHandler.WhenPlayerHealthChanged(currentHp, maxHp);
+        if (GetComponent<Payload>() != null) EventHandler.WhenPayloadHealthChanged(currentHp, maxHp);
     }
 }

@@ -3,10 +3,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Enemy/EnemyData")]
 public class EnemyDataSO : ScriptableObject
 {
+    [Header("Visuals")]
+    public Sprite enemySprite; // The single PNG for the body
+    public RuntimeAnimatorController weaponAnimatorController;
+
     [Header("Information")]
     public string enemyName = "Thug";
-    public Sprite defaultSprite;
     public float maxHealth = 100f;
+    public float enemyMeleeDamage = 10f;
 
     [Header("Loot Drop")]
     public GameObject coinPrefab;
@@ -21,7 +25,6 @@ public class EnemyDataSO : ScriptableObject
     public float attackDuration = 1f;
     public float attackDelay = 0.4f;
     public float meleeCooldown = 1f;
-    public float enemyMeleeDamage = 10f;
     public LayerMask targetLayerMask;
 
     [Header("Knockback Settings")]

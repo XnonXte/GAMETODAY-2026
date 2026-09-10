@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf58f3a3b961c6249a46c287d7424867, type: 3}
   m_Name: Power Potion
   m_EditorClassIdentifier: Assembly-CSharp::PowerPotion
-  itemSprite: {fileID: 21300000, guid: b43c37543815ba949bb36023413ee41a, type: 3}
+  itemSprite: {fileID: 21300000, guid: 149ce2ecd0087de48af74a10f5a2300d, type: 3}
   itemName: Power Potion
   itemType: 0
   price: 6

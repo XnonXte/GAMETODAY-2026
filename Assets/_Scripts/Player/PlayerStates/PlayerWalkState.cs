@@ -19,21 +19,18 @@ public class PlayerWalkState : PlayerState
 
         if (InputManager.Instance == null) return;
 
-        // 1. Dash Check
         if (InputManager.Instance.GetPlayerDash() && player.CanDash())
         {
             playerStateMachine.ChangeState(player.DashState);
             return;
         }
 
-        // 2. Attack Check
         if (InputManager.Instance.GetPlayerAttack())
         {
-            playerStateMachine.ChangeState(player.AttackState);
+            if (!player.IsAttackLocked) playerStateMachine.ChangeState(player.AttackState);
             return;
         }
 
-        // 3. Idle Check
         if (InputManager.Instance.GetPlayerMovement().sqrMagnitude <= 0.01f)
         {
             playerStateMachine.ChangeState(player.IdleState);

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
 
     private float currentDashCooldown;
     private Vector2 lastMoveDirection = Vector2.right;
+    [SerializeField] private ParticleSystem dustParticle;
     #endregion
 
     #region [Components]
@@ -33,6 +35,9 @@ public class Player : MonoBehaviour
     public PlayerAttackState AttackState { get; private set; }
     public PlayerDashState DashState { get; private set; }
     public PlayerDamagedState DamagedState { get; private set; }
+    public bool IsMovementLocked { get; set; } = false;
+    public bool IsAttackLocked { get; set; } = false;
+    public bool IsAbilityLocked { get; set; } = false;
     #endregion
 
     #region [Unity Lifecycle]
@@ -73,14 +78,26 @@ public class Player : MonoBehaviour
     private void Start()
     {
         StateMachine.Initialize(IdleState);
+
+        if (GameSessionManager.Instance != null && GameSessionManager.Instance.savedPlayerHealth > 0)
+        {
+            HealthComponent.LoadSavedHealth(GameSessionManager.Instance.savedPlayerHealth);
+        }
     }
 
     private void Update()
     {
+        if (IsAbilityLocked) return;
+
         if (!enabled) return;
 
         ReadInput();
         StateMachine.CurrentPlayerState?.Update();
+
+        if (!IsAbilityLocked)
+        {
+            StateMachine.CurrentPlayerState?.Update();
+        }
 
         if (currentDashCooldown > 0f)
         {
@@ -88,14 +105,22 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void FixedUpdate() => StateMachine.CurrentPlayerState?.FixedUpdate();
+    private void FixedUpdate()
+    {
+        if (!IsAbilityLocked) StateMachine.CurrentPlayerState?.FixedUpdate();
+    }
     #endregion
 
     #region [Movement & Logic]
     private void ReadInput()
     {
-        moveInput = InputManager.Instance.GetPlayerMovement();
+        if (IsMovementLocked)
+        {
+            moveInput = Vector2.zero;
+            return;
+        }
 
+        moveInput = InputManager.Instance.GetPlayerMovement();
         if (moveInput.magnitude > 1f) moveInput.Normalize();
     }
 
@@ -104,6 +129,7 @@ public class Player : MonoBehaviour
         Rigidbody.linearVelocity = moveInput * moveSpeed;
 
         if (moveInput.sqrMagnitude > .01f) lastMoveDirection = moveInput.normalized;
+        dustParticle.Play();
 
         if (moveInput.x > .1f) transform.localScale = new Vector3(1, 1, 1);
         else if (moveInput.x < -.1f) transform.localScale = new Vector3(-1, 1, 1);
@@ -117,7 +143,7 @@ public class Player : MonoBehaviour
     public void SetMoveSpeed(float speed) => moveSpeed = Mathf.Max(0f, speed);
     public Vector2 GetCurrentVelocity() => Rigidbody.linearVelocity;
     public float GetDashDuration() => dashDuration;
-    public bool CanDash() => currentDashCooldown <= 0f;
+    public bool CanDash() => currentDashCooldown <= 0f && !IsMovementLocked;
 
     public void StartDash()
     {
@@ -185,7 +211,7 @@ public class Player : MonoBehaviour
     public void ApplyHeal(float amount)
     {
         Debug.Log("Apply Heal!");
-        HealthComponent.ChangeHealth(amount, Vector3.zero, AttackType.Light);
+        HealthComponent.ChangeHealth(amount, Vector3.zero, AttackType.None);
     }
 
     public void ApplySpeedBoost(float boostAmount, float duration)

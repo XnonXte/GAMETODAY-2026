@@ -36,28 +36,33 @@ public class Payload : MonoBehaviour
     {
         if (spriteRenderer != null) defaultMaterial = spriteRenderer.material;
         if (pathWaypoints != null && pathWaypoints.Count > 0) SetNextDestination();
+
+        if (GameSessionManager.Instance != null && GameSessionManager.Instance.savedPayloadHealth > 0)
+        {
+            healthComponent.LoadSavedHealth(GameSessionManager.Instance.savedPayloadHealth);
+        }
     }
 
     private void OnEnable()
     {
         healthComponent.OnDamaged += HandleDamageTaken;
         healthComponent.OnDeath += HandleDeath;
+        EventHandler.OnHammerAbilityUsed += HandleFixPayload;
     }
 
     private void OnDisable()
     {
         healthComponent.OnDamaged -= HandleDamageTaken;
         healthComponent.OnDeath -= HandleDeath;
+        EventHandler.OnHammerAbilityUsed -= HandleFixPayload;
     }
 
     private void Update()
     {
         if (hasReachedDestination || currentDestination == null) return;
 
-        // Move towards the current destination
         transform.position = Vector2.MoveTowards(transform.position, currentDestination.position, moveSpeed * Time.deltaTime);
 
-        // Check if it reached the destination
         if (Vector2.Distance(transform.position, currentDestination.position) < 0.1f)
         {
             hasReachedDestination = true;
@@ -65,7 +70,6 @@ public class Payload : MonoBehaviour
         }
     }
 
-    // Call this method whenever a wave ends to advance to the next point in your list
     public void SetNextDestination()
     {
         if (pathWaypoints == null || waypointIndex >= pathWaypoints.Count)
@@ -76,8 +80,14 @@ public class Payload : MonoBehaviour
 
         currentDestination = pathWaypoints[waypointIndex];
         waypointIndex++;
-        hasReachedDestination = false; // Unlocks movement in Update()
+        hasReachedDestination = false;
         Debug.Log($"Payload moving to waypoint {waypointIndex}");
+    }
+    
+    private void HandleFixPayload(float amount)
+    {
+        Debug.Log("Apply Payload Heal!");
+        healthComponent.ChangeHealth(amount, Vector2.zero, AttackType.None);
     }
 
     private void HandleDamageTaken(Vector2 direction, AttackType attackType)
