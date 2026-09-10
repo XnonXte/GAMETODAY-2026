@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(CircleCollider2D))]
 public class PlayerInteract : MonoBehaviour
@@ -7,6 +9,8 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private float interactionRadius = 2f;
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private GameObject interactionIcon;
+    [SerializeField] private Vector3 iconOffset = new Vector3(0f, 1.5f, 0f);
+    [SerializeField] private string iconText = "to inspect";
 
     private Vector3 interactionIconOriginalScale;
 
@@ -19,6 +23,12 @@ public class PlayerInteract : MonoBehaviour
         {
             interactionIcon.SetActive(false);
             interactionIconOriginalScale = interactionIcon.transform.localScale;
+            
+            // Detach icon from player so it moves independently
+            if (interactionIcon.transform.parent == transform)
+            {
+                interactionIcon.transform.SetParent(null);
+            }
         }
     }
 
@@ -27,7 +37,7 @@ public class PlayerInteract : MonoBehaviour
         // Get interact input once per frame
         bool interactPressed = GetInteractInput();
 
-        // If dialogue is active, pressing interact advances the dialogue instead
+        // If dialogue is active, pressing interact closes the dialogue
         if (DialogueManager.instance != null && DialogueManager.instance.IsDialogueActive())
         {
             if (interactPressed)
@@ -35,16 +45,20 @@ public class PlayerInteract : MonoBehaviour
                 DialogueManager.instance.AdvanceDialogue();
             }
 
-            if (interactionIcon != null)
+            // Keep icon visible above the interactable object (static, not following player)
+            if (interactionIcon != null && currentInteractable != null)
             {
-                interactionIcon.SetActive(false);
+                interactionIcon.SetActive(true);
+                Transform targetTransform = ((MonoBehaviour)currentInteractable).transform;
+                interactionIcon.transform.position = targetTransform.position + iconOffset;
+                // Don't call KeepInteractionIconFacingCorrectly() here - icon stays static
             }
 
             return; // Don't detect new interactables while in dialogue
         }
 
         DetectInteractable();
-        KeepInteractionIconFacingCorrectly();
+        // Don't call KeepInteractionIconFacingCorrectly() - icon stays static, not affected by player direction
 
         // Log only when state changes
         if (currentInteractable != previousInteractable)
@@ -83,25 +97,64 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
-    private void DetectInteractable()
+    private void UpdateIconText()
     {
-        if (interactionIcon != null)
+        if (interactionIcon == null) return;
+
+        // Try TextMeshPro (World Space)
+        TextMeshPro tmp3D = interactionIcon.GetComponentInChildren<TextMeshPro>(true);
+        if (tmp3D != null)
         {
-            interactionIcon.SetActive(false);
+            tmp3D.text = iconText;
+            return;
         }
 
+        // Try TextMeshProUGUI (UI Canvas)
+        TextMeshProUGUI tmpUI = interactionIcon.GetComponentInChildren<TextMeshProUGUI>(true);
+        if (tmpUI != null)
+        {
+            tmpUI.text = iconText;
+            return;
+        }
+
+        // Try standard UI Text
+        Text uiText = interactionIcon.GetComponentInChildren<Text>(true);
+        if (uiText != null)
+        {
+            uiText.text = iconText;
+        }
+    }
+
+    private void DetectInteractable()
+    {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position + new Vector3(0, 2, 0), interactionRadius, interactableLayer);
 
         currentInteractable = null;
+        string currentPrompt = null;
 
         foreach (Collider2D hit in hits)
         {
             IInteractable interactable = hit.GetComponent<IInteractable>();
             if (interactable != null)
             {
-                interactionIcon.SetActive(true);
                 currentInteractable = interactable;
+                currentPrompt = interactable.GetInteractionPrompt();
                 break;
+            }
+        }
+
+        // Only show interaction icon if the interactable provides a prompt
+        if (interactionIcon != null)
+        {
+            interactionIcon.SetActive(currentPrompt != null);
+            if (currentPrompt != null && currentInteractable != null)
+            {
+                iconText = currentPrompt;
+                UpdateIconText();
+
+                // Position icon ABOVE THE INTERACTABLE OBJECT (not player)
+                Transform targetTransform = ((MonoBehaviour)currentInteractable).transform;
+                interactionIcon.transform.position = targetTransform.position + iconOffset;
             }
         }
     }
