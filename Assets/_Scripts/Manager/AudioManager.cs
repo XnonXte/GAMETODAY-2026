@@ -69,9 +69,17 @@ public class AudioManager : MonoBehaviour
         {
             targetBGM = BGM_Menu;
         }
-        else
+        else if (sceneName == GameScene.Stage1.ToString() || sceneName == GameScene.Stage2.ToString() ||  sceneName == GameScene.Stage3.ToString())
         {
             targetBGM = BGM_Gameplay;
+        }
+        else if (sceneName == GameScene.Stage4.ToString())
+        {
+            targetBGM = BGM_Gameplay4;
+        }
+        else
+        {
+            targetBGM = BGM_Gameplay5_7;
         }
 
         if (hasCurrentBGM && currentBGM.Equals(targetBGM)) return;
