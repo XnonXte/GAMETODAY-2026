@@ -1,3 +1,4 @@
+using Ami.BroAudio;
 using DG.Tweening;
 using DG.Tweening.Core.Easing;
 using TMPro;
@@ -14,6 +15,7 @@ public class CutsceneScript : MonoBehaviour
 
         [Tooltip("All text objects that belong to this image.")]
         public TMP_Text[] texts;
+        public SoundID[] sounds;
     }
 
 
@@ -223,6 +225,10 @@ public class CutsceneScript : MonoBehaviour
         if (cutscenePanel == null)
             return;
 
+        if (cutscenePanel.sounds != null && cutscenePanel.sounds.Length > 0) 
+        { 
+            sequence.AppendCallback(() => { foreach (SoundID sound in cutscenePanel.sounds) { BroAudio.Play(sound); } }); 
+        }
 
         // ========================================================
         // IMAGE

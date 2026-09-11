@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DemonLordSwordAbility
   duration: 6
   damagePerTick: 40
-  timeBetweenTicks: 1
+  timeBetweenTicks: 0.5
   flyingSlashProjectilePrefab: {fileID: 8845024354496821716, guid: 53414e9d39e2a854b961223ad7f35020, type: 3}
-  timeBetweenSlashes: 1
+  timeBetweenSlashes: 0.5

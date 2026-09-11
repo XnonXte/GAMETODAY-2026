@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,6 +7,10 @@ public class Enemy : MonoBehaviour
     #region [Attributes]
     public int FacingDirection { get; private set; } = 1; //1 = kanan, -1 = kiri
     [field: SerializeField] public EnemyDataSO EnemyData { get; private set; }
+    [SerializeField] private Material flashMaterial; // Drag a solid white material here in the inspector
+    [SerializeField] private float flashDuration = 0.15f;
+    private Material defaultMaterial;
+    private Coroutine flashCoroutine;
     #endregion
 
     #region [Components]
@@ -95,6 +98,8 @@ public class Enemy : MonoBehaviour
         {
             spriteRenderer.sprite = EnemyData.enemySprite;
         }
+
+        if (spriteRenderer != null) defaultMaterial = spriteRenderer.material;
 
         // 2. Swap the weapon animation based on the SO
         if (weaponAnimator != null && EnemyData.weaponAnimatorController != null)
@@ -194,6 +199,16 @@ public class Enemy : MonoBehaviour
         scale.x = Mathf.Abs(scale.x) * FacingDirection;
         transform.localScale = scale;
     }
+
+    private IEnumerator FlashRoutine()
+    {
+        if (spriteRenderer != null && flashMaterial != null)
+        {
+            spriteRenderer.material = flashMaterial;
+            yield return new WaitForSeconds(flashDuration);
+            spriteRenderer.material = defaultMaterial;
+        }
+    }
     #endregion
 
     #region [Damaging]
@@ -247,6 +262,8 @@ public class Enemy : MonoBehaviour
 
         Vector2 finalForce = new Vector2(directionX * strength, 0f);
 
+        if (flashCoroutine != null) StopCoroutine(flashCoroutine);
+        flashCoroutine = StartCoroutine(FlashRoutine());
         DamagedState.SetKnockbackForce(finalForce, stunTime);
         StateMachine.ChangeState(DamagedState);
     }

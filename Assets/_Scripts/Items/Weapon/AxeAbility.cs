@@ -16,7 +16,7 @@ public class AxeAbility : BaseAbility
     {
         if (collision.CompareTag("Enemy"))
         {
-            HandleAoEDamage(collision, AttackType.Light);
+            HandleAoEDamage(collision, AttackType.Heavy);
         }
     }
 }

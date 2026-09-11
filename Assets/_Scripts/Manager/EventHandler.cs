@@ -12,6 +12,7 @@ public static class EventHandler
     public static event Action<float, float> OnPlayerHealthChanged;
     public static event Action<float, float> OnPayloadHealthChanged;
     public static event Action<float> OnHammerAbilityUsed;
+    public static event Action OnGameLose;
 
     public static void WhenBattleStart() => OnBattleStart?.Invoke();
     public static void WhenBattleEnd() => OnBattleEnd?.Invoke();
@@ -21,5 +22,6 @@ public static class EventHandler
     public static void WhenPlayerHealthChanged(float currentHp, float maxHp) => OnPlayerHealthChanged?.Invoke(currentHp, maxHp);
     public static void WhenPayloadHealthChanged(float currentHp, float maxHp) => OnPayloadHealthChanged?.Invoke(currentHp, maxHp);
     public static void WhenHammerAbilityUsed(float amount) => OnHammerAbilityUsed?.Invoke(amount);
+    public static void WhenGameLose() => OnGameLose?.Invoke();
 
 }

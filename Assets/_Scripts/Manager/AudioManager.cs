@@ -60,7 +60,7 @@ public class AudioManager : MonoBehaviour
     {
         SoundID targetBGM;
 
-        if (sceneName == GameScene.MainMenu.ToString())
+        if (sceneName == GameScene.MainMenu.ToString() || sceneName == GameScene.CutsceneIntro.ToString())
         {
             targetBGM = BGM_Menu;
         }
