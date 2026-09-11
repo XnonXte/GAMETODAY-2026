@@ -11,6 +11,7 @@ public class WeaponItemSO : BaseItemSO
         if (abilityPrefab != null)
         {
             EventHandler.WhenAnyAbilityUsed();
+            AudioManager.Instance.PlayAudio(AudioManager.Instance.SFX_ActivateAbility);
             Instantiate(abilityPrefab, player.transform.position + Vector3.up * 1.5f, Quaternion.identity, player.transform);
             return true; 
         }

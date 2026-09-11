@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6451400afb6c3fa4d954d340e2721725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonLordSwordAbility
-  duration: 6
-  damagePerTick: 40
-  timeBetweenTicks: 0.5
+  duration: 3
+  damagePerTick: 80
+  timeBetweenTicks: 1
   flyingSlashProjectilePrefab: {fileID: 8845024354496821716, guid: 53414e9d39e2a854b961223ad7f35020, type: 3}
-  timeBetweenSlashes: 0.5
+  timeBetweenSlashes: 1

@@ -91,7 +91,7 @@ SpriteRenderer:
   m_Size: {x: 2.7, y: 2.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!61 &6515971484521945903
@@ -154,3 +154,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractableDialogue
   dialogueData: {fileID: 11400000, guid: d72965fbd8a773543bca68e0d4e107da, type: 2}
   canInteractMultipleTimes: 1
+  interactionPrompt: to interact
