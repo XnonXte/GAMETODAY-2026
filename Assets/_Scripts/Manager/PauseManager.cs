@@ -201,7 +201,7 @@ public class PauseManager : MonoBehaviour
         if (pauseRectTransform != null)
         {
             pauseRectTransform.localScale = Vector3.zero;
-            pauseRectTransform.DOScale(Vector3.one, animDuration).SetEase(openEase).SetUpdate(true);
+            pauseRectTransform.DOScale(new Vector3(.4f, .4f, .4f), animDuration).SetEase(openEase).SetUpdate(true);
         }
 
         if (pauseCanvasGroup != null)
