@@ -8,9 +8,11 @@ public class AudioManager : MonoBehaviour
     [Header("Music/BGM")]
     public SoundID BGM_Menu;
     public SoundID BGM_Gameplay;
+    public SoundID BGM_Gameplay4;
+    public SoundID BGM_Gameplay5_7;
     #endregion
 
-    #region [Consumeable SFX]
+    #region [Consumeable/Weapon SFX]
     [Header("Consumeable SFX")]
     public SoundID SFX_Coin;
     public SoundID SFX_Purchase;
@@ -18,6 +20,9 @@ public class AudioManager : MonoBehaviour
     public SoundID SFX_Heal;
     public SoundID SFX_PowerUp;
     public SoundID SFX_Speed;
+
+    [Header("Weapon SFX")]
+    public SoundID SFX_ActivateAbility;
     #endregion
 
     #region [Entity SFX]
