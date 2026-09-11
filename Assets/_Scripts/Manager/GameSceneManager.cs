@@ -10,7 +10,9 @@ public enum GameScene
     Stage2, //lorong
     Stage3, //zona lava
     Stage4, //goa
-    Stage5,
+    Stage5, //outdor goa
+    Stage6, //desa
+    Stage7, //perbatasan
     CutsceneOutro
 }
 

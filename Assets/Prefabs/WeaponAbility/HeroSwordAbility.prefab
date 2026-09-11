@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeroSwordAbility
   duration: 5
-  damagePerTick: 25
-  timeBetweenTicks: 0.5
+  damagePerTick: 30
+  timeBetweenTicks: 0.25
 --- !u!70 &7700999943278661128
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

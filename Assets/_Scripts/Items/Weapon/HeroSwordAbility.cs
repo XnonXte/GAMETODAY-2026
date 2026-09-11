@@ -26,7 +26,7 @@ public class HeroSwordAbility : BaseAbility
     {
         if (collision.CompareTag("Enemy"))
         {
-            HandleAoEDamage(collision, AttackType.Heavy);
+            HandleAoEDamage(collision, AttackType.Light);
         }
     }
 }
