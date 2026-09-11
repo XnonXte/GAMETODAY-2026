@@ -9,6 +9,7 @@ public class Health : MonoBehaviour, IDamageable
     private float currentHp;
     public float CurrentHp => currentHp;
     private bool hasLoadedSavedHealth = false;
+    private bool isDead = false;
     private void Start()
     {
         if (!hasLoadedSavedHealth)
@@ -27,6 +28,7 @@ public class Health : MonoBehaviour, IDamageable
 
     public void ChangeHealth(float amount, Vector2 direction, AttackType attackType)
     {
+        if (isDead) return;
         currentHp += amount;
         if (currentHp > maxHp) { currentHp = maxHp; }
         else if (currentHp <= 0) { OnDeath?.Invoke(); }

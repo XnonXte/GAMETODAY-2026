@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class HeroSwordAbility : BaseAbility
 {
+    private Animator anim;
     protected override void OnAbilityStart()
     {
         player.IsAbilityLocked = true;
@@ -9,8 +10,11 @@ public class HeroSwordAbility : BaseAbility
         player.IsAttackLocked = true;
         player.StopMovement(); // Force a hard stop immediately
 
-        // Play the beam animation (make sure this state exists in your Animator)
-        player.Anim.Play("HeroSword_Beam", -1, 0f);
+        anim = GetComponentInChildren<Animator>();
+        if (anim != null)
+        {
+            anim.Play("HeroSword_Beam");
+        }
     }
 
     protected override void OnAbilityEnd()

@@ -1,0 +1,520 @@
+fileFormatVersion: 2
+guid: ed86cda6ab251c641a7516761d5282c4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -131066666456965804
+    second: new_logo_kuning_0
+  - first:
+      213: -3506961351634727924
+    second: new_logo_kuning_1
+  - first:
+      213: 2811418933448782605
+    second: new_logo_kuning_2
+  - first:
+      213: 8022050282181825267
+    second: new_logo_kuning_3
+  - first:
+      213: -8206930110665090016
+    second: new_logo_kuning_4
+  - first:
+      213: 114339104434087507
+    second: new_logo_kuning_5
+  - first:
+      213: -266563939609538296
+    second: new_logo_kuning_6
+  - first:
+      213: -2878813414506007106
+    second: new_logo_kuning_7
+  - first:
+      213: -4007356328900907912
+    second: new_logo_kuning_8
+  - first:
+      213: 1777091799501015289
+    second: new_logo_kuning_9
+  - first:
+      213: 234818775313822482
+    second: new_logo_kuning_10
+  - first:
+      213: 4116151957711000062
+    second: new_logo_kuning_11
+  - first:
+      213: -3669033989029591341
+    second: new_logo_kuning_12
+  - first:
+      213: -2731283773704537925
+    second: new_logo_kuning_13
+  - first:
+      213: 4485441817658926235
+    second: new_logo_kuning_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 2
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: new_logo_kuning_0
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 300
+        width: 65
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45d10ffaf8b5e2ef0800000000000000
+      internalID: -131066666456965804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_logo_kuning_1
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 285
+        width: 99
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0cc9ca3b35c45fc0800000000000000
+      internalID: -3506961351634727924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_logo_kuning_2
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 139
+        width: 123
+        height: 373
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d03b50bdf9a240720800000000000000
+      internalID: 2811418933448782605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_logo_kuning_3
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 293
+        width: 101
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f215cf9a3c045f60800000000000000
+      internalID: 8022050282181825267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_logo_kuning_4
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 87
+        width: 92
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02c9959eb802b1e80800000000000000
+      internalID: -8206930110665090016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_logo_kuning_5
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 85
+        width: 226
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 356eab74fc6369100800000000000000
+      internalID: 114339104434087507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_logo_kuning_6
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 87
+        width: 101
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80115ad5289fc4cf0800000000000000
+      internalID: -266563939609538296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_logo_kuning_7
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 87
+        width: 54
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb57dbdb3766c08d0800000000000000
+      internalID: -2878813414506007106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_logo_kuning_8
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 87
+        width: 70
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87ca27796a20368c0800000000000000
+      internalID: -4007356328900907912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_logo_kuning_9
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 89
+        width: 135
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f88482839f79a810800000000000000
+      internalID: 1777091799501015289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_logo_kuning_10
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 158
+        width: 70
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2133c299e6e324300800000000000000
+      internalID: 234818775313822482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_logo_kuning_11
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 175
+        width: 53
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef194e0b5628f1930800000000000000
+      internalID: 4116151957711000062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_logo_kuning_12
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 87
+        width: 69
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d68e0fb609f41dc0800000000000000
+      internalID: -3669033989029591341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_logo_kuning_13
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 87
+        width: 56
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb87d87f0e7881ad0800000000000000
+      internalID: -2731283773704537925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_logo_kuning_14
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 87
+        width: 122
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b942e3a719d7f3e30800000000000000
+      internalID: 4485441817658926235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      new_logo_kuning_0: -131066666456965804
+      new_logo_kuning_1: -3506961351634727924
+      new_logo_kuning_10: 234818775313822482
+      new_logo_kuning_11: 4116151957711000062
+      new_logo_kuning_12: -3669033989029591341
+      new_logo_kuning_13: -2731283773704537925
+      new_logo_kuning_14: 4485441817658926235
+      new_logo_kuning_2: 2811418933448782605
+      new_logo_kuning_3: 8022050282181825267
+      new_logo_kuning_4: -8206930110665090016
+      new_logo_kuning_5: 114339104434087507
+      new_logo_kuning_6: -266563939609538296
+      new_logo_kuning_7: -2878813414506007106
+      new_logo_kuning_8: -4007356328900907912
+      new_logo_kuning_9: 1777091799501015289
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

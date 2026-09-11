@@ -100,6 +100,7 @@ public class Payload : MonoBehaviour
     {
         Debug.Log("Payload destroyed! Game Over.");
         EventHandler.WhenGameLose();
+        AudioManager.Instance.PlayAudio(AudioManager.Instance.UI_Gameover);
         Destroy(gameObject, .1f);
     }
 

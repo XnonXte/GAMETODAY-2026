@@ -90,9 +90,12 @@ public class ArenaManager : MonoBehaviour
 
     private void OnEnemyDefeated()
     {
+        if (activeEnemyCount <= 0) return;
+
         activeEnemyCount--;
 
-        if (activeEnemyCount <= 0)
+        // Use strictly '==' so this can only ever fire exactly once per wave
+        if (activeEnemyCount == 0)
         {
             SpawnNextWave();
         }

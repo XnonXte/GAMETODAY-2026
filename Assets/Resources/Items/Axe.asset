@@ -15,5 +15,5 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: c7d7022238c0d1f439159de2a112517d, type: 3}
   itemName: Axe
   itemType: 1
-  price: 0
+  price: 6
   abilityPrefab: {fileID: 7137708269243252531, guid: e62be3d97cc6cb249864db2eb4d394a9, type: 3}

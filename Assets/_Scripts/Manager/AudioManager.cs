@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
     #region [Consumeable/Weapon SFX]
     [Header("Consumeable SFX")]
     public SoundID SFX_Coin;
+    public SoundID SFX_FailedPurchase;
     public SoundID SFX_Purchase;
     public SoundID SFX_Hammer;
     public SoundID SFX_Heal;
@@ -29,6 +30,7 @@ public class AudioManager : MonoBehaviour
     [Header("Entity SFX")]
     public SoundID SFX_Melee;
     public SoundID SFX_Hit;
+    public SoundID SFX_Dash;
     #endregion
 
     #region [UI SFX]
@@ -36,6 +38,7 @@ public class AudioManager : MonoBehaviour
     public SoundID UI_Click;
     public SoundID UI_Hover;
     public SoundID UI_Start;
+    public SoundID UI_Gameover;
     #endregion
 
     private SoundID currentBGM;
@@ -94,8 +97,15 @@ public class AudioManager : MonoBehaviour
     {
         StopAudio(BGM_Menu);
         StopAudio(BGM_Gameplay);
+        StopAudio(BGM_Gameplay4);
+        StopAudio(BGM_Gameplay5_7);
     }
 
     public void PlayAudio(SoundID sound) =>  BroAudio.Play(sound);
     public void StopAudio(SoundID sound) => BroAudio.Stop(sound);
+
+    public void StopAllCutsceneSFX()
+    {
+        BroAudio.Stop(BroAudioType.UI);
+    }
 }

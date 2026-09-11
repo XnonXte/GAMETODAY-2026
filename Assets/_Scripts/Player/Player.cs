@@ -26,11 +26,15 @@ public class Player : MonoBehaviour
     #endregion
 
     #region [Components]
+    [field: SerializeField] public Animator SwordAnim { get; private set; }
+    [field: SerializeField] public Animator Anim { get; private set; }
     public Rigidbody2D Rigidbody { get; private set; }
-    public Animator Anim { get; private set; }
     public PlayerCombat Combat { get; private set; }
     public Health HealthComponent { get; private set; }
-    private AnimationEventDetection eventDetection;
+
+    [Header("Animation Event Detectors")]
+    [SerializeField] private AnimationEventDetection bodyEventDetection;
+    [SerializeField] private AnimationEventDetection swordEventDetection;
     [SerializeField] private SpriteRenderer spriteRenderer;
     #endregion
 
@@ -50,10 +54,8 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         Rigidbody = GetComponent<Rigidbody2D>();
-        Anim = GetComponentInChildren<Animator>();
         Combat = GetComponent<PlayerCombat>();
         HealthComponent = GetComponent<Health>();
-        eventDetection = GetComponentInChildren<AnimationEventDetection>();
 
         StateMachine = new PlayerStateMachine();
         IdleState = new PlayerIdleState(this, StateMachine);
@@ -68,8 +70,8 @@ public class Player : MonoBehaviour
         HealthComponent.OnDamaged += HandleDamageTaken;
         HealthComponent.OnDeath += HandleDeath;
 
-        eventDetection.OnAnimationAttackTriggered += HandleAttackEvent;
-        eventDetection.OnAnimationFinishedTriggered += HandleAnimationFinished;
+        swordEventDetection.OnAnimationAttackTriggered += HandleAttackEvent;
+        swordEventDetection.OnAnimationFinishedTriggered += HandleAnimationFinished;
     }
 
     private void OnDisable()
@@ -77,8 +79,8 @@ public class Player : MonoBehaviour
         HealthComponent.OnDamaged -= HandleDamageTaken;
         HealthComponent.OnDeath -= HandleDeath;
 
-        eventDetection.OnAnimationAttackTriggered -= HandleAttackEvent;
-        eventDetection.OnAnimationFinishedTriggered -= HandleAnimationFinished;
+        swordEventDetection.OnAnimationAttackTriggered -= HandleAttackEvent;
+        swordEventDetection.OnAnimationFinishedTriggered -= HandleAnimationFinished;
     }
 
     private void Start()
@@ -155,6 +157,7 @@ public class Player : MonoBehaviour
     public void StartDash()
     {
         currentDashCooldown = dashCooldown;
+        AudioManager.Instance.PlayAudio(AudioManager.Instance.SFX_Dash);
         Rigidbody.linearVelocity = lastMoveDirection * dashForce;
     }
 
@@ -211,6 +214,7 @@ public class Player : MonoBehaviour
 
         if (Anim != null) Anim.Play("TestDeathAnimation", -1, 0f);
 
+        AudioManager.Instance.PlayAudio(AudioManager.Instance.UI_Gameover);
         EventHandler.WhenGameLose();
     }
 

@@ -15,5 +15,5 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: 53d7b439712c4014a9c01020392c2316, type: 3}
   itemName: Machete
   itemType: 1
-  price: 0
+  price: 8
   abilityPrefab: {fileID: 1851180786696000342, guid: 3eb595c4cb967b044906c708d7781a95, type: 3}

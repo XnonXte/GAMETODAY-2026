@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerAttackState : PlayerState
 {
+    protected override string AnimBoolName => "isIdling";
     private int comboStep = 0;
     private float failSafeTimer;
 
@@ -78,7 +79,7 @@ public class PlayerAttackState : PlayerState
     private void PlayComboAnimation()
     {
         string animName = "PlayerAttack" + comboStep;
-        player.Anim.Play(animName, -1, 0f);
+        player.SwordAnim.Play(animName, -1, 0f);
         failSafeTimer = 1.5f; // Give enough safety room for the animation length
     }
 
@@ -98,5 +99,10 @@ public class PlayerAttackState : PlayerState
     {
         base.Exit();
         player.StopMovement();
+
+        if (player.SwordAnim != null)
+        {
+            player.SwordAnim.Play("SwordNormal", -1, 0f);
+        }
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class DialogueManager : MonoBehaviour
     private int currentLineIndex;
     private bool isTyping;
     private bool isDialogueActive;
+
+    // Keep track of the current typing coroutine
+    private Coroutine typingCoroutine;
 
     private void Awake()
     {
@@ -33,7 +37,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogueUI == null)
         {
-            // FindAnyObjectByType can find components on inactive GameObjects
             dialogueUI = FindAnyObjectByType<DialogueUI>(FindObjectsInactive.Include);
         }
 
@@ -49,7 +52,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(DialogueData dialogue)
     {
-        Debug.Log("StartDialogue called with: " + (dialogue != null ? dialogue.name : "null"));
+        Debug.Log("StartDialogue called with: " +
+            (dialogue != null ? dialogue.name : "null"));
 
         if (dialogue == null || dialogue.GetLineCount() == 0)
         {
@@ -57,22 +61,31 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        // Stop any previous typing coroutine
+        StopTypingCoroutine();
+
+        // Reset dialogue completely
         currentDialogue = dialogue;
         currentLineIndex = 0;
+        isTyping = false;
         isDialogueActive = true;
 
-        Debug.Log("Showing first line...");
+        Debug.Log("Starting dialogue from line 0...");
+
         ShowCurrentLine();
     }
 
     public void AdvanceDialogue()
     {
         Debug.Log("AdvanceDialogue called, isActive: " + isDialogueActive);
+
         if (!isDialogueActive || currentDialogue == null)
         {
             return;
         }
 
+        // If current line is still typing,
+        // finish the line instead of advancing
         if (isTyping)
         {
             CompleteCurrentLine();
@@ -93,18 +106,31 @@ public class DialogueManager : MonoBehaviour
 
     private void ShowCurrentLine()
     {
-        if (currentDialogue == null || currentLineIndex >= currentDialogue.GetLineCount())
+        if (currentDialogue == null ||
+            currentLineIndex >= currentDialogue.GetLineCount())
         {
             return;
         }
 
-        DialogueData.DialogueLine line = currentDialogue.dialogueLines[currentLineIndex];
-        Debug.Log("Showing line " + currentLineIndex + ": " + line.speakerName + " - " + line.lineText);
+        // Make sure the previous typing coroutine is stopped
+        StopTypingCoroutine();
+
+        DialogueData.DialogueLine line =
+            currentDialogue.dialogueLines[currentLineIndex];
+
+        Debug.Log(
+            "Showing line " + currentLineIndex +
+            ": " + line.speakerName +
+            " - " + line.lineText
+        );
 
         if (dialogueUI != null)
         {
+            // Clear the text first
             dialogueUI.ShowDialogue(line.speakerName, "");
-            StartCoroutine(TypeText(line.lineText));
+
+            // Start typing the new line
+            typingCoroutine = StartCoroutine(TypeText(line.lineText));
         }
         else
         {
@@ -112,49 +138,100 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private System.Collections.IEnumerator TypeText(string text)
+    private IEnumerator TypeText(string text)
     {
         isTyping = true;
 
         string currentText = "";
+
         foreach (char c in text)
         {
             if (!isTyping)
             {
-                break;
+                yield break;
             }
 
             currentText += c;
 
-            if (dialogueUI != null && currentDialogue != null && currentLineIndex < currentDialogue.GetLineCount())
+            if (dialogueUI != null &&
+                currentDialogue != null &&
+                currentLineIndex < currentDialogue.GetLineCount())
             {
-                dialogueUI.ShowDialogue(currentDialogue.dialogueLines[currentLineIndex].speakerName, currentText);
+                DialogueData.DialogueLine line =
+                    currentDialogue.dialogueLines[currentLineIndex];
+
+                dialogueUI.ShowDialogue(
+                    line.speakerName,
+                    currentText
+                );
             }
 
             yield return new WaitForSeconds(typingSpeed);
         }
 
-        CompleteCurrentLine();
+        // Typing finished normally
+        isTyping = false;
+        typingCoroutine = null;
+
+        if (dialogueUI != null &&
+            currentDialogue != null &&
+            currentLineIndex < currentDialogue.GetLineCount())
+        {
+            DialogueData.DialogueLine line =
+                currentDialogue.dialogueLines[currentLineIndex];
+
+            dialogueUI.ShowDialogue(
+                line.speakerName,
+                line.lineText
+            );
+        }
     }
 
     private void CompleteCurrentLine()
     {
-        isTyping = false;
-        StopAllCoroutines();
-
-        if (currentDialogue != null && currentLineIndex < currentDialogue.GetLineCount())
+        if (!isTyping)
         {
-            DialogueData.DialogueLine line = currentDialogue.dialogueLines[currentLineIndex];
+            return;
+        }
+
+        isTyping = false;
+
+        // Stop only the typing coroutine
+        StopTypingCoroutine();
+
+        if (currentDialogue != null &&
+            currentLineIndex < currentDialogue.GetLineCount())
+        {
+            DialogueData.DialogueLine line =
+                currentDialogue.dialogueLines[currentLineIndex];
+
             if (dialogueUI != null)
             {
-                dialogueUI.ShowDialogue(line.speakerName, line.lineText);
+                dialogueUI.ShowDialogue(
+                    line.speakerName,
+                    line.lineText
+                );
             }
         }
+    }
+
+    private void StopTypingCoroutine()
+    {
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
+        }
+
+        isTyping = false;
     }
 
     public void EndDialogue()
     {
         Debug.Log("Ending dialogue");
+
+        StopTypingCoroutine();
+
         isDialogueActive = false;
         currentDialogue = null;
         currentLineIndex = 0;

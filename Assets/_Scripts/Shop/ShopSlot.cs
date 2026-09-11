@@ -73,6 +73,7 @@ public class ShopSlot : MonoBehaviour, IInteractable
         }
         else
         {
+            AudioManager.Instance.PlayAudio(AudioManager.Instance.SFX_FailedPurchase);
             Debug.Log("Not enough gold!");
         }
     }

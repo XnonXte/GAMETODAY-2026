@@ -6,6 +6,7 @@ public class SkipButton : MonoBehaviour
 
     public void SkipButtonClick()
     {
+        AudioManager.Instance.StopAllCutsceneSFX();
         GameSceneManager.Instance.ChangeScene(gameScene);
     }
 }

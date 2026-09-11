@@ -15,5 +15,5 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: 4b9cdc03947c79240a58c3f7bef886b3, type: 3}
   itemName: Heal Potion
   itemType: 0
-  price: 2
-  healAmount: 40
+  price: 6
+  healAmount: 50

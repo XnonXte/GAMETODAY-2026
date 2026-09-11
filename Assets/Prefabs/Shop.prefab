@@ -1687,6 +1687,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 69cca8b30c1487a41beac0b5f3c8ccf2, type: 2}
   - {fileID: 11400000, guid: 903df09b0c73eb04baac6bd512ffaa97, type: 2}
   - {fileID: 11400000, guid: f062e20f3a8896c489b9f80b899bce5a, type: 2}
+  - {fileID: 11400000, guid: ebad51912ac091c48bb6802460ffecb6, type: 2}
+  - {fileID: 11400000, guid: 76c78784b72208a4685389ea44dee2dd, type: 2}
   shopSlots:
   - {fileID: 3932106677752759879}
   - {fileID: 6096455125999283981}

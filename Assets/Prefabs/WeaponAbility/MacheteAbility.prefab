@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MacheteAbility
   duration: 5
-  damagePerTick: 3
+  damagePerTick: 4
   timeBetweenTicks: 0.25
   speedBoostAmount: 6
 --- !u!58 &2878227613636557627

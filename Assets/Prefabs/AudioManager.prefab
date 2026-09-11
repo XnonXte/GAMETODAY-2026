@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5012556409633135558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4534455719247192802}
+  - component: {fileID: 9207780028249209714}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4534455719247192802
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5012556409633135558}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -27.26766, y: -21.09486, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9207780028249209714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5012556409633135558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5959375cc9376b74a94b5efc7726e87d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  BGM_Menu:
+    _entity: {fileID: 11400000, guid: f37a3774af53cef48b7568051b20951d, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  BGM_Gameplay:
+    _entity: {fileID: 11400000, guid: 5a5203432342c744ca64e0a47f4d77ca, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  BGM_Gameplay4:
+    _entity: {fileID: 11400000, guid: 046fd07b500da7540b8a1e9aa35d4d50, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  BGM_Gameplay5_7:
+    _entity: {fileID: 11400000, guid: 21ba390cad7ab7e4abc395b850bdef2d, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  SFX_Coin:
+    _entity: {fileID: 11400000, guid: 1b43ccaec99017e419c85a8ec6a53703, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  SFX_FailedPurchase:
+    _entity: {fileID: 11400000, guid: 424e120e5cb09084a99404c3f6b326b8, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  SFX_Purchase:
+    _entity: {fileID: 11400000, guid: 6a245baad2689b1449aa072631bf0fc1, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  SFX_Hammer:
+    _entity: {fileID: 11400000, guid: 8fed28dea45a50147a9d8e2f02d3d262, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  SFX_Heal:
+    _entity: {fileID: 11400000, guid: b619c4821dd25e64782eee5364941900, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  SFX_PowerUp:
+    _entity: {fileID: 11400000, guid: 62f434126fb051a4392cce111fa51b5b, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  SFX_Speed:
+    _entity: {fileID: 11400000, guid: 10015a3839aae614985f1670500e63ee, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  SFX_ActivateAbility:
+    _entity: {fileID: 11400000, guid: 4a6f801e4df04784b8b4f78c9ba209e6, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  SFX_Melee:
+    _entity: {fileID: 11400000, guid: 63df9c5d75226c744a9f7d255891e841, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  SFX_Hit:
+    _entity: {fileID: 11400000, guid: baf2cc09b02e6d74d8b25ce6a34b0b6e, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  SFX_Dash:
+    _entity: {fileID: 11400000, guid: 0eb6091ef0ecfbc4a8d74fd88c3cc73e, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  UI_Click:
+    _entity: {fileID: 11400000, guid: 59f14d60649cb1d45a3d783fc95f8c00, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  UI_Hover:
+    _entity: {fileID: 11400000, guid: caa1bc474d681e64d9c09267e8833ca9, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  UI_Start:
+    _entity: {fileID: 11400000, guid: 42371abd0c4787b449bc10bb217df918, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}
+  UI_Gameover:
+    _entity: {fileID: 11400000, guid: 637f49c5f4c978141b8c64302e1b45de, type: 2}
+    ID: 0
+    <DebugObject>k__BackingField: {fileID: 5012556409633135558}

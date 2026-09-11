@@ -1,0 +1,572 @@
+fileFormatVersion: 2
+guid: 3b4d75cd75ff38e41a4912d7fa93e980
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2815588609433257858
+    second: sprite-sheet-holy_0
+  - first:
+      213: 3164785826460932694
+    second: sprite-sheet-holy_1
+  - first:
+      213: 3980879021947890346
+    second: sprite-sheet-holy_2
+  - first:
+      213: 539980358133986707
+    second: sprite-sheet-holy_3
+  - first:
+      213: -5132235305102540393
+    second: sprite-sheet-holy_4
+  - first:
+      213: 955088795344899161
+    second: sprite-sheet-holy_5
+  - first:
+      213: -2641704439927033534
+    second: sprite-sheet-holy_6
+  - first:
+      213: 1179467448026074916
+    second: sprite-sheet-holy_7
+  - first:
+      213: 426783677020157526
+    second: sprite-sheet-holy_8
+  - first:
+      213: 8261148028238472151
+    second: sprite-sheet-holy_9
+  - first:
+      213: -9022045965592523173
+    second: sprite-sheet-holy_10
+  - first:
+      213: 3320223914020757688
+    second: sprite-sheet-holy_11
+  - first:
+      213: 8919037905371304188
+    second: sprite-sheet-holy_12
+  - first:
+      213: 765298880802366197
+    second: sprite-sheet-holy_13
+  - first:
+      213: -2480246900885063946
+    second: sprite-sheet-holy_14
+  - first:
+      213: -7743810258498070745
+    second: sprite-sheet-holy_15
+  - first:
+      213: 7617453515914718115
+    second: sprite-sheet-holy_16
+  - first:
+      213: -3777019145395344766
+    second: sprite-sheet-holy_17
+  - first:
+      213: 6484296958130067623
+    second: sprite-sheet-holy_18
+  - first:
+      213: -2784659705044272150
+    second: sprite-sheet-holy_19
+  - first:
+      213: -8142729546418622988
+    second: sprite-sheet-holy_20
+  - first:
+      213: 8827423626161746932
+    second: sprite-sheet-holy_21
+  - first:
+      213: 8461802835475845128
+    second: sprite-sheet-holy_22
+  - first:
+      213: -7025840380119153233
+    second: sprite-sheet-holy_23
+  - first:
+      213: -4602275698509193257
+    second: sprite-sheet-holy_24
+  - first:
+      213: 2326729202893353685
+    second: sprite-sheet-holy_25
+  - first:
+      213: 8711653878170267186
+    second: sprite-sheet-holy_26
+  - first:
+      213: -4967011858247690444
+    second: sprite-sheet-holy_27
+  - first:
+      213: 2847155656069494243
+    second: sprite-sheet-holy_28
+  - first:
+      213: -3972557450447345912
+    second: sprite-sheet-holy_29
+  - first:
+      213: -2660745499342330861
+    second: sprite-sheet-holy_30
+  - first:
+      213: -2012808810275468360
+    second: sprite-sheet-holy_31
+  - first:
+      213: -3882878276399117818
+    second: sprite-sheet-holy_32
+  - first:
+      213: 7023655579934548340
+    second: sprite-sheet-holy_33
+  - first:
+      213: 6901472162321029652
+    second: sprite-sheet-holy_34
+  - first:
+      213: -7879358425530835109
+    second: sprite-sheet-holy_35
+  - first:
+      213: 813672502299915625
+    second: sprite-sheet-holy_36
+  - first:
+      213: -1950861418191840006
+    second: sprite-sheet-holy_37
+  - first:
+      213: -3742928230670840364
+    second: sprite-sheet-holy_38
+  - first:
+      213: 5711119854113783054
+    second: sprite-sheet-holy_39
+  - first:
+      213: -9093808982612067604
+    second: sprite-sheet-holy_40
+  - first:
+      213: 3984320710881165855
+    second: sprite-sheet-holy_41
+  - first:
+      213: 2531402096646024962
+    second: sprite-sheet-holy_42
+  - first:
+      213: -1675763735738948537
+    second: sprite-sheet-holy_43
+  - first:
+      213: -4870373530955761349
+    second: sprite-sheet-holy_44
+  - first:
+      213: 4730039885310671617
+    second: sprite-sheet-holy_45
+  - first:
+      213: -6897069501021387643
+    second: sprite-sheet-holy_46
+  - first:
+      213: 630568505627314451
+    second: sprite-sheet-holy_47
+  - first:
+      213: -4222462239316031610
+    second: sprite-sheet-holy_48
+  - first:
+      213: -2787820325735702954
+    second: sprite-sheet-holy_49
+  - first:
+      213: -6678711799739415448
+    second: sprite-sheet-holy_50
+  - first:
+      213: 6135052060816603647
+    second: sprite-sheet-holy_51
+  - first:
+      213: 9034015537815389810
+    second: sprite-sheet-holy_52
+  - first:
+      213: 7603401198544451762
+    second: sprite-sheet-holy_53
+  - first:
+      213: 1737832031861085024
+    second: sprite-sheet-holy_54
+  - first:
+      213: 4901871754164938490
+    second: sprite-sheet-holy_55
+  - first:
+      213: 5695270758633614295
+    second: sprite-sheet-holy_56
+  - first:
+      213: -1254153009780089473
+    second: sprite-sheet-holy_57
+  - first:
+      213: -3994209480483960414
+    second: sprite-sheet-holy_58
+  - first:
+      213: 7787926630603140690
+    second: sprite-sheet-holy_59
+  - first:
+      213: -6629371241545566381
+    second: sprite-sheet-holy_60
+  - first:
+      213: 8031757013738406649
+    second: sprite-sheet-holy_61
+  - first:
+      213: 7862228689465199644
+    second: sprite-sheet-holy_62
+  - first:
+      213: -3918569433769486566
+    second: sprite-sheet-holy_63
+  - first:
+      213: 6053329060765910620
+    second: sprite-sheet-holy_64
+  - first:
+      213: -6465136589712855046
+    second: sprite-sheet-holy_65
+  - first:
+      213: 2587826428857971286
+    second: sprite-sheet-holy_66
+  - first:
+      213: -1535724174241056568
+    second: sprite-sheet-holy_67
+  - first:
+      213: 1834125745544030265
+    second: sprite-sheet-holy_68
+  - first:
+      213: 6344537690947976022
+    second: sprite-sheet-holy_69
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sprite-sheet-holy_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e78381dc3150de8d0800000000000000
+      internalID: -2815588609433257858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite-sheet-holy_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65a156001f39beb20800000000000000
+      internalID: 3164785826460932694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite-sheet-holy_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaa220df06cee3730800000000000000
+      internalID: 3980879021947890346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite-sheet-holy_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 395b34856456e7700800000000000000
+      internalID: 539980358133986707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite-sheet-holy_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79105a78e23a6c8b0800000000000000
+      internalID: -5132235305102540393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite-sheet-holy_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95c0d77f238214d00800000000000000
+      internalID: 955088795344899161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite-sheet-holy_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 128
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 241b398eec7c65bd0800000000000000
+      internalID: -2641704439927033534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite-sheet-holy_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 128
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42f0bb7156f4e5010800000000000000
+      internalID: 1179467448026074916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite-sheet-holy_8
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 128
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 656b8b83e7d3ce500800000000000000
+      internalID: 426783677020157526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite-sheet-holy_9
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 128
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d3a21cbc5e75a270800000000000000
+      internalID: 8261148028238472151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 210646c8b0cc999459c592c63932bb19
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":10.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":151.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      sprite-sheet-holy_0: -2815588609433257858
+      sprite-sheet-holy_1: 3164785826460932694
+      sprite-sheet-holy_2: 3980879021947890346
+      sprite-sheet-holy_3: 539980358133986707
+      sprite-sheet-holy_4: -5132235305102540393
+      sprite-sheet-holy_5: 955088795344899161
+      sprite-sheet-holy_6: -2641704439927033534
+      sprite-sheet-holy_7: 1179467448026074916
+      sprite-sheet-holy_8: 426783677020157526
+      sprite-sheet-holy_9: 8261148028238472151
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

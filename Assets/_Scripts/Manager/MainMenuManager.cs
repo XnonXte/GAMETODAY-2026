@@ -212,7 +212,6 @@ public class MainMenuManager : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
     }
-
     #endregion
 
     #region Panel Helper
