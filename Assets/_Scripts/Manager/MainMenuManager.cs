@@ -5,6 +5,7 @@ using System.Resources;
 public class MainMenuManager : MonoBehaviour
 {
     [Header("Panels")]
+    [SerializeField] private GameObject mainMenuPanel;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject creditsPanel;
 
@@ -95,16 +96,18 @@ public class MainMenuManager : MonoBehaviour
     public void OpenSettings()
     {
         PlayClickSFX();
+        CloseOtherPanels(settingsPanel);
+        HideMainMenu();
         AnimatePanelOpen(settingsPanel, settingsRectTransform, settingsCanvasGroup);
     }
 
-    /// <summary>
+        /// <summary>
     /// Closes the Settings panel with pop up animation.
     /// </summary>
     public void CloseSettings()
     {
         PlayClickSFX();
-        AnimatePanelClose(settingsPanel, settingsRectTransform, settingsCanvasGroup);
+        AnimatePanelClose(settingsPanel, settingsRectTransform, settingsCanvasGroup, ShowMainMenu);
     }
 
     /// <summary>
@@ -128,16 +131,18 @@ public class MainMenuManager : MonoBehaviour
     public void OpenCredits()
     {
         PlayClickSFX();
+        CloseOtherPanels(creditsPanel);
+        HideMainMenu();
         AnimatePanelOpen(creditsPanel, creditsRectTransform, creditsCanvasGroup);
     }
 
-    /// <summary>
+        /// <summary>
     /// Closes the Credits panel with pop up animation.
     /// </summary>
     public void CloseCredits()
     {
         PlayClickSFX();
-        AnimatePanelClose(creditsPanel, creditsRectTransform, creditsCanvasGroup);
+        AnimatePanelClose(creditsPanel, creditsRectTransform, creditsCanvasGroup, ShowMainMenu);
     }
 
     /// <summary>
@@ -167,6 +172,62 @@ public class MainMenuManager : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
+    }
+
+    #endregion
+
+    #region Panel Helper
+
+    private void CloseOtherPanels(GameObject exceptPanel)
+    {
+        if (settingsPanel != null && settingsPanel != exceptPanel)
+        {
+            AnimatePanelClose(settingsPanel, settingsRectTransform, settingsCanvasGroup, ShowMainMenu);
+        }
+
+        if (creditsPanel != null && creditsPanel != exceptPanel)
+        {
+            AnimatePanelClose(creditsPanel, creditsRectTransform, creditsCanvasGroup, ShowMainMenu);
+        }
+    }
+
+    private void HideMainMenu()
+    {
+        if (mainMenuPanel != null)
+        {
+            var cg = mainMenuPanel.GetComponent<CanvasGroup>();
+            if (cg != null)
+            {
+                cg.DOKill();
+                cg.interactable = false;
+                cg.blocksRaycasts = false;
+                cg.DOFade(0f, animDuration).SetEase(Ease.InQuad).SetUpdate(true).OnComplete(() =>
+                {
+                    mainMenuPanel.SetActive(false);
+                });
+            }
+            else
+            {
+                mainMenuPanel.SetActive(false);
+            }
+        }
+    }
+
+    private void ShowMainMenu()
+    {
+        if (mainMenuPanel != null && mainMenuPanel.activeSelf == false)
+        {
+            var cg = mainMenuPanel.GetComponent<CanvasGroup>();
+            mainMenuPanel.SetActive(true);
+            if (cg != null)
+            {
+                cg.DOKill();
+                cg.alpha = 0f;
+                cg.interactable = true;
+                cg.blocksRaycasts = true;
+                cg.DOFade(1f, animDuration).SetEase(Ease.OutQuad).SetUpdate(true);
+            }
+        }
     }
 
     #endregion
@@ -203,7 +264,7 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    private void AnimatePanelClose(GameObject panel, RectTransform rectTransform, CanvasGroup canvasGroup)
+    private void AnimatePanelClose(GameObject panel, RectTransform rectTransform, CanvasGroup canvasGroup, System.Action onComplete = null)
     {
         if (panel == null || !panel.activeSelf) return;
 
@@ -223,6 +284,7 @@ public class MainMenuManager : MonoBehaviour
             rectTransform.DOScale(Vector3.zero, animDuration).SetEase(closeEase).SetUpdate(true).OnComplete(() =>
             {
                 panel.SetActive(false);
+                onComplete?.Invoke();
             });
         }
         else
@@ -230,6 +292,7 @@ public class MainMenuManager : MonoBehaviour
             DOVirtual.DelayedCall(animDuration, () =>
             {
                 panel.SetActive(false);
+                onComplete?.Invoke();
             }).SetUpdate(true);
         }
     }
