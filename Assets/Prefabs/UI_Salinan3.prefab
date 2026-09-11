@@ -983,7 +983,7 @@ GameObject:
   - component: {fileID: 6610164509469860949}
   - component: {fileID: 3818167702278621487}
   m_Layer: 5
-  m_Name: UI_Salinan
+  m_Name: UI_Salinan3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -3121,7 +3121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1833107312103934722, guid: ddea16fb51b602a4d91b23289536df9b, type: 3}
       propertyPath: m_Name
-      value: UI_Salinan
+      value: UI_Salinan3
       objectReference: {fileID: 0}
     - target: {fileID: 2288983929029357872, guid: ddea16fb51b602a4d91b23289536df9b, type: 3}
       propertyPath: m_AnchorMax.y
