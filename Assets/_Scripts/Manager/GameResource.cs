@@ -29,4 +29,10 @@ public static class GameResource
         goldAmount = 0;
         EventHandler.WhenGoldAmountChanged();
     }
+
+    public static void SetGoldAmount(int amount)
+    {
+        goldAmount = amount;
+        EventHandler.WhenGoldAmountChanged();
+    }
 }

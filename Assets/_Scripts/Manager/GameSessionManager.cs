@@ -57,6 +57,7 @@ public class GameSessionManager : MonoBehaviour
     private void HandleGameLose()
     {
         ResetSession();
+        SaveManager.ClearSave();
         GameSceneManager.Instance.ChangeScene(GameScene.MainMenu);
     }
 }

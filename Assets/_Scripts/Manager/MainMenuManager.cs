@@ -1,6 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
-using System.Resources;
+using UnityEngine.UI;
+using System; // Replaced System.Resources to allow Enum parsing for scenes
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -9,8 +10,12 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject creditsPanel;
 
+    [Header("Menu Buttons")]
+    [SerializeField] private Button continueButton;
+    [SerializeField] private Button newGameButton;
+
     [Header("Target Scene")]
-    [SerializeField] private GameScene targetScene = GameScene.Stage1;
+    [SerializeField] private GameScene targetScene = GameScene.CutsceneIntro;
 
     [Header("Animation Settings")]
     [SerializeField] private float animDuration = 0.3f;
@@ -33,6 +38,11 @@ public class MainMenuManager : MonoBehaviour
     {
         HidePanelInstantly(settingsPanel, settingsRectTransform, settingsCanvasGroup);
         HidePanelInstantly(creditsPanel, creditsRectTransform, creditsCanvasGroup);
+
+        if (continueButton != null)
+        {
+            continueButton.interactable = SaveManager.HasSave();
+        }
     }
 
     private void InitPanel(GameObject panel, ref RectTransform rectTransform, ref CanvasGroup canvasGroup)
@@ -73,20 +83,67 @@ public class MainMenuManager : MonoBehaviour
     #region Button Handler Methods
 
     /// <summary>
-    /// Button event to start playing the game (loads target scene).
+    /// Button event to start a completely fresh game.
     /// </summary>
-    public void PlayGame()
+    public void ButtonNewGame()
     {
         PlayClickSFX();
 
+        // 1. Wipe old disk saves
+        SaveManager.ClearSave();
+
+        // 2. Wipe active RAM session and Gold
+        if (GameSessionManager.Instance != null) GameSessionManager.Instance.ResetSession();
+        GameResource.ResetGold();
+
+        // 3. Load the target scene (Intro Cutscene)
         if (GameSceneManager.Instance != null)
         {
-              GameResource.ResetGold();
-              GameSceneManager.Instance.ChangeScene(targetScene);
+            GameSceneManager.Instance.ChangeScene(targetScene);
         }
         else
         {
             Debug.LogWarning("[MainMenuManager] GameSceneManager Instance is null!");
+        }
+    }
+
+    /// <summary>
+    /// Button event to continue from the last saved level.
+    /// </summary>
+    public void ButtonContinue()
+    {
+        PlayClickSFX();
+
+        if (!SaveManager.HasSave()) return;
+
+        // 1. Load Gold directly into static script
+        GameResource.SetGoldAmount(PlayerPrefs.GetInt("Gold", 0));
+
+        // 2. Load Items from the Resources/Items folder
+        BaseItemSO savedConsumable = SaveManager.LoadItem("Consumable");
+        BaseItemSO savedWeapon = SaveManager.LoadItem("Weapon");
+
+        // 3. Inject disk data into the RAM Session Manager
+        if (GameSessionManager.Instance != null)
+        {
+            GameSessionManager.Instance.SaveLevelData(
+                PlayerPrefs.GetFloat("PlayerHP", -1f),
+                PlayerPrefs.GetFloat("PayloadHP", -1f),
+                savedConsumable,
+                savedWeapon
+            );
+        }
+
+        // 4. Figure out which scene they were entering and load it
+        string savedSceneStr = PlayerPrefs.GetString("SavedScene", targetScene.ToString());
+
+        if (Enum.TryParse(savedSceneStr, out GameScene sceneToLoad))
+        {
+            if (GameSceneManager.Instance != null) GameSceneManager.Instance.ChangeScene(sceneToLoad);
+        }
+        else
+        {
+            if (GameSceneManager.Instance != null) GameSceneManager.Instance.ChangeScene(targetScene); // Failsafe
         }
     }
 
@@ -101,7 +158,7 @@ public class MainMenuManager : MonoBehaviour
         AnimatePanelOpen(settingsPanel, settingsRectTransform, settingsCanvasGroup);
     }
 
-        /// <summary>
+    /// <summary>
     /// Closes the Settings panel with pop up animation.
     /// </summary>
     public void CloseSettings()
@@ -110,19 +167,10 @@ public class MainMenuManager : MonoBehaviour
         AnimatePanelClose(settingsPanel, settingsRectTransform, settingsCanvasGroup, ShowMainMenu);
     }
 
-    /// <summary>
-    /// Toggles the Settings panel open/close state.
-    /// </summary>
     public void ToggleSettings()
     {
-        if (settingsPanel != null && settingsPanel.activeSelf)
-        {
-            CloseSettings();
-        }
-        else
-        {
-            OpenSettings();
-        }
+        if (settingsPanel != null && settingsPanel.activeSelf) CloseSettings();
+        else OpenSettings();
     }
 
     /// <summary>
@@ -136,7 +184,7 @@ public class MainMenuManager : MonoBehaviour
         AnimatePanelOpen(creditsPanel, creditsRectTransform, creditsCanvasGroup);
     }
 
-        /// <summary>
+    /// <summary>
     /// Closes the Credits panel with pop up animation.
     /// </summary>
     public void CloseCredits()
@@ -145,19 +193,10 @@ public class MainMenuManager : MonoBehaviour
         AnimatePanelClose(creditsPanel, creditsRectTransform, creditsCanvasGroup, ShowMainMenu);
     }
 
-    /// <summary>
-    /// Toggles the Credits panel open/close state.
-    /// </summary>
     public void ToggleCredits()
     {
-        if (creditsPanel != null && creditsPanel.activeSelf)
-        {
-            CloseCredits();
-        }
-        else
-        {
-            OpenCredits();
-        }
+        if (creditsPanel != null && creditsPanel.activeSelf) CloseCredits();
+        else OpenCredits();
     }
 
     /// <summary>
@@ -180,14 +219,16 @@ public class MainMenuManager : MonoBehaviour
 
     private void CloseOtherPanels(GameObject exceptPanel)
     {
+        // Passed 'null' instead of 'ShowMainMenu' here so the Main Menu doesn't glitch 
+        // into view if you open Credits while Settings is already open.
         if (settingsPanel != null && settingsPanel != exceptPanel)
         {
-            AnimatePanelClose(settingsPanel, settingsRectTransform, settingsCanvasGroup, ShowMainMenu);
+            AnimatePanelClose(settingsPanel, settingsRectTransform, settingsCanvasGroup, null);
         }
 
         if (creditsPanel != null && creditsPanel != exceptPanel)
         {
-            AnimatePanelClose(creditsPanel, creditsRectTransform, creditsCanvasGroup, ShowMainMenu);
+            AnimatePanelClose(creditsPanel, creditsRectTransform, creditsCanvasGroup, null);
         }
     }
 
@@ -264,7 +305,7 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    private void AnimatePanelClose(GameObject panel, RectTransform rectTransform, CanvasGroup canvasGroup, System.Action onComplete = null)
+    private void AnimatePanelClose(GameObject panel, RectTransform rectTransform, CanvasGroup canvasGroup, Action onComplete = null)
     {
         if (panel == null || !panel.activeSelf) return;
 

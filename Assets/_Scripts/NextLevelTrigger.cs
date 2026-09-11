@@ -29,11 +29,21 @@ public class NextLevelTrigger : MonoBehaviour
 
                 // 2. Get the Player's Inventory
                 PlayerInventory inventory = player.GetComponent<PlayerInventory>();
+                int currentGold = GameResource.GetGoldAmount();
 
                 // 3. Save it all to the persistent Session Manager!
                 GameSessionManager.Instance.SaveLevelData(
                     player.HealthComponent.CurrentHp,
                     payloadHp,
+                    inventory.CurrentConsumable,
+                    inventory.CurrentWeapon
+                );
+
+                SaveManager.SaveGame(
+                    gameScene,
+                    player.HealthComponent.CurrentHp,
+                    payloadHp,
+                    currentGold,
                     inventory.CurrentConsumable,
                     inventory.CurrentWeapon
                 );
