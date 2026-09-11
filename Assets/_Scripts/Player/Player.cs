@@ -18,6 +18,11 @@ public class Player : MonoBehaviour
     private float currentDashCooldown;
     private Vector2 lastMoveDirection = Vector2.right;
     [SerializeField] private ParticleSystem dustParticle;
+
+    [SerializeField] private Material flashMaterial;
+    [SerializeField] private float flashDuration = 0.15f;
+    private Material defaultMaterial;
+    private Coroutine flashCoroutine;
     #endregion
 
     #region [Components]
@@ -26,6 +31,7 @@ public class Player : MonoBehaviour
     public PlayerCombat Combat { get; private set; }
     public Health HealthComponent { get; private set; }
     private AnimationEventDetection eventDetection;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     #endregion
 
     #region [PlayerStateMachine]
@@ -77,6 +83,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        if (spriteRenderer != null) defaultMaterial = spriteRenderer.material;
         StateMachine.Initialize(IdleState);
 
         if (GameSessionManager.Instance != null && GameSessionManager.Instance.savedPlayerHealth > 0)
@@ -183,6 +190,9 @@ public class Player : MonoBehaviour
         float directionX = hitDirection.x != 0 ? Mathf.Sign(hitDirection.x) : (transform.localScale.x * -1f);
         Vector2 finalForce = new Vector2(directionX * strength, 0f);
 
+        if (flashCoroutine != null) StopCoroutine(flashCoroutine);
+        flashCoroutine = StartCoroutine(FlashRoutine());
+
         DamagedState.SetKnockbackForce(finalForce, stunTime);
         StateMachine.ChangeState(DamagedState);
     }
@@ -202,6 +212,16 @@ public class Player : MonoBehaviour
         if (Anim != null) Anim.Play("TestDeathAnimation", -1, 0f);
 
         EventHandler.WhenGameLose();
+    }
+
+    private IEnumerator FlashRoutine()
+    {
+        if (spriteRenderer != null && flashMaterial != null)
+        {
+            spriteRenderer.material = flashMaterial;
+            yield return new WaitForSeconds(flashDuration);
+            spriteRenderer.material = defaultMaterial;
+        }
     }
     #endregion
 

@@ -10,6 +10,7 @@ public class WeaponItemSO : BaseItemSO
     {
         if (abilityPrefab != null)
         {
+            EventHandler.WhenAnyAbilityUsed();
             Instantiate(abilityPrefab, player.transform.position + Vector3.up * 1.5f, Quaternion.identity, player.transform);
             return true; 
         }
