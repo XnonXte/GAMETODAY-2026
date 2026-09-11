@@ -624,8 +624,8 @@ Transform:
   m_GameObject: {fileID: 291234792}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.333061, y: 3.9763, z: 0}
-  m_LocalScale: {x: 90, y: 10.2967825, z: 1}
+  m_LocalPosition: {x: 1.333061, y: 3.6286, z: 0}
+  m_LocalScale: {x: 90, y: 10.992484, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1770306260}
@@ -3657,7 +3657,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5227438134941804301, guid: 43c8b15bff4f34049bdd534835fe3245, type: 3}
       propertyPath: waves.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5227438134941804301, guid: 43c8b15bff4f34049bdd534835fe3245, type: 3}
       propertyPath: waves.Array.data[1].waveName
@@ -3673,7 +3673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5227438134941804301, guid: 43c8b15bff4f34049bdd534835fe3245, type: 3}
       propertyPath: waves.Array.data[1].enemiesToSpawn.Array.size
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5227438134941804301, guid: 43c8b15bff4f34049bdd534835fe3245, type: 3}
       propertyPath: waves.Array.data[2].enemiesToSpawn.Array.size

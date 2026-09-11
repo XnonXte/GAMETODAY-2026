@@ -376,7 +376,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -732,8 +732,8 @@ RectTransform:
   m_GameObject: {fileID: 1945586912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.95, y: 0.95, z: 0.95}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 215461842}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -762,7 +762,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b92abb391aeb1cc47b6e5a8a4e99a6a3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3b43f21e2e9405e47a439baa28c26744, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -914,10 +914,7 @@ MonoBehaviour:
     panels:
     - image: {fileID: 1945586916}
       texts: []
-      sounds:
-      - _entity: {fileID: 11400000, guid: 9f655a0b2ad918144aff5d281e8cf8ed, type: 2}
-        ID: 0
-        <DebugObject>k__BackingField: {fileID: 2067323311}
+      sounds: []
   panelFadeDuration: 1
   imageFadeDuration: 2
   textFadeDuration: 0

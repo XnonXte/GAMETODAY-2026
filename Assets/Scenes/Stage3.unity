@@ -3565,7 +3565,7 @@ PrefabInstance:
     - target: {fileID: 5227438134941804301, guid: 43c8b15bff4f34049bdd534835fe3245, type: 3}
       propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[0].enemyData
       value: 
-      objectReference: {fileID: 11400000, guid: f6e77267a935a6f4b860220cc87e2a44, type: 2}
+      objectReference: {fileID: 11400000, guid: c9f3ca5829527ce4da9fbe260b186f18, type: 2}
     - target: {fileID: 5227438134941804301, guid: 43c8b15bff4f34049bdd534835fe3245, type: 3}
       propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[1].enemyData
       value: 
@@ -3573,7 +3573,7 @@ PrefabInstance:
     - target: {fileID: 5227438134941804301, guid: 43c8b15bff4f34049bdd534835fe3245, type: 3}
       propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[2].enemyData
       value: 
-      objectReference: {fileID: 11400000, guid: f6e77267a935a6f4b860220cc87e2a44, type: 2}
+      objectReference: {fileID: 11400000, guid: 571c027a5cdff72419c80982134c6937, type: 2}
     - target: {fileID: 5227438134941804301, guid: 43c8b15bff4f34049bdd534835fe3245, type: 3}
       propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[3].enemyData
       value: 
@@ -4057,6 +4057,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1701171109927586915, guid: c7e0ab329e0aeb64faf9024ca4fe1cc8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 53d7b439712c4014a9c01020392c2316, type: 3}
     - target: {fileID: 6542266112307772926, guid: c7e0ab329e0aeb64faf9024ca4fe1cc8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30.43

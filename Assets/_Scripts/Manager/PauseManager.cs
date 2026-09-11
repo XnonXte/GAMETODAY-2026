@@ -147,10 +147,12 @@ public class PauseManager : MonoBehaviour
 
         if (GameSceneManager.Instance != null)
         {
+            GameSessionManager.Instance.ResetSession();
             GameSceneManager.Instance.RestartScene();
         }
         else
         {
+            GameSessionManager.Instance.ResetSession();
             UnityEngine.SceneManagement.SceneManager.LoadScene(
                 UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
             );
