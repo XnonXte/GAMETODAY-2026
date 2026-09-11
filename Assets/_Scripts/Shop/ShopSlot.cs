@@ -97,6 +97,6 @@ public class ShopSlot : MonoBehaviour, IInteractable
 
     public string GetInteractionPrompt()
     {
-        return "E";
+        return "";
     }
 }

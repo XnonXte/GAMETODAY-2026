@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bff050e0781311c4f84e15d45c9c5ddd, type: 3}
+  m_Name: Stage2 3
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  dialogueLines:
+  - speakerName: 
+    lineText: "THE HERO'S RETURN\L\LThe songs say the Hero\Lreturned beneath banners
+      and cheers.\LThey say he walked through these gates\Lwith his sword held high.\LThe
+      songs forgot one thing.\LHe could no longer walk.\LSo another carried him home.\LNot
+      a hero.\LNot a warrior.\LJust someone who refused to leave him behind."

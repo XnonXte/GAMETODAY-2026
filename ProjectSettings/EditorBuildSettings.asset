@@ -12,25 +12,25 @@ EditorBuildSettings:
     path: Assets/Scenes/CutsceneIntro.unity
     guid: 39ffef688cbaa594ab5433fb9f14b4c1
   - enabled: 1
-    path: Assets/Scenes/Stage1.unity
+    path: Assets/Scenes/Stage1_j.unity
     guid: 6b504cb30678a71459d903675c171b9c
   - enabled: 1
-    path: Assets/Scenes/Stage2.unity
+    path: Assets/Scenes/Stage2_j.unity
     guid: 7a415866fe4ce0c45b1cc7e2ed3e9672
   - enabled: 1
-    path: Assets/Scenes/Stage3.unity
+    path: Assets/Scenes/Stage3_j.unity
     guid: cbc09c39bacfb894cb43f310a4668eed
   - enabled: 1
-    path: Assets/Scenes/Stage4.unity
+    path: Assets/Scenes/Stage4_j.unity
     guid: 72ceb87d071becc45a1b5554801aae95
   - enabled: 1
-    path: Assets/Scenes/Stage5.unity
+    path: Assets/Scenes/Stage5_j.unity
     guid: 2755daa47db71fd4999488276d6cf144
   - enabled: 1
-    path: Assets/Scenes/Stage6.unity
+    path: Assets/Scenes/Stage6_j.unity
     guid: c7029e4b67448174198549414c30e575
   - enabled: 1
-    path: Assets/Scenes/Stage7.unity
+    path: Assets/Scenes/Stage7_j.unity
     guid: 8ac0d2c1eb2d5da4b884c79e0d0db591
   - enabled: 1
     path: Assets/Scenes/CutsceneOutro.unity
